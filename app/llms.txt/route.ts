@@ -8,7 +8,7 @@ export function GET() {
   const body = [
     `# ${site.name}`,
     "",
-    `> ${site.name} makes small, careful software for the Mac.`,
+    `> ${site.name} is a software engineer and programming polyglot who also plays tennis and chess.`,
     "",
     ...projects.flatMap((project) => [
       `## ${project.name}`,

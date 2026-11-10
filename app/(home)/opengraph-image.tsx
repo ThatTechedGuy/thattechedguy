@@ -5,7 +5,7 @@ import { ImageResponse } from "next/og";
 
 import { site } from "@/site.config";
 
-export const alt = "ThatTechedGuy: small, careful software for the Mac.";
+export const alt = "ThatTechedGuy: software engineer and programming polyglot. Tennis and chess.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -35,9 +35,10 @@ export default async function OpenGraphImage() {
       <span style={{ fontFamily: "Serif", fontSize: 112, letterSpacing: "-0.01em" }}>
         {site.name}
       </span>
-      <span style={{ fontFamily: "Sans", fontSize: 38, opacity: 0.65 }}>
-        Small, careful software for the Mac.
+      <span style={{ fontFamily: "Sans", fontSize: 38, opacity: 0.7 }}>
+        Software engineer · Programming polyglot
       </span>
+      <span style={{ fontFamily: "Sans", fontSize: 30, opacity: 0.5 }}>Tennis · Chess</span>
       <span style={{ fontFamily: "Sans", fontSize: 26, opacity: 0.5, marginTop: 40 }}>
         www.thattechedguy.com
       </span>

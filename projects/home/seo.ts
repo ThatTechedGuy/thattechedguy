@@ -1,13 +1,13 @@
-/** The home page's search and sharing metadata. Title and description are drafts for the owner to approve. */
+/** The home page's search and sharing metadata. */
 
 import type { Metadata, Viewport } from "next";
 
 import { graph, person, webSite } from "@/lib/seo/json-ld";
 import { isIndexable, site } from "@/site.config";
 
-const title = "ThatTechedGuy: small, careful software for the Mac";
+const title = "ThatTechedGuy: software engineer and programming polyglot";
 const description =
-  "ThatTechedGuy makes small, careful software for the Mac. New things are on the way. For now, meet Yank, a free, open-source clipboard manager for Mac.";
+  "Software engineer, programming polyglot, tennis and chess player. New things are on the way. For now, meet Yank, a free, open-source clipboard manager for Mac.";
 
 export const homeMetadata: Metadata = {
   metadataBase: new URL(site.origin),
