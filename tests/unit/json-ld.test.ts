@@ -28,9 +28,10 @@ test("Yank's JSON-LD describes a free macOS app with absolute URLs and no rating
     offers: { price: "0", priceCurrency: "USD" },
     codeRepository: "https://github.com/ThatTechedGuy/Yank",
   });
-  for (const key of ["url", "downloadUrl", "screenshot"]) {
+  for (const key of ["url", "screenshot"]) {
     expect(String(app?.[key])).toStartWith("https://thattechedguy.com/");
   }
+  expect(app?.["downloadUrl"]).toBe("https://github.com/ThatTechedGuy/Yank/releases/latest");
   expect(String(app?.["license"])).toStartWith("https://");
   expect(app).not.toContainKey("aggregateRating");
   expect(app).not.toContainKey("review");

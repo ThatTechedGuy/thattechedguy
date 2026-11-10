@@ -201,6 +201,4 @@ On a phone with the CPU slowed four times, every interaction takes at most 80 ms
 
 ## Before launch
 
-- [ ] Replace the placeholder email `hello@thattechedguy.com` in `projects/home/config.ts`.
-- [ ] Put Yank's real download URL in `downloadUrl` in `projects/yank/config.ts` (it is still `#download`).
 - [ ] Paste the Search Console token into `site.config.ts` after the first production deploy.

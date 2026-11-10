@@ -13,7 +13,7 @@ interface YankConfig {
   theme: ThemeDefault;
   /** "3D" adds the Three.js background on desktop; "patterns" keeps only the canvas patterns. */
   effects: Effects;
-  /** Placeholder until the real download exists. */
+  /** Where every Download button goes. */
   downloadUrl: string;
   repoUrl: string;
   licenseUrl: string;
@@ -26,7 +26,8 @@ export const yank: YankConfig = {
   nav: "dock",
   theme: "auto",
   effects: "3D",
-  downloadUrl: "#download",
+  // The DMG's file name carries the version, so this is the newest release's page, not the file.
+  downloadUrl: "https://github.com/ThatTechedGuy/Yank/releases/latest",
   repoUrl: "https://github.com/ThatTechedGuy/Yank",
   licenseUrl: "https://github.com/ThatTechedGuy/Yank/blob/main/LICENSE",
   themeStorageKey: "ttg:yank:theme",

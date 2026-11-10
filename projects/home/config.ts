@@ -24,8 +24,7 @@ export const linkedinUrl = "https://www.linkedin.com/in/vishg05/";
  * would load it as a full page even through <Link>, which only adds 2.6 KB of client JS here.
  */
 export const yankPath = projects.find((project) => project.name === "Yank")?.path ?? "/yank";
-// shortcut: placeholder address from the design; replace it with the real one.
-export const email = "hello@thattechedguy.com";
+export const email = "thattechedguy@gmail.com";
 
 /** The sections the side rail and the phone index link to, in page order. */
 export const sections = [
