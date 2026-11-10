@@ -1,6 +1,7 @@
 /** Domain-wide facts. Nothing here may carry colours, fonts or styling. */
 export const site = {
-  origin: "https://www.thattechedguy.com",
+  // The bare domain is the one URL form; www redirects to it (Vercel domain settings, see the README).
+  origin: "https://thattechedguy.com",
   name: "ThatTechedGuy",
   githubUrl: "https://github.com/thattechedguy",
   /** Google Search Console token; paste it here once the property is created. */

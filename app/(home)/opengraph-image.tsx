@@ -40,7 +40,7 @@ export default async function OpenGraphImage() {
       </span>
       <span style={{ fontFamily: "Sans", fontSize: 30, opacity: 0.5 }}>Tennis · Chess</span>
       <span style={{ fontFamily: "Sans", fontSize: 26, opacity: 0.5, marginTop: 40 }}>
-        www.thattechedguy.com
+        thattechedguy.com
       </span>
     </div>,
     {

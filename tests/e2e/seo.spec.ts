@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-const origin = "https://www.thattechedguy.com";
+const origin = "https://thattechedguy.com";
 
 for (const { path, canonical } of [
   { path: "/", canonical: [origin, `${origin}/`] },
@@ -19,7 +19,7 @@ for (const { path, canonical } of [
     expect(description.length).toBeLessThanOrEqual(165);
 
     const ogImage = (await page.locator('meta[property="og:image"]').getAttribute("content")) ?? "";
-    expect(ogImage).toMatch(/^https:\/\/www\.thattechedguy\.com\//);
+    expect(ogImage).toMatch(/^https:\/\/thattechedguy\.com\//);
     const image = await page.request.get(ogImage.replace(origin, ""));
     expect(image.status()).toBe(200);
     expect(image.headers()["content-type"]).toBe("image/png");

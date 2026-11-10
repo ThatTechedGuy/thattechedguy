@@ -1,4 +1,4 @@
-# www.thattechedguy.com
+# thattechedguy.com
 
 One Next.js project for the whole domain:
 
@@ -71,9 +71,9 @@ Nothing else changes.
 Vercel detects `bun.lock` and installs and builds with Bun; no settings are needed for that.
 
 1. Import the repository as a new project (framework: Next.js).
-2. In **Settings → Domains**, add `www.thattechedguy.com` and `thattechedguy.com`.
-3. For `thattechedguy.com`, choose **Redirect to** `www.thattechedguy.com` with **308 Permanent Redirect**. At your DNS provider, set the records Vercel shows (an `A` record for the bare domain, a `CNAME` for `www`).
-4. After the first production deploy, create a Google Search Console property for `https://www.thattechedguy.com`, choose the HTML tag method, and paste the token into `googleSiteVerification` in `site.config.ts`.
+2. In **Settings → Domains**, add `thattechedguy.com` (connected to Production) and `www.thattechedguy.com`.
+3. For `www.thattechedguy.com`, choose **Redirect to** `thattechedguy.com` with **308 Permanent Redirect**. At your DNS provider, set the records Vercel shows (an `A` record for the bare domain, a `CNAME` for `www`).
+4. After the first production deploy, create a Google Search Console property for `https://thattechedguy.com`, choose the HTML tag method, and paste the token into `googleSiteVerification` in `site.config.ts`.
 
 Only production deployments may be indexed (`VERCEL_ENV === "production"`): preview deployments serve a `robots.txt` that disallows everything and a `noindex` meta tag. In production every crawler is allowed, with the main AI crawlers named outright.
 

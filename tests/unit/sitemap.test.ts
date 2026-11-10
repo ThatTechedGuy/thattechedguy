@@ -5,7 +5,7 @@ import sitemap from "@/app/sitemap";
 
 test("sitemap lists the home page and every project with absolute www URLs", () => {
   const urls = sitemap().map((entry) => entry.url);
-  expect(urls).toEqual(["https://www.thattechedguy.com/", "https://www.thattechedguy.com/yank"]);
+  expect(urls).toEqual(["https://thattechedguy.com/", "https://thattechedguy.com/yank"]);
 });
 
 test("robots never allows indexing outside production", () => {
