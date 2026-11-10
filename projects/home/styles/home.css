@@ -1,7 +1,7 @@
 /* The home page's stylesheet. Only app/(home)/layout.tsx imports it, so none of it reaches /yank.
    Layout: an editorial front page. Light, large serif statements carry the page; a small neutral grotesk handles every label, date and control. Ruled rows, wide margins, one ticker band. */
 :root {
-  /* Default palette is Butter; the palette menu swaps these tokens */
+  /* Butter until the palette script picks this visit's paper (and without scripts); the palette menu swaps these tokens */
   --paper: #f3dc6b;
   --ink: #1c1a10;
   --grey: #5b5434;

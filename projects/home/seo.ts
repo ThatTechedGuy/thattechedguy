@@ -5,7 +5,7 @@ import type { Metadata, Viewport } from "next";
 import { graph, person, webSite } from "@/lib/seo/json-ld";
 import { isIndexable, site } from "@/site.config";
 
-import { linkedinUrl, palettes } from "./config";
+import { linkedinUrl } from "./config";
 
 const url = `${site.origin}/`;
 const title = "Vishal Gupta (ThatTechedGuy): Software Engineer in Brisbane";
@@ -34,15 +34,10 @@ export const homeMetadata: Metadata = {
   ...(site.googleSiteVerification ? { verification: { google: site.googleSiteVerification } } : {}),
 };
 
-const paper = (id: string) => palettes.find((palette) => palette.id === id)?.paper ?? "";
-
 export const homeViewport: Viewport = {
   // The page uses env(safe-area-inset-*), so it draws under the notch and home indicator.
   viewportFit: "cover",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: paper("butter") },
-    { media: "(prefers-color-scheme: dark)", color: paper("midnight") },
-  ],
+  // No themeColor: the paper is random per visit, so islands/Rail.tsx renders it once it is known.
 };
 
 export const homeJsonLd = graph(

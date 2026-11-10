@@ -17,10 +17,6 @@ export const palettes = [
 
 export type PaletteId = (typeof palettes)[number]["id"];
 
-/** Butter by default, Midnight when the visitor's system is dark, until they pick one. */
-export const lightPalette: PaletteId = "butter";
-export const darkPalette: PaletteId = "midnight";
-
 export const linkedinUrl = "https://www.linkedin.com/in/vishg05/";
 
 /**

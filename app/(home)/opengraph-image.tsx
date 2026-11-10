@@ -11,7 +11,7 @@ export const contentType = "image/png";
 // shortcut: the fonts are subsets holding only the glyphs below; re-download them (README) if this text changes.
 const file = (name: string) => readFile(join(process.cwd(), "projects/home/og", name));
 
-/** The home page's share card, on the default Butter paper. */
+/** The home page's share card, on the Butter paper. */
 export default async function OpenGraphImage() {
   const [serif, serifItalic, sansMedium, sans] = await Promise.all([
     file("newsreader-light.ttf"),

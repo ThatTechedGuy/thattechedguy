@@ -47,7 +47,7 @@ site.config.ts       the domain, the GitHub link, the projects list, the Search 
 
 Each route group has its own root layout, so a project's CSS, fonts and client code never load on another project's page. Shared code in `lib/` may not import a project or a route, and a project may not import another project; oxlint enforces both.
 
-Each page remembers its own colours: the home page its paper (`ttg:home:palette`), Yank its light/dark theme (`ttg:yank:theme`).
+Each page remembers its own colours: the home page shows a random paper on every visit until the visitor picks one (saved as `ttg:home:palette`; **Random** in the menu forgets it), and Yank remembers its light/dark theme (`ttg:yank:theme`).
 
 ### The home page
 

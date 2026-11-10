@@ -58,17 +58,27 @@ test("/yank: the theme switch works both ways and persists after reload", async 
 
 const palette = (page: Page) => page.evaluate(() => document.documentElement.dataset["palette"]);
 
-test("/: the paper follows the system until one is picked, then persists", async ({ page }) => {
-  await page.emulateMedia({ colorScheme: "dark" });
-  await page.goto("/");
-  expect(await palette(page)).toBe("midnight");
-  await page.emulateMedia({ colorScheme: "light" });
-  await page.reload();
-  expect(await palette(page)).toBe("butter");
+test("/: the paper is random on each visit until one is picked, then persists", async ({
+  context,
+  page,
+}) => {
+  // Eight papers: twelve visits all landing on the same one is a 1 in 8^11 chance.
+  const visits = await Promise.all(
+    Array.from({ length: 12 }, async () => {
+      const visit = await context.newPage();
+      await visit.goto("/");
+      const paper = await palette(visit);
+      await visit.close();
+      return paper;
+    }),
+  );
+  expect(new Set(visits).size).toBeGreaterThan(1);
 
+  await page.goto("/");
   await page.getByRole("button", { name: "Choose colours" }).click();
   await page.getByRole("menuitemradio", { name: "Matcha" }).click();
   expect(await palette(page)).toBe("matcha");
+  await expect(page.locator('meta[name="theme-color"]')).toHaveAttribute("content", "#cfdcb4");
   await expect(page.getByRole("menuitemradio", { name: "Matcha" })).toHaveAttribute(
     "aria-checked",
     "true",
@@ -77,6 +87,16 @@ test("/: the paper follows the system until one is picked, then persists", async
   await expect(page.getByRole("menu", { name: "Colours" })).toBeHidden();
   await page.reload();
   expect(await palette(page)).toBe("matcha");
+
+  // Random forgets the saved paper and shows a different one now.
+  await page.getByRole("button", { name: "Choose colours" }).click();
+  await page.getByRole("menuitemradio", { name: "Random" }).click();
+  await expect(page.getByRole("menuitemradio", { name: "Random" })).toHaveAttribute(
+    "aria-checked",
+    "true",
+  );
+  expect(await palette(page)).not.toBe("matcha");
+  expect(await page.evaluate(() => localStorage.getItem("ttg:home:palette"))).toBeNull();
 });
 
 test("the home page's paper and Yank's theme are remembered apart", async ({ page }) => {

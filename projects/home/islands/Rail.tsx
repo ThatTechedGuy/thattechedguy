@@ -11,24 +11,36 @@ import {
 } from "react";
 
 import { palettes, sections } from "../config";
-import { applyPalette, readPalette, subscribePalette } from "../palette";
+import { applyPalette, applyRandom, readChoice, readPalette, subscribePalette } from "../palette";
 
 type Menu = "palette" | "index" | null;
 
-/** Each palette's swatch: half ink, half paper. */
-const swatches: Record<string, CSSProperties> = Object.fromEntries(
-  palettes.map(({ id, paper, ink }) => [
+/** The menu's options: Random first, then every paper. */
+const options = [{ id: "random", name: "Random" }, ...palettes];
+
+/** Each paper's swatch is half ink, half paper; Random's is a slice of every paper. */
+const swatches: Record<string, CSSProperties> = Object.fromEntries([
+  ...palettes.map(({ id, paper, ink }) => [
     id,
     { background: `conic-gradient(${ink} 0 50%, ${paper} 0 100%)` },
   ]),
-);
+  [
+    "random",
+    {
+      background: `conic-gradient(${palettes
+        .map(({ paper }, k) => `${paper} 0 ${((k + 1) / palettes.length) * 100}%`)
+        .join(", ")})`,
+    },
+  ],
+]);
 
-// The server cannot know the visitor's palette; React reads it right after hydration (aria-checked only).
+// The server cannot know the visitor's paper; React reads it right after hydration (aria-checked and theme-color only).
 const serverPalette = () => undefined;
 
 /** The side rail (a pill on phones): section links, reading progress, the palette and index menus. */
 export function Rail() {
   const palette = useSyncExternalStore(subscribePalette, readPalette, serverPalette);
+  const choice = useSyncExternalStore(subscribePalette, readChoice, serverPalette);
   const [menu, setMenu] = useState<Menu>(null);
   const [active, setActive] = useState<string | null>(null);
   const progress = useRef<HTMLSpanElement>(null);
@@ -103,13 +115,20 @@ export function Rail() {
     [],
   );
   const closeMenu = useCallback(() => setMenu(null), []);
+  // Random reshuffles on every click; a paper is saved, even the one already on screen.
   const pick = useCallback((event: MouseEvent<HTMLButtonElement>) => {
-    const next = palettes.find(({ id }) => id === event.currentTarget.dataset["palette"]);
-    if (next && next.id !== readPalette()) applyPalette(next.id);
+    const id = event.currentTarget.dataset["palette"];
+    const next = palettes.find((paper) => paper.id === id);
+    if (id === "random") applyRandom();
+    else if (next && next.id !== readChoice()) applyPalette(next.id);
   }, []);
+
+  const paper = palettes.find(({ id }) => id === palette)?.paper;
 
   return (
     <>
+      {/* React puts this in <head>: the browser's bar takes the paper's colour. */}
+      {paper ? <meta name="theme-color" content={paper} /> : null}
       <nav className="rail" aria-label="Sections">
         <a className="rail-mark" href="#top" aria-label="vg, back to top">
           vg
@@ -161,12 +180,12 @@ export function Rail() {
         hidden={menu !== "palette"}
       >
         <h2>Pick a paper</h2>
-        {palettes.map(({ id, name }) => (
+        {options.map(({ id, name }) => (
           <button
             key={id}
             type="button"
             role="menuitemradio"
-            aria-checked={palette === id}
+            aria-checked={choice === id}
             data-palette={id}
             onClick={pick}
           >
