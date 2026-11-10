@@ -153,9 +153,10 @@ export function Rail() {
             aria-haspopup="true"
             aria-expanded={menu === "index"}
             aria-controls="pop-index"
+            aria-label="Index"
             onClick={toggleIndex}
           >
-            Index
+            <span className="burger" aria-hidden="true" />
           </button>
           <button
             ref={paletteButton}

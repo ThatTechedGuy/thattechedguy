@@ -383,11 +383,42 @@ summary:focus-visible {
 }
 .rail-index {
   display: none;
-  font-family: var(--sans);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+}
+/* The phone index button: three ink lines that fold into an X while the menu is open. */
+.burger,
+.burger::before,
+.burger::after {
+  display: block;
+  width: 18px;
+  height: 1.5px;
+  background: var(--ink);
+  transition:
+    transform 0.45s var(--ease),
+    background-color 0.2s;
+}
+.burger {
+  position: relative;
+}
+.burger::before,
+.burger::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+.burger::before {
+  transform: translateY(-6px);
+}
+.burger::after {
+  transform: translateY(6px);
+}
+.rail-btn[aria-expanded="true"] .burger {
+  background-color: transparent;
+}
+.rail-btn[aria-expanded="true"] .burger::before {
+  transform: rotate(45deg);
+}
+.rail-btn[aria-expanded="true"] .burger::after {
+  transform: rotate(-45deg);
 }
 .rail-foot {
   display: flex;
@@ -420,9 +451,6 @@ summary:focus-visible {
   }
   .rail-index {
     display: grid;
-    width: auto;
-    padding: 0 14px;
-    border-radius: 999px;
   }
   .rail-index:hover {
     transform: none;
