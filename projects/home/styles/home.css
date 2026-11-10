@@ -1,0 +1,68 @@
+/* The home page's stylesheet ("Paper"). Only app/(home)/layout.tsx imports it. No web fonts: system faces only. */
+@layer theme, base, components, utilities;
+
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css" layer(utilities) source(none);
+@source "../";
+@source "../../../app/(home)";
+
+@layer base {
+  :root {
+    --paper: #faf9f5;
+    --ink: #1c1b18;
+    --rule: rgba(128, 128, 128, 0.3);
+    color-scheme: light;
+  }
+  :root[data-theme="dark"] {
+    --paper: #121210;
+    --ink: #eceae3;
+    color-scheme: dark;
+  }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+  :focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+}
+
+@theme inline {
+  --font-sans: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-serif: "Iowan Old Style", "Palatino Linotype", Charter, Georgia, serif;
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-rule: var(--rule);
+}
+
+/* The theme switch: a plain track and knob. */
+.home-switch {
+  display: block;
+  position: relative;
+  width: 36px;
+  height: 20px;
+  border-radius: 999px;
+  border: 1px solid var(--rule);
+}
+.home-switch::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: currentColor;
+  transition: transform 0.2s ease;
+}
+[aria-checked="true"] > .home-switch::after {
+  transform: translateX(16px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-switch::after {
+    transition: none;
+  }
+}

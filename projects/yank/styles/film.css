@@ -1,0 +1,255 @@
+/* "Watch it work" film: one 12-second loop. Every part shares the same clock, so percentages line up:
+   highlight text → ⌘C → ⇧⌘V → panel slides up → ring moves → Return → card flies → text types. */
+
+@keyframes film-highlight {
+  0%,
+  3% {
+    width: 0;
+  }
+  12%,
+  30% {
+    width: 100%;
+    opacity: 1;
+  }
+  34%,
+  100% {
+    width: 100%;
+    opacity: 0;
+  }
+}
+@keyframes film-key-1 {
+  0%,
+  13% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.6);
+  }
+  15%,
+  22% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  25%,
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -70%) scale(1);
+  }
+}
+@keyframes film-key-2 {
+  0%,
+  32% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.6);
+  }
+  34%,
+  40% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  43%,
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -70%) scale(1);
+  }
+}
+@keyframes film-key-3 {
+  0%,
+  60% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.6);
+  }
+  62%,
+  67% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  70%,
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -70%) scale(1);
+  }
+}
+@keyframes film-panel {
+  0%,
+  38% {
+    transform: translateY(120%);
+  }
+  43%,
+  64% {
+    transform: translateY(0);
+  }
+  69%,
+  100% {
+    transform: translateY(120%);
+  }
+}
+@keyframes film-ring {
+  0%,
+  46% {
+    left: 1.5%;
+  }
+  50%,
+  52% {
+    left: 21%;
+  }
+  56%,
+  100% {
+    left: 40.5%;
+  }
+}
+@keyframes film-fly {
+  0%,
+  65% {
+    opacity: 0;
+    left: 42%;
+    top: 72%;
+    transform: scale(1);
+  }
+  66% {
+    opacity: 1;
+    left: 42%;
+    top: 72%;
+    transform: scale(1);
+  }
+  74% {
+    opacity: 1;
+    left: 64%;
+    top: 31%;
+    transform: scale(0.35);
+  }
+  76%,
+  100% {
+    opacity: 0;
+    left: 64%;
+    top: 31%;
+    transform: scale(0.3);
+  }
+}
+@keyframes film-type {
+  0%,
+  73% {
+    max-width: 0;
+  }
+  84%,
+  96% {
+    max-width: 16em;
+  }
+  100% {
+    max-width: 16em;
+    opacity: 0;
+  }
+}
+@keyframes film-pointer {
+  0% {
+    left: 30%;
+    top: 85%;
+  }
+  4% {
+    left: 11.5%;
+    top: 24%;
+  }
+  12% {
+    left: 25%;
+    top: 24%;
+  }
+  26% {
+    left: 25%;
+    top: 24%;
+  }
+  31% {
+    left: 66%;
+    top: 34%;
+  }
+  44% {
+    left: 12.6%;
+    top: 82%;
+  }
+  50% {
+    left: 31%;
+    top: 82%;
+  }
+  56% {
+    left: 49%;
+    top: 82%;
+  }
+  66% {
+    left: 49%;
+    top: 82%;
+  }
+  75% {
+    left: 75%;
+    top: 45%;
+  }
+  100% {
+    left: 30%;
+    top: 85%;
+  }
+}
+@keyframes film-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes film-caret {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.film-highlight {
+  animation: film-highlight 12s linear infinite;
+}
+.film-key-1 {
+  animation: film-key-1 12s ease-out infinite;
+}
+.film-key-2 {
+  animation: film-key-2 12s ease-out infinite;
+}
+.film-key-3 {
+  animation: film-key-3 12s ease-out infinite;
+}
+.film-panel {
+  animation: film-panel 12s cubic-bezier(0.3, 0.9, 0.3, 1) infinite;
+}
+.film-ring {
+  animation: film-ring 12s cubic-bezier(0.5, 0, 0.2, 1) infinite;
+}
+.film-fly {
+  animation: film-fly 12s cubic-bezier(0.5, 0, 0.2, 1) infinite;
+}
+.film-type {
+  animation: film-type 12s steps(23) infinite;
+}
+.film-pointer {
+  animation: film-pointer 12s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+}
+.film-progress {
+  animation: film-progress 12s linear infinite;
+  transform-origin: 0 50%;
+}
+.film-caret {
+  animation: film-caret 1s steps(1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .film-highlight,
+  .film-key-1,
+  .film-key-2,
+  .film-key-3,
+  .film-panel,
+  .film-ring,
+  .film-fly,
+  .film-type,
+  .film-pointer,
+  .film-progress,
+  .film-caret {
+    animation: none;
+  }
+}

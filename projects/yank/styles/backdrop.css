@@ -1,0 +1,41 @@
+/* The 3D backdrop (Three.js). To keep text readable the canvas is masked to the left and right
+   edges of the screen, and fades out entirely in text-heavy sections (html.backdrop-quiet). */
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+.backdrop canvas {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    #000 0%,
+    #000 12%,
+    transparent 30%,
+    transparent 70%,
+    #000 88%,
+    #000 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    #000 0%,
+    #000 12%,
+    transparent 30%,
+    transparent 70%,
+    #000 88%,
+    #000 100%
+  );
+}
+.backdrop-on .backdrop canvas {
+  opacity: 1;
+}
+.backdrop-quiet .backdrop canvas {
+  opacity: 0 !important;
+}

@@ -1,0 +1,14 @@
+node_modules/
+.next/
+next-env.d.ts
+*.tsbuildinfo
+.env*.local
+.vercel/
+.DS_Store
+
+# Playwright output
+test-results/
+playwright-report/
+
+# The design prototype the port was made from (kept locally as the visual reference)
+yank-site-d.zip

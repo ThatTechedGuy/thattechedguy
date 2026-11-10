@@ -1,0 +1,66 @@
+/* "Layer after layer": six cards stacked in 3D. Scroll progress (--p, 0 to 1) pulls the layers
+   apart and turns the stack; the mouse (--mx, --my) tilts it. Both are set by the motion islands. */
+
+.stack {
+  flex: 1.3 1 520px;
+  min-width: 0;
+  height: 680px;
+  position: relative;
+  perspective: 1600px;
+}
+.stack-float,
+.stack-turn {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+.stack-turn {
+  transform: rotateX(calc(58deg + var(--my, 0) * -10deg))
+    rotateZ(calc(-48deg + var(--p, 0.5) * 70deg + var(--mx, 0) * 14deg));
+  transition: transform 0.2s ease-out;
+}
+.stack-shadow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 360px;
+  height: 250px;
+  margin: -125px 0 0 -180px;
+  border-radius: 30px;
+  background: rgba(0, 0, 0, 0.25);
+  filter: blur(26px);
+  transform: translateZ(-40px);
+}
+.stack-card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 320px;
+  height: 210px;
+  margin: -105px 0 0 -160px;
+  border-radius: 26px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    0 2px 0 rgba(0, 0, 0, 0.08),
+    0 30px 60px rgba(0, 0, 0, 0.3);
+  /* --level counts up from the bottom card (0). Each level adds up to 95px of spread and 6px of rest height. */
+  transform: translateZ(calc((var(--p, 0.5) * 95px + 6px) * var(--level)));
+}
+.stack-card-kind {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0.8;
+}
+.stack-card-text {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  line-height: 1.12;
+}

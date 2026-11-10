@@ -1,0 +1,111 @@
+/* Theme variables, the tiny reset and the page shell. */
+
+:root {
+  --ink: #1d1d1f;
+  --lead: #424245;
+  --muted: #6e6e73;
+  --surf: rgba(255, 255, 255, 0.92);
+  --surf2: rgba(255, 255, 255, 0.86);
+  --card: rgba(255, 255, 255, 0.78);
+  --cardb: rgba(255, 255, 255, 0.9);
+  --g1: rgba(255, 255, 255, 0.62);
+  --g2: rgba(255, 255, 255, 0.26);
+  --gb: rgba(255, 255, 255, 0.7);
+  --gi: rgba(255, 255, 255, 0.95);
+  --hair: rgba(0, 0, 0, 0.06);
+  --hair2: rgba(0, 0, 0, 0.08);
+  --chip: rgba(0, 0, 0, 0.04);
+  --overlay: rgba(245, 245, 247, 0.66);
+  --sh: rgba(0, 0, 0, 0.12);
+
+  /* Readable gradient text, hero scrim and eyebrow colours. */
+  --grad: linear-gradient(90deg, #005bd3 0%, #7a2fc4 38%, #c8174c 70%, #b84e00 100%);
+  --grad-on-dark: linear-gradient(90deg, #5ab0ff 0%, #c98bff 38%, #ff6f96 70%, #ffb84d 100%);
+  --scrim: rgba(245, 245, 247, 0.82);
+  --ey1: #8944ab;
+  --ey2: #0a7a3b;
+
+  /* The section under the middle of the screen sets --section-* on <html> (motion/SectionTracker).
+     Both themes' values are set together, so a theme change needs no script to recolour the page. */
+  --page-bg: var(--section-bg, #f5f5f7);
+  --page-fg: var(--section-fg, var(--ink));
+}
+
+:root[data-theme="dark"] {
+  --ink: #f5f5f7;
+  --lead: #c7c7cc;
+  --muted: #98989d;
+  --surf: rgba(44, 44, 48, 0.92);
+  --surf2: rgba(40, 40, 44, 0.86);
+  --card: rgba(34, 34, 38, 0.7);
+  --cardb: rgba(255, 255, 255, 0.12);
+  --g1: rgba(72, 72, 78, 0.5);
+  --g2: rgba(28, 28, 32, 0.32);
+  --gb: rgba(255, 255, 255, 0.16);
+  --gi: rgba(255, 255, 255, 0.22);
+  --hair: rgba(255, 255, 255, 0.08);
+  --hair2: rgba(255, 255, 255, 0.12);
+  --chip: rgba(255, 255, 255, 0.06);
+  --overlay: rgba(10, 10, 14, 0.62);
+  --sh: rgba(0, 0, 0, 0.5);
+  --grad: var(--grad-on-dark);
+  --scrim: rgba(7, 7, 11, 0.74);
+  --ey1: #d7a6ff;
+  --ey2: #5be38c;
+  --page-bg: var(--section-bg-dark, #07070b);
+  --page-fg: var(--section-fg-dark, var(--ink));
+  color-scheme: dark;
+}
+
+/* Sections that are dark in both themes need the bright gradient. */
+section[data-fg="#F5F5F7"] {
+  --grad: var(--grad-on-dark);
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  /* Tailwind's border utilities only set a width; this is the baseline they expect. */
+  border: 0 solid;
+}
+* {
+  /* The native scrollbar is replaced by the overlay scrollbar (motion.css). */
+  scrollbar-width: none;
+}
+*::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+html,
+body {
+  background-color: var(--page-bg);
+  transition: background-color 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+body {
+  margin: 0;
+}
+
+a {
+  color: var(--ink);
+}
+a:hover {
+  color: #0071e3;
+}
+
+/* The page shell. isolation keeps the fixed 3D backdrop (z-index -1) above the page colour. */
+.page {
+  isolation: isolate;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: var(--page-bg);
+  color: var(--page-fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  transition:
+    background-color 1s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.7s ease;
+}

@@ -1,0 +1,117 @@
+/* The theme change: a wobbly blob of the new theme spreads from the switch while the old page tilts
+   away and sparks fly. html.theme-flip and --vtx/--vty/--vtr are set by motion/flipTheme for the
+   length of the View Transition. */
+
+/* Freeze ordinary transitions so the snapshot of the new theme is already in its final colours. */
+html.theme-flip,
+html.theme-flip body,
+html.theme-flip .page,
+html.theme-flip
+  .page
+  *:not(.flip-keep):not(.flip-keep *):not(.sun-moon):not(.sun-moon *):not(.cursor *) {
+  transition: none !important;
+}
+
+html.theme-flip::view-transition-old(root),
+html.theme-flip::view-transition-new(root) {
+  mix-blend-mode: normal;
+}
+html.theme-flip::view-transition-group(root) {
+  animation-duration: 1.25s;
+}
+html.theme-flip::view-transition-old(root) {
+  animation: flip-old 1.25s cubic-bezier(0.6, 0, 0.2, 1) both;
+  transform-origin: var(--vtx) var(--vty);
+}
+html.theme-flip::view-transition-new(root) {
+  animation: flip-new 1.25s cubic-bezier(0.65, 0, 0.25, 1) both;
+}
+@keyframes flip-old {
+  0% {
+    transform: none;
+    filter: none;
+  }
+  100% {
+    transform: scale(0.9) rotate(-5deg);
+    filter: blur(8px) saturate(1.8) hue-rotate(50deg);
+    opacity: 0.4;
+  }
+}
+@keyframes flip-new {
+  0% {
+    clip-path: circle(0 at var(--vtx) var(--vty));
+    filter: saturate(2.4) hue-rotate(-70deg);
+  }
+  55% {
+    filter: saturate(1.4) hue-rotate(-15deg);
+  }
+  100% {
+    clip-path: circle(var(--vtr) at var(--vtx) var(--vty));
+    filter: none;
+  }
+}
+
+/* The spark layer and the cursor sit above the transition and are not part of the snapshot. */
+html.theme-flip .flip-fx {
+  view-transition-name: flip-fx;
+}
+html.theme-flip .cursor {
+  view-transition-name: flip-cursor;
+}
+html.theme-flip::view-transition-group(flip-fx),
+html.theme-flip::view-transition-new(flip-fx),
+html.theme-flip::view-transition-group(flip-cursor),
+html.theme-flip::view-transition-new(flip-cursor) {
+  animation: none;
+}
+html.theme-flip::view-transition-old(flip-fx),
+html.theme-flip::view-transition-old(flip-cursor) {
+  display: none;
+}
+
+.flip-fx {
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  pointer-events: none;
+  overflow: hidden;
+  contain: strict;
+}
+.flip-spark {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--z, 14px);
+  height: var(--z, 14px);
+  margin: calc(var(--z, 14px) / -2) 0 0 calc(var(--z, 14px) / -2);
+  background: var(--c, #ffd60a);
+  will-change: transform, opacity;
+}
+.flip-spark-star {
+  clip-path: polygon(50% 0%, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0% 50%, 39% 39%);
+}
+.flip-spark-dot {
+  border-radius: 50%;
+}
+.flip-spark-ray {
+  border-radius: 999px;
+  height: calc(var(--z, 14px) * 0.32);
+  margin-top: calc(var(--z, 14px) * -0.16);
+}
+.flip-ring {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  margin: -20px 0 0 -20px;
+  border-radius: 50%;
+  border: 3px solid var(--c, #0a84ff);
+  will-change: transform, opacity;
+}
+/* Fallback for browsers without View Transitions: a wash of the new colour grows by clip-path. */
+.flip-wash {
+  position: absolute;
+  inset: 0;
+  will-change: clip-path, opacity;
+}

@@ -1,0 +1,136 @@
+/* Hero: the soft scrim behind the copy and the looping Mac screen (Yank strip and notifications). */
+
+/* Keeps hero text readable over the dot pattern and the 3D backdrop. */
+.scrim {
+  position: relative;
+  isolation: isolate;
+}
+.scrim::before {
+  content: "";
+  position: absolute;
+  inset: -60px -120px -40px;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(closest-side, var(--scrim) 0%, var(--scrim) 60%, transparent 100%);
+  transition: background 0.6s;
+}
+
+/* The blue selection ring steps across the first four cards of the strip. */
+@keyframes strip-select {
+  0%,
+  18% {
+    left: 2%;
+  }
+  24%,
+  42% {
+    left: 21.6%;
+  }
+  48%,
+  66% {
+    left: 41.2%;
+  }
+  72%,
+  90% {
+    left: 60.8%;
+  }
+  96%,
+  100% {
+    left: 2%;
+  }
+}
+.strip-select {
+  animation: strip-select 9s cubic-bezier(0.5, 0, 0.2, 1) infinite;
+}
+
+/* The strip slides up from the bottom of the screen and back down. */
+@keyframes strip-rise {
+  0%,
+  8% {
+    transform: translateY(115%);
+  }
+  16%,
+  88% {
+    transform: translateY(0);
+  }
+  96%,
+  100% {
+    transform: translateY(115%);
+  }
+}
+.strip-rise {
+  animation: strip-rise 9s cubic-bezier(0.3, 0.9, 0.3, 1) infinite;
+}
+
+/* The two notifications drop in and fade out, three seconds apart. */
+@keyframes note-drop {
+  0% {
+    opacity: 0;
+    transform: translateY(-14px) scale(0.96);
+  }
+  10%,
+  80% {
+    opacity: 1;
+    transform: none;
+  }
+  92%,
+  100% {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+}
+.note-1 {
+  animation: note-drop 9s cubic-bezier(0.2, 0.9, 0.3, 1.2) infinite;
+}
+.note-2 {
+  animation: note-drop 9s cubic-bezier(0.2, 0.9, 0.3, 1.2) 3s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .strip-select,
+  .strip-rise,
+  .note-1,
+  .note-2 {
+    animation: none;
+  }
+  .strip-rise {
+    transform: none;
+  }
+  .note-1,
+  .note-2 {
+    opacity: 1;
+  }
+}
+
+/* Phones: keep the notifications inside the screen. !important beats the desktop position utilities. */
+@media (max-width: 760px) {
+  .note-1 {
+    left: 6px !important;
+    top: -40px !important;
+    width: 236px !important;
+  }
+  .note-2 {
+    right: 6px !important;
+    top: auto !important;
+    bottom: -52px !important;
+    width: 236px !important;
+  }
+}
+
+/* The desktop wallpaper behind both screen mock-ups (hero and film). */
+.wallpaper {
+  background: linear-gradient(135deg, #1e3a8a, #5e5ce6 45%, #bf5af2 75%, #ff9f0a);
+}
+
+/* The hero's Mac screen leans back and follows the mouse (--mx, --my from the pointer island).
+   Everything inside is sized in em, so the font size scales the whole mock-up. */
+.hero-screen {
+  transform-style: preserve-3d;
+  transform: rotateX(calc(14deg - var(--my, 0) * 6deg)) rotateY(calc(var(--mx, 0) * 7deg));
+  transform-origin: 50% 100%;
+  transition: transform 0.4s ease-out;
+  box-shadow:
+    0 0 0 10px #1d1d1f,
+    0 0 0 11px #3a3a3c,
+    0 60px 120px rgba(0, 0, 0, 0.3);
+  font-size: clamp(8px, 1.15vw, 15px);
+}

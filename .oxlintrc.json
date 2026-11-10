@@ -1,0 +1,90 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": [
+    "typescript",
+    "unicorn",
+    "oxc",
+    "react",
+    "react-perf",
+    "nextjs",
+    "jsx-a11y",
+    "import"
+  ],
+  "options": {
+    "typeAware": true,
+    "denyWarnings": true,
+    "reportUnusedDisableDirectives": "warn"
+  },
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn",
+    "perf": "warn"
+  },
+  "env": {
+    "browser": true,
+    "es2024": true
+  },
+  "ignorePatterns": [".next/**", ".agents/**", ".amp/**"],
+  "rules": {
+    "typescript/consistent-type-imports": "error",
+    "import/no-cycle": "error",
+    "import/no-unassigned-import": [
+      "error",
+      {
+        "allow": ["**/*.css"]
+      }
+    ],
+    "import/no-default-export": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/rules-of-hooks": "error",
+    "react/exhaustive-deps": "error",
+    "eqeqeq": [
+      "error",
+      "always",
+      {
+        "null": "ignore"
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["lib/**", "site.config.ts"],
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          {
+            "patterns": [
+              {
+                "group": ["@/projects/**", "@/app/**", "**/projects/**", "**/app/**"],
+                "message": "Shared code is look-free: it must not import from a project or a route."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["projects/**"],
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          {
+            "patterns": [
+              {
+                "group": ["@/projects/**", "@/app/**"],
+                "message": "Inside a project, import its own files with relative paths. A project must never import another project or a route."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["app/**/opengraph-image.tsx", "app/**/apple-icon.tsx", "app/**/icon.tsx"],
+      "rules": {
+        "nextjs/no-img-element": "off",
+        "react-perf/jsx-no-new-object-as-prop": "off"
+      }
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Yank: clipboard manager for Mac",
+  "short_name": "Yank",
+  "description": "A free, open-source clipboard manager for Mac.",
+  "start_url": "/yank",
+  "scope": "/yank",
+  "display": "browser",
+  "background_color": "#F5F5F7",
+  "theme_color": "#F5F5F7",
+  "icons": [
+    {
+      "src": "/yank/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

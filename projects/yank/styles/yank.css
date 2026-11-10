@@ -1,0 +1,66 @@
+/* Yank's stylesheet entry. Only app/(yank)/yank/layout.tsx imports it, so none of it reaches other projects. */
+@layer theme, base, components, utilities;
+
+/* No Tailwind preflight: the source design was drawn on browser defaults plus the tiny reset in base.css. */
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities) source(none);
+@source "../";
+@source "../../../app/(yank)";
+
+@import "./base.css" layer(base);
+@import "./type.css" layer(components);
+@import "./motion.css" layer(components);
+@import "./glass.css" layer(components);
+@import "./patterns.css" layer(components);
+@import "./hero.css" layer(components);
+@import "./stripes.css" layer(components);
+@import "./film.css" layer(components);
+@import "./stack.css" layer(components);
+@import "./dock.css" layer(components);
+@import "./pull-cord.css" layer(components);
+@import "./theme-switch.css" layer(components);
+@import "./theme-flip.css" layer(components);
+@import "./backdrop.css" layer(components);
+
+@theme inline {
+  /* System fonts first, as in the source: Macs and iPhones never download the web fonts. */
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, "SF Pro Display", var(--font-inter), system-ui, sans-serif;
+  --font-serif: ui-serif, "New York", var(--font-newsreader), Georgia, serif;
+  --font-mono: ui-monospace, "SF Mono", var(--font-jetbrains-mono), monospace;
+
+  /* --accent comes from projects/yank/config.ts through the root layout. */
+  --color-accent: var(--accent);
+
+  /* Theme-aware tokens; their values live in base.css and flip with data-theme. */
+  --color-ink: var(--ink);
+  --color-lead: var(--lead);
+  --color-muted: var(--muted);
+  --color-surf: var(--surf);
+  --color-surf2: var(--surf2);
+  --color-card: var(--card);
+  --color-cardb: var(--cardb);
+  --color-hair: var(--hair);
+  --color-hair2: var(--hair2);
+  --color-chip: var(--chip);
+  --color-overlay: var(--overlay);
+  --color-eyebrow-purple: var(--ey1);
+  --color-eyebrow-green: var(--ey2);
+
+  /* Fixed palette (macOS system colours). */
+  --color-graphite: #1d1d1f;
+  --color-fog: #f5f5f7;
+  --color-indigo: #5e5ce6;
+  --color-purple: #bf5af2;
+  --color-pink: #ff375f;
+  --color-orange: #ff9f0a;
+  --color-yellow: #ffd60a;
+  --color-sky: #64d2ff;
+  --color-green: #30d158;
+
+  /* One spacing unit is one pixel, because the source was drawn in px: p-32 is 32px. */
+  --spacing: 1px;
+
+  /* The source has one breakpoint: phones are 760px and narrower. Use `max-desk:` for phone rules. */
+  --breakpoint-desk: 761px;
+}
