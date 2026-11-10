@@ -4,7 +4,7 @@ One Next.js project for the whole domain:
 
 | URL           | What                                                  | Code                                 |
 | ------------- | ----------------------------------------------------- | ------------------------------------ |
-| `/`           | The home page ("Paper" look, almost no JavaScript)    | `app/(home)/`, `projects/home/`      |
+| `/`           | Vishal Gupta's one-page site (editorial look)         | `app/(home)/`, `projects/home/`      |
 | `/yank`       | Yank, the free, open-source clipboard manager for Mac | `app/(yank)/yank/`, `projects/yank/` |
 | anything else | A plain 404 with no project's look                    | `app/global-not-found.tsx`           |
 
@@ -47,7 +47,16 @@ site.config.ts       the domain, the GitHub link, the projects list, the Search 
 
 Each route group has its own root layout, so a project's CSS, fonts and client code never load on another project's page. Shared code in `lib/` may not import a project or a route, and a project may not import another project; oxlint enforces both.
 
-Each project remembers its own light/dark choice (`ttg:home:theme`, `ttg:yank:theme`).
+Each page remembers its own colours: the home page its paper (`ttg:home:palette`), Yank its light/dark theme (`ttg:yank:theme`).
+
+### The home page
+
+The design came as one static `index.html` (an editorial magazine page). Its markup is ported to Server Components in `projects/home/sections/`, its CSS to `projects/home/styles/home.css` almost verbatim, and its script to small client islands in `projects/home/islands/` (the rail and its menus, the typed name, hover cards, the copy button, the footer places and clock, the cursor). Two measurements the script did are now pure CSS, so nothing moves when it hydrates: the name slot reserves the longer name's width, and the footer nameplate fills the column with container units.
+
+- Copy lives in the section components; the palettes, links, email and section list in `projects/home/config.ts`. **The email is still the design's placeholder `hello@thattechedguy.com`.**
+- Search and sharing: `projects/home/seo.ts` (title, description, a `ProfilePage` and `Person` JSON-LD built from the résumé, and the facts `llms.txt` repeats).
+- Logos are 96 px WebP files in `projects/home/logos/`, re-encoded from the design's 1024 px sources. Icons that show above the fold sit inline in `sections/Sprite.tsx`; the tool, GitHub and LinkedIn icons are in `projects/home/icons.svg`, one cached file, so the page does not carry them twice (once in the HTML and once in React's payload).
+- No data is fetched: the Brisbane clock is the visitor's own clock read in the `Australia/Brisbane` time zone.
 
 ### Yank's settings
 
@@ -81,6 +90,19 @@ URLs have no trailing slash; `/yank/` redirects to `/yank`.
 
 ## Fonts
 
+The home page self-hosts Newsreader (roman and italic) and Inter Tight from `projects/home/font-files/`, all preloaded. They are Google's latin variable files with the weight axis narrowed to what the design uses (Newsreader 250 to 400, Inter Tight 400 to 600; Newsreader's optical-size axis is kept whole) and the glyphs cut to latin text: 89, 97 and 25 KB, against 129, 144 and 44 KB as Google serves them. To rebuild them, with fonttools and brotli installed:
+
+```sh
+U="U+0020-007E,U+00A0-00FF,U+0131,U+0152-0153,U+02C6,U+02DA,U+02DC,U+2010-2027,U+2030-203A,U+2044,U+20AC,U+2122,U+2190-2199,U+2212,U+2713,U+263C"
+fonttools varLib.instancer newsreader.woff2 wght=250:400 -o nr.ttf
+fonttools varLib.instancer inter-tight.woff2 wght=400:600 -o it.ttf
+pyftsubset nr.ttf --unicodes="$U" --layout-features+=tnum,lnum,onum,pnum --flavor=woff2 --output-file=newsreader-var.woff2
+```
+
+(the same for the italic and Inter Tight), where the inputs are the `/* latin */` files from `https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..600&family=Inter+Tight:wght@400..600` fetched with a current browser's user agent.
+
+Yank:
+
 Apple devices use their system fonts (SF Pro, New York, SF Mono) and download nothing. Other devices get self-hosted Inter, JetBrains Mono (both through `next/font/google`) and Newsreader.
 
 Newsreader is served from static files in `projects/yank/font-files/` (Google's latin 400, 400 italic and 600 cuts, 70 KB together) instead of `next/font/google`, whose variable files weigh 121 KB for the same text. To refresh them, ask Google Fonts for static cuts with a browser that predates variable fonts:
@@ -105,9 +127,10 @@ and fetch the `src` URL it returns into the matching `.ttf`.
 | Check                                                                 | `/`                   | `/yank`                                                    |
 | --------------------------------------------------------------------- | --------------------- | ---------------------------------------------------------- |
 | Lighthouse mobile: Performance / Accessibility / Best Practices / SEO | 100 / 100 / 100 / 100 | 95 / 100 / 100 / 100                                       |
-| LCP (Lighthouse's slow-4G estimate)                                   | 0.8 s                 | 2.9 s                                                      |
+| Lighthouse desktop                                                    | 100 / 100 / 100 / 100 |                                                            |
+| LCP (Lighthouse's slow-4G estimate)                                   | 0.9 s                 | 2.9 s                                                      |
 | CLS                                                                   | 0                     | 0                                                          |
-| JavaScript (brotli)                                                   | 119 KB on a phone     | 129 KB on a phone; +115 KB Three.js on desktop, after idle |
+| JavaScript (brotli)                                                   | 119 KB                | 129 KB on a phone; +115 KB Three.js on desktop, after idle |
 
 `/yank` misses the brief's LCP budget of 1.5 s. The real paint happens about 0.15 s after navigation, but Lighthouse's simulation charges LCP for every byte requested before it. With every script and font blocked, it still estimates 1.8 s; the rest is the Next.js and React runtime (about 114 KB of the JavaScript above, shared by every page) and Newsreader for non-Apple browsers.
 

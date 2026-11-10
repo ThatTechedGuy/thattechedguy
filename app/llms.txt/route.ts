@@ -1,3 +1,5 @@
+import { linkedinUrl } from "@/projects/home/config";
+import { homeFacts } from "@/projects/home/seo";
 import { projects, site } from "@/site.config";
 
 // Built once at build time from the projects list, like the sitemap.
@@ -8,7 +10,11 @@ export function GET() {
   const body = [
     `# ${site.name}`,
     "",
-    `> ${site.name} is a software engineer and programming polyglot who also plays tennis and chess.`,
+    `> ${site.name} is Vishal Gupta, a software engineer in Brisbane, Australia, building cloud and AI products.`,
+    "",
+    "## Vishal Gupta",
+    "",
+    ...homeFacts.map((fact) => `- ${fact}`),
     "",
     ...projects.flatMap((project) => [
       `## ${project.name}`,
@@ -23,6 +29,7 @@ export function GET() {
     `- [Home](${site.origin}/)`,
     ...projects.map((project) => `- [${project.name}](${site.origin}${project.path})`),
     `- [GitHub](${site.githubUrl})`,
+    `- [LinkedIn](${linkedinUrl})`,
     "",
   ].join("\n");
   return new Response(body, { headers: { "Content-Type": "text/plain; charset=utf-8" } });

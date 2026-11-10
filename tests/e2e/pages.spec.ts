@@ -40,36 +40,65 @@ test("unknown URLs get the 404 page", async ({ page }) => {
 
 const theme = (page: Page) => page.evaluate(() => document.documentElement.dataset["theme"]);
 
-for (const path of ["/", "/yank"]) {
-  test(`${path}: the theme switch works both ways and persists after reload`, async ({ page }) => {
-    await page.emulateMedia({ colorScheme: "light" });
-    await page.goto(path);
-    // The Yank header pill and the home switch are both named "Dark mode".
-    const toggle = page.getByRole("switch", { name: "Dark mode" }).first();
-    await expect(toggle).toHaveAttribute("aria-checked", "false");
-    await toggle.click();
-    await expect.poll(() => theme(page)).toBe("dark");
-    await expect(toggle).toHaveAttribute("aria-checked", "true");
-    await page.reload();
-    expect(await theme(page)).toBe("dark");
-    await toggle.click();
-    await expect.poll(() => theme(page)).toBe("light");
-    await page.reload();
-    expect(await theme(page)).toBe("light");
-  });
-}
+test("/yank: the theme switch works both ways and persists after reload", async ({ page }) => {
+  await page.emulateMedia({ colorScheme: "light" });
+  await page.goto("/yank");
+  const toggle = page.getByRole("switch", { name: "Dark mode" });
+  await expect(toggle).toHaveAttribute("aria-checked", "false");
+  await toggle.click();
+  await expect.poll(() => theme(page)).toBe("dark");
+  await expect(toggle).toHaveAttribute("aria-checked", "true");
+  await page.reload();
+  expect(await theme(page)).toBe("dark");
+  await toggle.click();
+  await expect.poll(() => theme(page)).toBe("light");
+  await page.reload();
+  expect(await theme(page)).toBe("light");
+});
 
-test("each project remembers its own theme", async ({ page }) => {
+const palette = (page: Page) => page.evaluate(() => document.documentElement.dataset["palette"]);
+
+test("/: the paper follows the system until one is picked, then persists", async ({ page }) => {
+  await page.emulateMedia({ colorScheme: "dark" });
+  await page.goto("/");
+  expect(await palette(page)).toBe("midnight");
+  await page.emulateMedia({ colorScheme: "light" });
+  await page.reload();
+  expect(await palette(page)).toBe("butter");
+
+  await page.getByRole("button", { name: "Choose colours" }).click();
+  await page.getByRole("menuitemradio", { name: "Matcha" }).click();
+  expect(await palette(page)).toBe("matcha");
+  await expect(page.getByRole("menuitemradio", { name: "Matcha" })).toHaveAttribute(
+    "aria-checked",
+    "true",
+  );
+  await page.keyboard.press("Escape");
+  await expect(page.getByRole("menu", { name: "Colours" })).toBeHidden();
+  await page.reload();
+  expect(await palette(page)).toBe("matcha");
+});
+
+test("the home page's paper and Yank's theme are remembered apart", async ({ page }) => {
   await page.emulateMedia({ colorScheme: "light" });
   await page.goto("/");
-  await page.getByRole("switch", { name: "Dark mode" }).click();
-  await expect.poll(() => theme(page)).toBe("dark");
+  await page.getByRole("button", { name: "Choose colours" }).click();
+  await page.getByRole("menuitemradio", { name: "Midnight" }).click();
+  expect(await palette(page)).toBe("midnight");
   await page.goto("/yank");
   expect(await theme(page)).toBe("light");
 });
 
 test.describe("phones", () => {
   test.use({ viewport: { width: 390, height: 844 } });
+
+  test("/: the Index menu jumps to a section and closes", async ({ page }) => {
+    await page.goto("/");
+    await page.getByRole("button", { name: "Index" }).click();
+    await page.locator("#pop-index").getByRole("link", { name: "Contact" }).click();
+    await expect(page.locator("#pop-index")).toBeHidden();
+    await expect(page.getByRole("heading", { name: "Say hello" })).toBeInViewport();
+  });
 
   for (const path of ["/", "/yank"]) {
     test(`${path} has no horizontal overflow at 390 px`, async ({ page }) => {
