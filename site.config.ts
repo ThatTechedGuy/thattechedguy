@@ -1,6 +1,6 @@
 /** Domain-wide facts. Nothing here may carry colours, fonts or styling. */
 export const site = {
-  // The bare domain is the one URL form; www redirects to it (Vercel domain settings, see the README).
+  // The bare domain is the one URL form; www redirects to it (Vercel domain settings, see DOCUMENTATION.md).
   origin: "https://thattechedguy.com",
   name: "ThatTechedGuy",
   githubUrl: "https://github.com/thattechedguy",

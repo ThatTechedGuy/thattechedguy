@@ -8,7 +8,7 @@ export const alt =
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-// shortcut: the fonts are subsets holding only the glyphs below; re-download them (README) if this text changes.
+// shortcut: the fonts are subsets holding only the glyphs below; re-download them (DOCUMENTATION.md) if this text changes.
 const file = (name: string) => readFile(join(process.cwd(), "projects/home/og", name));
 
 /** The home page's share card, on the Butter paper. */

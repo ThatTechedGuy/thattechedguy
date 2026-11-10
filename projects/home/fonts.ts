@@ -1,7 +1,7 @@
 import localFont from "next/font/local";
 
 // Google's latin variable files for Newsreader (opsz + wght, roman and italic) and Inter Tight, with the
-// weight axis narrowed to the weights the design uses and the glyphs cut to latin text (README, Fonts).
+// weight axis narrowed to the weights the design uses and the glyphs cut to latin text (DOCUMENTATION.md, Fonts).
 // Every face shows above the fold on desktop, so all three are preloaded.
 const newsreader = localFont({
   src: [
