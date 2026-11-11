@@ -33,3 +33,35 @@ export const sections = [
   { id: "education", name: "Education" },
   { id: "contact", name: "Contact" },
 ] as const;
+
+/** The second page: the stack, opinions on it, and hobbies. */
+export const stackPath = "/stack";
+
+/** The same for the stack page. */
+export const stackSections = [
+  { id: "stack", name: "Stack" },
+  { id: "takes", name: "Takes" },
+  { id: "play", name: "Play" },
+] as const;
+
+/** What one page's rail, phone index and sitemap link to. */
+export interface PageNav {
+  /** In-page sections, in page order. */
+  sections: readonly { id: string; name: string }[];
+  /** Where the "vg" mark goes: the top of this page, or home. */
+  mark: { href: string; label: string };
+  /** The other page, shown under the sections with a diamond. */
+  page: { href: string; name: string };
+}
+
+export const homeNav: PageNav = {
+  sections,
+  mark: { href: "#top", label: "vg, back to top" },
+  page: { href: stackPath, name: "Stack" },
+};
+
+export const stackNav: PageNav = {
+  sections: stackSections,
+  mark: { href: "/", label: "vg, home" },
+  page: { href: "/", name: "Home" },
+};

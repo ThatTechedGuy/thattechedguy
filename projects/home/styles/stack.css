@@ -1,0 +1,416 @@
+/* The stack page (/stack). Everything here is scoped to classes only that page uses. */
+
+/* Madhubani-style art. The class names are unscoped on purpose: the motifs are drawn through <use>, and a
+   descendant selector cannot reach into its shadow tree. The motifs take the palette's ink, paper and link colour, plus one warm accent per paper */
+:root {
+  --mb-accent: #9a3d00;
+}
+:root[data-palette="matcha"],
+:root[data-palette="lilac"] {
+  --mb-accent: #8a3a00;
+}
+:root[data-palette="riso"] {
+  --mb-accent: #8b2a00;
+}
+:root[data-palette="tangerine"] {
+  --mb-accent: #fff1c2;
+}
+:root[data-palette="blueprint"] {
+  --mb-accent: #ffc59a;
+}
+:root[data-palette="midnight"] {
+  --mb-accent: #f1a15c;
+}
+:root[data-palette="newsprint"] {
+  --mb-accent: #b0520b;
+}
+.mb-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+.mb-s {
+  stroke: var(--ink);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.mb-n {
+  fill: none;
+}
+.mb-fa {
+  fill: var(--mb-accent);
+}
+.mb-fb {
+  fill: var(--link);
+}
+.mb-fp {
+  fill: var(--paper);
+}
+.mb-fi {
+  fill: var(--ink);
+}
+.mb-fh {
+  fill: url(#mb-hatch);
+}
+.mb-fd {
+  fill: url(#mb-dots);
+}
+.mb-fc {
+  fill: url(#mb-check);
+}
+.mb-fg {
+  fill: url(#mb-grid);
+}
+.mb-pl {
+  stroke: var(--ink);
+  stroke-width: 1.1;
+}
+.mb-5 {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 44px;
+  fill: var(--ink);
+}
+
+/* Borders down both sides, in gutters of their own, drifting with the scroll (islands/Drift.tsx) */
+.mb-band,
+.mb-frieze {
+  pointer-events: none;
+}
+.mb-band {
+  display: none;
+}
+@media (min-width: 900px) {
+  .stackpage {
+    --band: clamp(82px, 7.5vw, 128px);
+    padding-inline: var(--band);
+  }
+  .mb-band {
+    display: block;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    width: var(--band);
+    overflow: hidden;
+    background: var(--paper);
+  }
+  .mb-band.l {
+    left: var(--rail);
+    border-right: 1px solid var(--ink);
+  }
+  .mb-band.r {
+    right: 0;
+    border-left: 1px solid var(--ink);
+  }
+  .mb-band .mb-strip {
+    display: block;
+    width: 100%;
+    height: auto;
+    will-change: transform;
+  }
+  .mb-frieze {
+    display: none;
+  }
+}
+/* On phones: one row of tiles under the intro, scrolling by itself */
+.mb-frieze {
+  overflow: hidden;
+  border-block: 1px solid var(--ink);
+  margin: clamp(2rem, 6vw, 3rem) calc(-1 * max(16px, 4vw)) 0;
+}
+.mb-frieze .mb-row {
+  display: block;
+  height: 104px;
+  width: auto;
+  animation: frieze 70s linear infinite;
+}
+@keyframes frieze {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Intro */
+.sp-intro {
+  padding-block: clamp(2.5rem, 7vw, 6rem) clamp(1rem, 3vw, 2rem);
+}
+.sp-intro h1 {
+  font-family: var(--serif);
+  font-weight: 250;
+  font-size: clamp(2.5rem, 1rem + 4.8vw, 6.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  font-variation-settings: "opsz" 72;
+  margin-top: 0.9rem;
+  max-width: 15ch;
+  text-wrap: balance;
+  animation: rise 1.1s var(--ease) both 0.12s;
+}
+.sp-intro h1 i {
+  font-weight: 250;
+}
+.sp-toc a {
+  margin-right: 0.9rem;
+}
+.draft {
+  display: inline-block;
+  margin-left: 0.5em;
+  padding: 0.05em 0.45em;
+  border: 1px dashed currentColor;
+  border-radius: 3px;
+  font-family: var(--sans);
+  font-style: normal;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--grey);
+  vertical-align: 0.2em;
+  white-space: nowrap;
+}
+.gap {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--grey);
+}
+
+/* Stack: tools grouped by layer, each with a verdict */
+.layer {
+  margin-top: clamp(1.5rem, 3vw, 2.25rem);
+}
+.layer > .label {
+  display: block;
+  padding-bottom: 0.4rem;
+}
+.tools {
+  list-style: none;
+  border-top: 1px solid var(--ink);
+}
+.tools li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 7.5rem minmax(0, 1.6fr);
+  gap: 0.25rem 2rem;
+  align-items: baseline;
+  padding-block: 0.7rem;
+  border-bottom: 1px solid var(--rule);
+}
+.tname {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 1.45rem;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: transform 0.45s var(--ease);
+}
+.tname .ic {
+  width: 1.05rem;
+  height: 1.05rem;
+  fill: currentColor;
+  flex: none;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.tools li:hover .tname {
+  transform: translateX(0.3em);
+  font-style: italic;
+}
+.tools li:hover .ic {
+  transform: scale(1.3) rotate(-8deg);
+}
+.verdict {
+  justify-self: start;
+  font-family: var(--sans);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.2em 0.7em;
+  border-radius: 999px;
+  border: 1px solid var(--ink);
+  white-space: nowrap;
+}
+.verdict.love {
+  background: var(--ink);
+  color: var(--paper);
+}
+.verdict.complicated {
+  border-style: dashed;
+  color: var(--grey);
+  border-color: var(--grey);
+}
+.ttake {
+  font-size: 0.98rem;
+  line-height: 1.45;
+  max-width: 62ch;
+}
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  align-items: center;
+}
+@media (max-width: 760px) {
+  .tools li {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .ttake {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Takes: a two-column ledger; the "Rather not" side is struck through once it is in view */
+.ledger {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--ink);
+  margin-top: clamp(1.5rem, 3vw, 2.25rem);
+}
+.ledger > .label {
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--ink);
+}
+.ledger > .label + .label,
+.ledger .no {
+  padding-left: clamp(1rem, 3vw, 2.5rem);
+  border-left: 1px solid var(--ink);
+}
+.ledger p {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(1.15rem, 0.95rem + 0.7vw, 1.6rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  padding: 0.8rem clamp(1rem, 3vw, 2.5rem) 0.8rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.ledger p.yes::before {
+  content: "+";
+  font-family: var(--sans);
+  font-weight: 400;
+  color: var(--grey);
+  margin-right: 0.6em;
+}
+.ledger p.no {
+  color: var(--grey);
+}
+.ledger p.no s {
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 58%;
+  background-size: 0% 1.5px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  transition: background-size 0.7s var(--ease);
+}
+.ledger.on p.no s {
+  background-size: 100% 1.5px;
+}
+.ledger p.no:hover s {
+  background-size: 0% 1.5px;
+}
+@media (max-width: 640px) {
+  .ledger p {
+    font-size: 1.05rem;
+    padding-right: 0.75rem;
+  }
+}
+
+/* Play: hobbies as tiles, each with its motif */
+.play {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: clamp(1.5rem, 3vw, 2.25rem);
+  border-top: 1px solid var(--ink);
+  border-left: 1px solid var(--ink);
+}
+.play li {
+  border-right: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding: 1rem 1.1rem 1.15rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
+  gap: 0.2rem 1rem;
+  align-items: start;
+  transition: background-color 0.35s var(--ease);
+}
+.play li:hover {
+  background: color-mix(in srgb, var(--ink) 6%, transparent);
+}
+.play .mbi {
+  width: 64px;
+  height: 64px;
+  grid-row: 1 / 3;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.play li:hover .mbi {
+  transform: rotate(-8deg) scale(1.12);
+}
+.play h3 {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 1.4rem;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+}
+.play h3 .label {
+  display: block;
+  margin-bottom: 0.2rem;
+}
+.play p {
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+.play li.big {
+  grid-column: span 2;
+}
+.play li.big .mbi {
+  width: 104px;
+  height: 104px;
+}
+.play li.big h3 {
+  font-size: clamp(2rem, 1.4rem + 1.8vw, 3.2rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+.play dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.15rem 1rem;
+  margin-top: 0.6rem;
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+.play dl > div {
+  display: contents;
+}
+.play dt {
+  color: var(--grey);
+}
+.play li.wide {
+  grid-column: 1 / -1;
+}
+@media (max-width: 1100px) {
+  .play {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 560px) {
+  .play {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .play li.big {
+    grid-column: auto;
+  }
+  .play li.big .mbi {
+    width: 72px;
+    height: 72px;
+  }
+}

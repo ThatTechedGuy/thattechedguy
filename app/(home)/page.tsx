@@ -1,3 +1,4 @@
+import { homeNav } from "@/projects/home/config";
 import { Cursor } from "@/projects/home/islands/Cursor";
 import { Rail } from "@/projects/home/islands/Rail";
 import { Contact } from "@/projects/home/sections/Contact";
@@ -13,14 +14,14 @@ export default function HomePage() {
   return (
     <>
       <Sprite />
-      <Rail />
+      <Rail nav={homeNav} />
       <main className="wrap" id="top">
         <Hero />
         <Ticker />
         <Record />
         <Work />
         <Contact />
-        <Footer />
+        <Footer nav={homeNav} />
       </main>
       <Cursor />
     </>

@@ -4,11 +4,12 @@ The source of [thattechedguy.com](https://thattechedguy.com): one Next.js app fo
 
 **Next.js 16** · **React 19** with the React Compiler · **Tailwind CSS 4** · **Bun** · **Playwright** · deployed on **Vercel**
 
-| URL           | What                                                    | Code                                 |
-| ------------- | ------------------------------------------------------- | ------------------------------------ |
-| `/`           | A one-page personal site in an editorial magazine style | `app/(home)/`, `projects/home/`      |
-| `/yank`       | Yank, a free, open-source clipboard manager for Mac     | `app/(yank)/yank/`, `projects/yank/` |
-| anything else | A plain 404 that wears no project's look                | `app/global-not-found.tsx`           |
+| URL           | What                                                    | Code                                        |
+| ------------- | ------------------------------------------------------- | ------------------------------------------- |
+| `/`           | A one-page personal site in an editorial magazine style | `app/(home)/`, `projects/home/`             |
+| `/stack`      | Stack and play: tools, opinions on them, and hobbies    | `app/(home)/stack/`, `projects/home/stack/` |
+| `/yank`       | Yank, a free, open-source clipboard manager for Mac     | `app/(yank)/yank/`, `projects/yank/`        |
+| anything else | A plain 404 that wears no project's look                | `app/global-not-found.tsx`                  |
 
 `robots.txt`, `sitemap.xml` and `llms.txt` are generated at the domain root from `site.config.ts`.
 
@@ -86,6 +87,20 @@ Two things the script used to measure are now pure CSS, so nothing moves when th
 | Tool, GitHub and LinkedIn icons               | `projects/home/icons.svg`, one cached file, so the page doesn't carry them twice (in the HTML and in React's payload) |
 
 The Brisbane clock in the footer reads the visitor's own clock in the `Australia/Brisbane` time zone, so nothing is fetched.
+
+### Stack and play (`/stack`)
+
+A second page in the home page's look, sharing its layout, palettes, rail, footer and cursor. The rail and footer take a `PageNav` (`homeNav` or `stackNav` in `projects/home/config.ts`), so each page links to its own sections and to the other page. Both rails carry a filled **Try Yank** link.
+
+| What                                                     | Where                                                                                                   |
+| -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| Copy: tools and verdicts, the takes, hobbies             | `projects/home/stack/data.ts`. A `draft: true` line shows a dashed "Draft" stamp until it is confirmed. |
+| Sections                                                 | `projects/home/stack/sections.tsx`                                                                      |
+| Madhubani-style art (motifs, side borders, phone frieze) | `projects/home/stack/madhubani.ts`, rendered by `Madhubani.tsx`                                         |
+| Styles                                                   | `projects/home/styles/stack.css` (the Try Yank pill lives in `rail.css`)                                |
+| Border drift and the struck-through "Rather not" column  | `projects/home/islands/Drift.tsx`                                                                       |
+
+The motifs (chess knight, Howrah Bridge, round glasses and a wand, tennis, a dragon, a seven-star orb, a glowing gate, pickleball, padel, a sword, the number 5) are original drawings made of simple shapes, not copies of any character or logo. They are coloured by the palette: ink, paper and link colour, plus `--mb-accent`, one warm accent per paper. Their class names (`mb-s`, `mb-fa` and so on) are deliberately unscoped, because the motifs are drawn through `<use>` and a descendant selector can't reach into its shadow tree.
 
 ### Yank (`/yank`)
 
