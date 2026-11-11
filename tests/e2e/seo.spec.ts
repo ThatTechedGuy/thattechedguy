@@ -2,8 +2,9 @@ import { expect, test } from "@playwright/test";
 
 const origin = "https://thattechedguy.com";
 
-for (const { path, canonical } of [
+for (const { path, canonical, jsonLd = true } of [
   { path: "/", canonical: [origin, `${origin}/`] },
+  { path: "/stack", canonical: [`${origin}/stack`], jsonLd: false },
   { path: "/yank", canonical: [`${origin}/yank`] },
 ]) {
   test(`${path}: one h1, canonical, title, description, OG image and JSON-LD`, async ({ page }) => {
@@ -24,9 +25,10 @@ for (const { path, canonical } of [
     expect(image.status()).toBe(200);
     expect(image.headers()["content-type"]).toBe("image/png");
 
-    const jsonLd = await page.locator('script[type="application/ld+json"]').textContent();
-    expect(() => JSON.parse(jsonLd ?? "")).not.toThrow();
-    expect(jsonLd).toContain('"@context":"https://schema.org"');
+    if (!jsonLd) return;
+    const script = await page.locator('script[type="application/ld+json"]').textContent();
+    expect(() => JSON.parse(script ?? "")).not.toThrow();
+    expect(script).toContain('"@context":"https://schema.org"');
   });
 }
 

@@ -1,6 +1,5 @@
 import icons from "../icons.svg";
-import { hobbies, layers, takes, takesDraft, verdictNames } from "./data";
-import { Draft } from "./Draft";
+import { hobbies, layers, verdictNames } from "./data";
 import { Frieze, Motif } from "./Madhubani";
 
 /** The opening statement, and what's on the page. */
@@ -16,7 +15,6 @@ export function Intro() {
           <dt className="label">On this page</dt>
           <dd className="sp-toc">
             <a href="#stack">Stack</a>
-            <a href="#takes">Takes</a>
             <a href="#play">Play</a>
           </dd>
         </div>
@@ -63,44 +61,12 @@ export function Stack() {
                   {tool.name}
                 </span>
                 <span className={`verdict ${tool.verdict}`}>{verdictNames[tool.verdict]}</span>
-                <p className="ttake">
-                  {tool.take}
-                  <Draft when={tool.draft} />
-                </p>
+                <p className="ttake">{tool.take}</p>
               </li>
             ))}
           </ol>
         </div>
       ))}
-    </section>
-  );
-}
-
-/** A two-column ledger. islands/Drift.tsx strikes the right-hand column once it scrolls into view. */
-export function Takes() {
-  return (
-    <section className="sec" id="takes" aria-labelledby="takes-h">
-      <div className="head reveal">
-        <h2 id="takes-h">
-          Strong opinions, <i>loosely held</i>
-        </h2>
-        <span className="small">
-          Hover a struck line to give it a second chance
-          <Draft when={takesDraft} />
-        </span>
-      </div>
-      <div className="ledger reveal">
-        <span className="label">Yes, please</span>
-        <span className="label">Rather not</span>
-        {takes.map(([yes, no]) => [
-          <p key={`y-${yes}`} className="yes">
-            {yes}
-          </p>,
-          <p key={`n-${no}`} className="no">
-            <s>{no}</s>
-          </p>,
-        ])}
-      </div>
     </section>
   );
 }
@@ -146,10 +112,7 @@ export function Play() {
                   {hobby.footnote && <p className="small fine">{hobby.footnote}</p>}
                 </>
               ) : (
-                <p>
-                  {hobby.note ?? <span className="gap">A line about this goes here.</span>}
-                  <Draft when={hobby.draft} />
-                </p>
+                hobby.note && <p>{hobby.note}</p>
               )}
             </div>
           </li>

@@ -355,22 +355,17 @@
   );
   animation: yank-sweep 5s var(--ease) 1.5s infinite;
 }
+/* A transform, not top/left, so the endless sweep runs on the compositor: 300% of its own size is 180% of the pill */
 @keyframes yank-sweep {
-  0% {
-    top: -60%;
-  }
   30%,
   100% {
-    top: 120%;
+    transform: translateY(300%);
   }
 }
 @keyframes yank-sweep-x {
-  0% {
-    left: -60%;
-  }
   30%,
   100% {
-    left: 120%;
+    transform: translateX(300%);
   }
 }
 .rail-yank:hover {
