@@ -246,11 +246,15 @@
     background-color 0.2s,
     padding 0.3s var(--ease);
 }
-.pop button:hover,
-.pop a:hover {
-  background: color-mix(in srgb, var(--ink) 10%, transparent);
-  padding-left: 0.8rem;
+/* Mouse only: a tap would leave the row highlighted after the finger lifts */
+@media (hover: hover) {
+  .pop button:hover,
+  .pop a:hover {
+    background: color-mix(in srgb, var(--ink) 10%, transparent);
+    padding-left: 0.8rem;
+  }
 }
+
 .pop .sw {
   width: 1.6rem;
   height: 1.6rem;

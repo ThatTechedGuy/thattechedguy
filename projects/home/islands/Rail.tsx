@@ -144,8 +144,12 @@ export function Rail({ nav }: { nav: PageNav }) {
   const pick = useCallback((event: MouseEvent<HTMLButtonElement>) => {
     const id = event.currentTarget.dataset["palette"];
     const next = palettes.find((paper) => paper.id === id);
-    if (id === "random") flipPaper(applyRandom);
-    else if (next && next.id !== readChoice()) flipPaper(() => applyPalette(next.id));
+    // The ink spreads from the swatch.
+    const swatch = event.currentTarget.querySelector(".sw")?.getBoundingClientRect();
+    const x = swatch ? swatch.x + swatch.width / 2 : event.clientX;
+    const y = swatch ? swatch.y + swatch.height / 2 : event.clientY;
+    if (id === "random") flipPaper(applyRandom, x, y);
+    else if (next && next.id !== readChoice()) flipPaper(() => applyPalette(next.id), x, y);
   }, []);
 
   const paper = palettes.find(({ id }) => id === palette)?.paper;

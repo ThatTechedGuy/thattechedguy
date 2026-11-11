@@ -26,12 +26,19 @@ export const readChoice = (): string | undefined =>
 const changed = () => window.dispatchEvent(new Event(CHANGE_EVENT));
 
 /**
- * Swaps the paper in one View Transition: the old sheet tears off the pad and falls away, showing the new one
- * underneath (motion.css). The colours change once, so the browser only moves two snapshots, never restyles the
- * page frame by frame. With reduced motion, or no View Transitions, the paper just changes.
+ * Swaps the paper in one View Transition: the new one spreads like ink from (x, y) over the old (motion.css). The
+ * colours change once, so the browser only clips a snapshot, never restyles the page frame by frame. With reduced
+ * motion, or no View Transitions, the paper just changes.
  */
-export function flipPaper(change: () => void): void {
-  if (prefersReducedMotion() || !startViewTransition(change, "paper-flip")) change();
+export function flipPaper(change: () => void, x: number, y: number): void {
+  if (prefersReducedMotion()) return change();
+  const html = root();
+  html.style.setProperty("--ink-x", `${x}px`);
+  html.style.setProperty("--ink-y", `${y}px`);
+  // Far enough to cover the furthest corner.
+  const r = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+  html.style.setProperty("--ink-r", `${Math.ceil(r)}px`);
+  if (!startViewTransition(change, "paper-flip")) change();
 }
 
 /** Switches to a paper now and remembers it. */
