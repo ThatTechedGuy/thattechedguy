@@ -1,10 +1,9 @@
 import type { MotifId } from "./madhubani";
-import { frieze, leftStrip, motifDefs, rightStrip } from "./madhubani";
+import { frieze, motifDefs, painting } from "./madhubani";
 
 // The art is static markup generated from simple shapes (see madhubani.ts), never user input.
 const defs = { __html: motifDefs };
-const left = { __html: leftStrip };
-const right = { __html: rightStrip };
+const strip = { __html: painting };
 const row = { __html: frieze };
 
 /** The fill patterns and motif symbols. Rendered once per page, before anything that uses them. */
@@ -19,17 +18,12 @@ export function MotifDefs() {
   );
 }
 
-/** The fixed borders down both sides (900px and wider). islands/Drift.tsx moves them with the scroll. */
-export function Borders() {
-  return (
-    <>
-      <div className="mb-band l" aria-hidden="true" dangerouslySetInnerHTML={left} />
-      <div className="mb-band r" aria-hidden="true" dangerouslySetInnerHTML={right} />
-    </>
-  );
+/** One long painting down the right-hand side (900px and wider). islands/Drift.tsx moves it with the scroll. */
+export function Painting() {
+  return <div className="mb-band" aria-hidden="true" dangerouslySetInnerHTML={strip} />;
 }
 
-/** On phones, the borders become a strip of tiles under the intro that scrolls by itself. */
+/** On phones, the painting runs left to right under the intro and scrolls by itself. */
 export function Frieze() {
   return <div className="mb-frieze" aria-hidden="true" dangerouslySetInnerHTML={row} />;
 }
