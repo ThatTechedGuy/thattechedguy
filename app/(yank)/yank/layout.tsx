@@ -21,10 +21,6 @@ export default function YankRootLayout({ children }: { children: ReactNode }) {
     <html lang="en" className={fontVariables} style={accent} suppressHydrationWarning>
       <head>
         <ThemeScript storageKey={yank.themeStorageKey} fallback={yank.theme} />
-        {/* Reveals hide content only after a script arms them; this keeps it visible if scripts are off. */}
-        <noscript>
-          <style>{"[data-reveal]{opacity:1!important;transform:none!important}"}</style>
-        </noscript>
         <JsonLd data={yankJsonLd} />
       </head>
       <body>{children}</body>

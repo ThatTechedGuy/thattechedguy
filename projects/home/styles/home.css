@@ -219,15 +219,11 @@ ul {
 /* Serif is kept for display type only; all running text is sans */
 .hero h1,
 .head h2,
-.numbers .fig,
 .job .co,
-.school .co,
-.feature h3,
 .letters .big,
 .nameplate,
 .ticker,
-.job .more .lede,
-.feature .pull {
+.job .more .lede {
   font-family: var(--serif);
 }
 
@@ -1074,8 +1070,7 @@ section.sec {
 }
 
 /* Company and school logos: hard-edged squares, set straight */
-.job .co,
-.school .co {
+.job .co {
   display: inline-flex;
   align-items: center;
   gap: 0.55em;

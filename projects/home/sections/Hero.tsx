@@ -25,7 +25,7 @@ function Words({ from, text }: { from: number; text: string }) {
     ]);
 }
 
-const chessWord = word(24);
+const chessWord = word(29);
 
 const westpacCard = (
   <>
@@ -95,7 +95,7 @@ export function Hero() {
         <HoverCard label="Openings" className="w hov" style={chessWord} card={chessCard}>
           chessboard
         </HoverCard>
-        <Words from={29} text=", or making things about code and games." />
+        <Words from={30} text=", or making things about code and games." />
       </h1>
       <dl className="facts">
         <div>

@@ -48,7 +48,7 @@ const noMinute = () => null;
 const brisbane = (minute: number, options: Intl.DateTimeFormatOptions) =>
   new Date(minute * 60_000).toLocaleString("en-AU", { timeZone: "Australia/Brisbane", ...options });
 const brisbaneHour = (minute: number) =>
-  Number(brisbane(minute, { hour: "numeric", hour12: false }));
+  Number(brisbane(minute, { hour: "numeric", hourCycle: "h23" }));
 
 const useMinute = () => useSyncExternalStore(subscribeMinute, currentMinute, noMinute);
 
