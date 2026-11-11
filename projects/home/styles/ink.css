@@ -1,0 +1,7 @@
+/* Ink on paper, on both pages: every piece of text bleeds a touch, the same amount whatever its font or size.
+   Set once on the body so all text inherits it. Fonts, sizes, colours and layout are untouched. */
+body {
+  text-shadow:
+    0 0 0.5px currentColor,
+    0 0 1.4px color-mix(in srgb, currentColor 35%, transparent);
+}
