@@ -291,3 +291,125 @@
     transform-origin: 100% 100%;
   }
 }
+
+/* The link to the other page sits under the section links, marked with a diamond instead of a dot */
+.rail-links .sep {
+  width: 1px;
+  height: 18px;
+  background: var(--rule);
+}
+.rail-links a.page::before {
+  border-radius: 1px;
+  transform: rotate(45deg) scale(0.85);
+}
+.rail-links a.page:hover::before {
+  background: currentColor;
+}
+
+/* Try Yank: the one filled thing in the rail, with a light that sweeps across it now and then */
+.rail-yank {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  width: 38px;
+  padding: 0.7rem 0;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.4s var(--ease);
+}
+.rail-yank svg {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  transform: rotate(180deg);
+  border-radius: 5px;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.rail-yank::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  right: 0;
+  height: 60%;
+  top: -60%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    color-mix(in srgb, var(--paper) 35%, transparent),
+    transparent
+  );
+  animation: yank-sweep 5s var(--ease) 1.5s infinite;
+}
+@keyframes yank-sweep {
+  0% {
+    top: -60%;
+  }
+  30%,
+  100% {
+    top: 120%;
+  }
+}
+@keyframes yank-sweep-x {
+  0% {
+    left: -60%;
+  }
+  30%,
+  100% {
+    left: 120%;
+  }
+}
+.rail-yank:hover {
+  transform: rotate(180deg) scale(1.07);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--ink) 18%, transparent);
+}
+.rail-yank:hover svg {
+  transform: rotate(180deg) translateY(2px) rotate(-12deg);
+}
+@media (max-width: 899px) {
+  .rail-yank {
+    writing-mode: horizontal-tb;
+    transform: none;
+    width: auto;
+    height: 40px;
+    padding: 0 14px 0 9px;
+    font-size: 0.66rem;
+  }
+  .rail-yank svg {
+    transform: none;
+  }
+  .rail-yank::after {
+    top: 0;
+    bottom: 0;
+    height: auto;
+    width: 60%;
+    left: -60%;
+    background: linear-gradient(
+      to right,
+      transparent,
+      color-mix(in srgb, var(--paper) 35%, transparent),
+      transparent
+    );
+    animation-name: yank-sweep-x;
+  }
+  .rail-yank:hover {
+    transform: scale(1.05);
+  }
+  .rail-yank:hover svg {
+    transform: rotate(-12deg);
+  }
+}

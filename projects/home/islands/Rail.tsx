@@ -10,7 +10,7 @@ import {
   type MouseEvent,
 } from "react";
 
-import { palettes, sections } from "../config";
+import { palettes, yankPath, type PageNav } from "../config";
 import { applyPalette, applyRandom, readChoice, readPalette, subscribePalette } from "../palette";
 
 type Menu = "palette" | "index" | null;
@@ -37,8 +37,12 @@ const swatches: Record<string, CSSProperties> = Object.fromEntries([
 // The server cannot know the visitor's paper; React reads it right after hydration (aria-checked and theme-color only).
 const serverPalette = () => undefined;
 
-/** The side rail (a pill on phones): section links, reading progress, the palette and index menus. */
-export function Rail() {
+/**
+ * The side rail (a pill on phones): section links, a link to the other page, Try Yank, reading progress, and the
+ * palette and index menus.
+ */
+export function Rail({ nav }: { nav: PageNav }) {
+  const { sections } = nav;
   const palette = useSyncExternalStore(subscribePalette, readPalette, serverPalette);
   const choice = useSyncExternalStore(subscribePalette, readChoice, serverPalette);
   const [menu, setMenu] = useState<Menu>(null);
@@ -107,7 +111,7 @@ export function Rail() {
       removeEventListener("resize", onScroll);
       document.removeEventListener("click", onClick);
     };
-  }, []);
+  }, [sections]);
 
   const toggleIndex = useCallback(() => setMenu((open) => (open === "index" ? null : "index")), []);
   const togglePalette = useCallback(
@@ -130,7 +134,7 @@ export function Rail() {
       {/* React puts this in <head>: the browser's bar takes the paper's colour. */}
       {paper ? <meta name="theme-color" content={paper} /> : null}
       <nav className="rail" aria-label="Sections">
-        <a className="rail-mark" href="#top" aria-label="vg, back to top">
+        <a className="rail-mark" href={nav.mark.href} aria-label={nav.mark.label}>
           vg
         </a>
         <ol className="rail-links">
@@ -141,8 +145,21 @@ export function Rail() {
               </a>
             </li>
           ))}
+          <li className="sep" aria-hidden="true" />
+          <li>
+            <a className="page" href={nav.page.href}>
+              {nav.page.name}
+            </a>
+          </li>
         </ol>
         <div className="rail-foot">
+          {/* A plain <a>: Yank has its own root layout (see config.ts). */}
+          <a className="rail-yank" href={yankPath} data-cursor="Try">
+            <svg aria-hidden="true">
+              <use href="#i-yank" />
+            </svg>
+            <span>Try Yank</span>
+          </a>
           <div className="rail-prog" aria-hidden="true">
             <span ref={progress} />
           </div>
@@ -206,6 +223,9 @@ export function Rail() {
             {name}
           </a>
         ))}
+        <a href={nav.page.href} onClick={closeMenu}>
+          {nav.page.name}
+        </a>
       </div>
     </>
   );
