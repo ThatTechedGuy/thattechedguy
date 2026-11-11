@@ -1,8 +1,7 @@
-import { yank } from "../config";
 import { Logo } from "../icons/Logo";
 import { ThemePill } from "../theme/ThemePill";
 
-/** The quiet top row: logo and the day/night switch. Navigation itself is the Dock or the pull cord. */
+/** The quiet top row: logo and the day/night switch. Navigation itself is the Dock. */
 export function Header() {
   return (
     <header
@@ -18,8 +17,7 @@ export function Header() {
       </a>
       <span className="flex items-center gap-18">
         <span className="text-[14px] text-muted max-desk:hidden">Free and open source</span>
-        {/* The pull cord hangs in the top-right corner, so the switch moves out of its way. */}
-        <ThemePill className={yank.nav === "tab" ? "mr-112" : ""} />
+        <ThemePill />
       </span>
     </header>
   );

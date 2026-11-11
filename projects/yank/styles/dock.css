@@ -136,15 +136,6 @@
 [data-chapter="download"] [data-nav="download"] .dock-dot {
   opacity: 1;
 }
-[data-chapter="top"] .menubar-link[data-nav="top"],
-[data-chapter="demo"] .menubar-link[data-nav="demo"],
-[data-chapter="how"] .menubar-link[data-nav="how"],
-[data-chapter="features"] .menubar-link[data-nav="features"],
-[data-chapter="privacy"] .menubar-link[data-nav="privacy"],
-[data-chapter="free"] .menubar-link[data-nav="free"],
-[data-chapter="download"] .menubar-link[data-nav="download"] {
-  background: rgba(0, 0, 0, 0.08);
-}
 
 @media (prefers-reduced-motion: reduce) {
   .dock-item,
@@ -200,12 +191,5 @@
   .dock .dock-sep {
     height: 28px;
     margin: 0 5px 5px;
-  }
-  .menubar .menubar-link,
-  .menubar .menubar-status {
-    display: none !important;
-  }
-  .menubar {
-    padding: 0 8px !important;
   }
 }

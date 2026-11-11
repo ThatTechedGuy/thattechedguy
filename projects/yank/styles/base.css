@@ -15,7 +15,6 @@
   --hair: rgba(0, 0, 0, 0.06);
   --hair2: rgba(0, 0, 0, 0.08);
   --chip: rgba(0, 0, 0, 0.04);
-  --overlay: rgba(245, 245, 247, 0.66);
   --sh: rgba(0, 0, 0, 0.12);
 
   /* Readable gradient text, hero scrim and eyebrow colours. */
@@ -46,7 +45,6 @@
   --hair: rgba(255, 255, 255, 0.08);
   --hair2: rgba(255, 255, 255, 0.12);
   --chip: rgba(255, 255, 255, 0.06);
-  --overlay: rgba(10, 10, 14, 0.62);
   --sh: rgba(0, 0, 0, 0.5);
   --grad: var(--grad-on-dark);
   --scrim: rgba(7, 7, 11, 0.74);

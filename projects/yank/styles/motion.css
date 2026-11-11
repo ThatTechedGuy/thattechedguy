@@ -250,15 +250,13 @@
 .cursor[data-mode="link"] .cursor-dot {
   transform: scale(0);
 }
-.cursor:is([data-mode="Pick"], [data-mode="Watch"], [data-mode="Move"], [data-mode="Pull"])
-  .cursor-ring {
+.cursor:is([data-mode="Pick"], [data-mode="Watch"], [data-mode="Move"]) .cursor-ring {
   transform: scale(1.25);
   background: transparent;
   border-color: #0a84ff;
   border-width: 2px;
 }
-.cursor:is([data-mode="Pick"], [data-mode="Watch"], [data-mode="Move"], [data-mode="Pull"])
-  .cursor-dot {
+.cursor:is([data-mode="Pick"], [data-mode="Watch"], [data-mode="Move"]) .cursor-dot {
   opacity: 1;
 }
 .cursor[data-mode="text"] {
@@ -288,8 +286,7 @@
 }
 .cursor[data-mode="Pick"] .cursor-label-pick,
 .cursor[data-mode="Watch"] .cursor-label-watch,
-.cursor[data-mode="Move"] .cursor-label-move,
-.cursor[data-mode="Pull"] .cursor-label-pull {
+.cursor[data-mode="Move"] .cursor-label-move {
   opacity: 1;
   transform: none;
 }

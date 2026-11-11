@@ -6,7 +6,7 @@ import { useTheme } from "@/lib/theme/use-theme";
 
 import { flipTheme } from "./flip-theme";
 
-/** A plain button that flips the theme and names the mode it switches to. Used by the Dock and the menu bar. */
+/** A plain button that flips the theme and names the mode it switches to. Used by the Dock. */
 export function ThemeButton({ className, children }: { className: string; children: ReactNode }) {
   const dark = useTheme() === "dark";
   return (

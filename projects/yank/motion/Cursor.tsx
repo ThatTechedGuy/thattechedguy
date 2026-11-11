@@ -68,7 +68,6 @@ export function Cursor() {
       <span className="cursor-label cursor-label-pick">Pick</span>
       <span className="cursor-label cursor-label-watch">Watch</span>
       <span className="cursor-label cursor-label-move">Move</span>
-      <span className="cursor-label cursor-label-pull">Pull me</span>
     </div>
   );
 }

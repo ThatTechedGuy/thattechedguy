@@ -92,7 +92,6 @@ The Brisbane clock in the footer reads the visitor's own clock in the `Australia
 `projects/yank/config.ts` holds what were runtime tweaks in the prototype:
 
 - the accent colour
-- the navigation: `dock`, `tab` (a pull cord) or `menubar`
 - the default theme: `auto`, `light` or `dark`
 - the effects: `3D` or `patterns`
 - the links

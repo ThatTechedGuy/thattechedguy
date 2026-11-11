@@ -17,7 +17,6 @@
 @import "./film.css" layer(components);
 @import "./stack.css" layer(components);
 @import "./dock.css" layer(components);
-@import "./pull-cord.css" layer(components);
 @import "./theme-switch.css" layer(components);
 @import "./theme-flip.css" layer(components);
 @import "./backdrop.css" layer(components);
@@ -43,7 +42,6 @@
   --color-hair: var(--hair);
   --color-hair2: var(--hair2);
   --color-chip: var(--chip);
-  --color-overlay: var(--overlay);
   --color-eyebrow-purple: var(--ey1);
   --color-eyebrow-green: var(--ey2);
 

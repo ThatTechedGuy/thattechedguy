@@ -2,13 +2,10 @@
 
 import type { ThemeDefault } from "@/lib/theme/theme";
 
-export type NavStyle = "dock" | "tab" | "menubar";
 export type Effects = "3D" | "patterns";
 
 interface YankConfig {
   accent: `#${string}`;
-  /** Dock by default; "tab" is the pull-cord ball, "menubar" the macOS-style bar. */
-  nav: NavStyle;
   /** "auto" follows the system until the visitor uses the switch. */
   theme: ThemeDefault;
   /** "3D" adds the Three.js background on desktop; "patterns" keeps only the canvas patterns. */
@@ -23,7 +20,6 @@ interface YankConfig {
 
 export const yank: YankConfig = {
   accent: "#0A84FF",
-  nav: "dock",
   theme: "auto",
   effects: "3D",
   // The DMG's file name carries the version, so this is the newest release's page, not the file.
