@@ -35,6 +35,27 @@ Off the clock I'm on a tennis court, over a chessboard, or making things about c
 
 ## Works in
 
-[![Elixir, TypeScript, React Native, Next.js, NestJS, Bun, Swift, Java, Rust, Go, Python, Django, GraphQL, DynamoDB, AWS and Azure](https://skillicons.dev/icons?i=elixir,ts,react,nextjs,nestjs,bun,swift,java,rust,go,py,django,graphql,dynamodb,aws,azure&perline=8)](https://skillicons.dev)
+<p>
+<img src="https://skillicons.dev/icons?i=elixir" alt="Elixir" title="Elixir" width="48">
+<img src=".github/icons/phoenix.svg" alt="Phoenix" title="Phoenix" width="48">
+<img src="https://skillicons.dev/icons?i=ts" alt="TypeScript" title="TypeScript" width="48">
+<img src="https://skillicons.dev/icons?i=react" alt="React Native" title="React Native" width="48">
+<img src="https://skillicons.dev/icons?i=nextjs" alt="Next.js" title="Next.js" width="48">
+<img src="https://skillicons.dev/icons?i=nestjs" alt="NestJS" title="NestJS" width="48">
+<img src="https://skillicons.dev/icons?i=bun" alt="Bun" title="Bun" width="48">
+<img src="https://skillicons.dev/icons?i=swift" alt="Swift" title="Swift" width="48">
+<img src="https://skillicons.dev/icons?i=java" alt="Java" title="Java" width="48">
+<img src="https://skillicons.dev/icons?i=rust" alt="Rust" title="Rust" width="48">
+<br>
+<img src="https://skillicons.dev/icons?i=go" alt="Go" title="Go" width="48">
+<img src="https://skillicons.dev/icons?i=py" alt="Python" title="Python" width="48">
+<img src="https://skillicons.dev/icons?i=django" alt="Django" title="Django" width="48">
+<img src="https://skillicons.dev/icons?i=graphql" alt="GraphQL" title="GraphQL" width="48">
+<img src=".github/icons/stripe.svg" alt="Stripe" title="Stripe" width="48">
+<img src=".github/icons/pulumi.svg" alt="Pulumi" title="Pulumi" width="48">
+<img src="https://skillicons.dev/icons?i=dynamodb" alt="DynamoDB" title="DynamoDB" width="48">
+<img src="https://skillicons.dev/icons?i=aws" alt="AWS" title="AWS" width="48">
+<img src="https://skillicons.dev/icons?i=azure" alt="Azure" title="Azure" width="48">
+</p>
 
-Plus Phoenix, Stripe and Pulumi. Whatever the problem needs: I pick up tools as I go.
+Whatever the problem needs. I pick up tools as I go.
