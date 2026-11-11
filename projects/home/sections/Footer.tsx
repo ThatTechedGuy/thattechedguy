@@ -121,10 +121,6 @@ export function Footer() {
       </div>
       <div className="colophon">
         <span className="small">© 2026 Vishal Gupta · Brisbane, Australia</span>
-        <span className="small">
-          Set in Newsreader and Inter Tight. Company logos belong to their owners; tool icons from
-          Simple Icons.
-        </span>
       </div>
     </footer>
   );

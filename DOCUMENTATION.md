@@ -123,6 +123,8 @@ URLs have no trailing slash: `/yank/` redirects to `/yank`.
 
 ## Fonts
 
+Every font is under the SIL Open Font License, which `OFL.txt` carries for the files in this repository. The licence needs no credit on the page.
+
 ### Home
 
 The home page self-hosts Newsreader (roman and italic) and Inter Tight from `projects/home/font-files/`, all preloaded. They are Google's latin variable files, trimmed in two ways:
