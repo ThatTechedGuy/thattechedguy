@@ -7,7 +7,7 @@ The source of [thattechedguy.com](https://thattechedguy.com): one Next.js app fo
 | URL           | What                                                    | Code                                        |
 | ------------- | ------------------------------------------------------- | ------------------------------------------- |
 | `/`           | A one-page personal site in an editorial magazine style | `app/(home)/`, `projects/home/`             |
-| `/stack`      | Opinions: tools, takes on them, and hobbies             | `app/(home)/stack/`, `projects/home/stack/` |
+| `/stack`      | Opinions: tools, takes on them, gear, and hobbies       | `app/(home)/stack/`, `projects/home/stack/` |
 | `/yank`       | Yank, a free, open-source clipboard manager for Mac     | `app/(yank)/yank/`, `projects/yank/`        |
 | anything else | A plain 404 that wears no project's look                | `app/global-not-found.tsx`                  |
 
@@ -101,7 +101,7 @@ A second page in the home page's look, sharing its layout, palettes, rail, foote
 
 | What                                                         | Where                                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------------------------ |
-| Copy: tools and verdicts, hobbies                            | `projects/home/stack/data.ts`                                            |
+| Copy: tools and verdicts, gear, hobbies                      | `projects/home/stack/data.ts`                                            |
 | Sections                                                     | `projects/home/stack/sections.tsx`                                       |
 | Madhubani-style art (motifs, the painting, the phone frieze) | `projects/home/stack/art.ts`, rendered by `Madhubani.tsx`                |
 | Styles                                                       | `projects/home/styles/stack.css` (the Try Yank pill lives in `rail.css`) |

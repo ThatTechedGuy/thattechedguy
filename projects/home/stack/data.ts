@@ -21,12 +21,13 @@ export type IconId =
   | "amazondynamodb"
   | "pulumi";
 
-export type Verdict = "love" | "like" | "complicated";
+export type Verdict = "love" | "like" | "complicated" | "hate";
 
 export const verdictNames: Record<Verdict, string> = {
   love: "Love it",
   like: "Like it",
   complicated: "It’s complicated",
+  hate: "Hate it",
 };
 
 export interface Tool {
@@ -139,6 +140,55 @@ export const layers: readonly Layer[] = [
         verdict: "like",
         take: "Infrastructure in a real language, with real loops and real types.",
       },
+    ],
+  },
+];
+
+/** What it all runs on: each row is a name, a line about it, and an optional verdict. */
+export interface GearGroup {
+  name: string;
+  items: readonly (readonly [name: string, detail: string, verdict?: Verdict])[];
+}
+
+export const gear: readonly GearGroup[] = [
+  {
+    name: "Devices",
+    items: [
+      ["MacBook Pro 16-inch", "M4 Pro"],
+      ["Lenovo Legion Pro 7i", "RTX 4080, dual-booting Arch Linux and Windows"],
+      ["Samsung Galaxy S25 Ultra", "Phone"],
+    ],
+  },
+  {
+    name: "Operating systems",
+    items: [
+      ["Arch Linux", "On the Legion, with KDE Plasma on Wayland", "love"],
+      ["macOS", "On the MacBook", "like"],
+      ["Windows", "For gaming, and nothing else", "hate"],
+    ],
+  },
+  {
+    name: "Software",
+    items: [
+      ["Ghostty", "Terminal"],
+      ["VS Code", "Editor"],
+      ["Zsh", "Shell, with the zsh4humans preset"],
+      ["Amp", "Coding agent, on a Claude Max subscription"],
+    ],
+  },
+  {
+    name: "Wearables",
+    items: [
+      ["Galaxy Watch Ultra", "Watch"],
+      ["Galaxy Ring", "Ring"],
+    ],
+  },
+  {
+    name: "Sound",
+    items: [
+      ["KZ Duonic", "In-ear monitors"],
+      ["HyperX Cloud Alpha", "Headphones"],
+      ["Sony WH-1000XM5", "Headphones, for music"],
     ],
   },
 ];

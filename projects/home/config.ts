@@ -40,6 +40,7 @@ export const stackPath = "/stack";
 /** The same for the stack page. */
 export const stackSections = [
   { id: "stack", name: "Stack" },
+  { id: "gear", name: "Gear" },
   { id: "play", name: "Play" },
 ] as const;
 

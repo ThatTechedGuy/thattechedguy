@@ -1,5 +1,5 @@
 import icons from "../icons.svg";
-import { hobbies, layers, verdictNames } from "./data";
+import { gear, hobbies, layers, verdictNames } from "./data";
 import { Motif } from "./Madhubani";
 
 /** The opening statement, and what's on the page. */
@@ -15,6 +15,7 @@ export function Intro() {
           <dt className="label">On this page</dt>
           <dd className="sp-toc">
             <a href="#stack">Stack</a>
+            <a href="#gear">Gear</a>
             <a href="#play">Play</a>
           </dd>
         </div>
@@ -64,6 +65,33 @@ export function Stack() {
               </li>
             ))}
           </ol>
+        </div>
+      ))}
+    </section>
+  );
+}
+
+/** The hardware and everyday software, in the stack's ruled rows; the operating systems get verdicts. */
+export function Gear() {
+  return (
+    <section className="sec" id="gear" aria-labelledby="gear-h">
+      <div className="head reveal">
+        <h2 id="gear-h">
+          The <i>gear</i>
+        </h2>
+      </div>
+      {gear.map((group) => (
+        <div key={group.name} className="layer reveal">
+          <span className="label">{group.name}</span>
+          <ul className="tools">
+            {group.items.map(([name, detail, verdict]) => (
+              <li key={name}>
+                <span className="tname">{name}</span>
+                {verdict && <span className={`verdict ${verdict}`}>{verdictNames[verdict]}</span>}
+                <p className="ttake">{detail}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       ))}
     </section>

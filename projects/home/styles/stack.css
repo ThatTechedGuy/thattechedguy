@@ -212,7 +212,14 @@
   color: var(--grey);
   border-color: var(--grey);
 }
+.verdict.hate {
+  color: var(--grey);
+  border-color: var(--grey);
+  text-decoration: line-through;
+}
+/* The last column, also in gear rows that have no verdict */
 .ttake {
+  grid-column: -2;
   font-size: 0.98rem;
   line-height: 1.45;
   max-width: 62ch;
