@@ -8,6 +8,7 @@ import { fontVariables } from "@/projects/yank/fonts";
 import { yankJsonLd, yankMetadata, yankViewport } from "@/projects/yank/seo";
 
 import "@/projects/yank/styles/yank.css";
+import "@/lib/motion/page-transition.css";
 
 export const metadata: Metadata = yankMetadata;
 export const viewport: Viewport = yankViewport;

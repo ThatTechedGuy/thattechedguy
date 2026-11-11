@@ -1,0 +1,38 @@
+/* Moving around the site. Both root layouts import this: a cross-document transition is styled by the page it
+   lands on. The old view sinks and fades while the new one rises in, between pages (plain links, so the browser
+   runs it across the load) and on in-page jumps (lib/motion/view-transition.ts), which travel the way the page
+   moves. Browsers without View Transitions, and reduced motion, get the plain jump or load. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+    types: page;
+  }
+
+  html:active-view-transition-type(page),
+  html.jump-down {
+    --jump: 1;
+  }
+  html.jump-up {
+    --jump: -1;
+  }
+  html:is(:active-view-transition-type(page), .jump-down, .jump-up)::view-transition-old(root) {
+    animation: view-out 0.3s cubic-bezier(0.4, 0, 1, 1) both;
+    mix-blend-mode: normal;
+  }
+  html:is(:active-view-transition-type(page), .jump-down, .jump-up)::view-transition-new(root) {
+    animation: view-in 0.65s cubic-bezier(0.2, 0.7, 0.1, 1) 0.08s both;
+    mix-blend-mode: normal;
+  }
+}
+@keyframes view-out {
+  to {
+    opacity: 0;
+    transform: translateY(calc(var(--jump) * -6vh)) scale(0.985);
+  }
+}
+@keyframes view-in {
+  from {
+    opacity: 0;
+    transform: translateY(calc(var(--jump) * 10vh));
+  }
+}

@@ -5,6 +5,8 @@
   }
 }
 .rail {
+  /* Its own layer in page transitions (lib/motion/page-transition.css), so it holds still while the page moves */
+  view-transition-name: rail;
   position: fixed;
   z-index: 40;
   left: 0;
