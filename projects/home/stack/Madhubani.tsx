@@ -1,7 +1,7 @@
-import type { MotifId } from "./madhubani";
-import { frieze, motifDefs, painting } from "./madhubani";
+import type { MotifId } from "./art";
+import { frieze, motifDefs, painting } from "./art";
 
-// The art is static markup generated from simple shapes (see madhubani.ts), never user input.
+// The art is static markup generated from simple shapes (see art.ts), never user input.
 const defs = { __html: motifDefs };
 const strip = { __html: painting };
 const row = { __html: frieze };

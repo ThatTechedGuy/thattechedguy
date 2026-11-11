@@ -87,7 +87,7 @@ export function Footer({ nav }: { nav: PageNav }) {
           <p className="label">Sitemap</p>
           <ul>
             <li>
-              <a href={nav.mark.href === "#top" ? "#top" : "/"}>Home</a>
+              <a href={nav.mark.href}>Home</a>
             </li>
             {nav.sections.map(({ id, name }) => (
               <li key={id}>

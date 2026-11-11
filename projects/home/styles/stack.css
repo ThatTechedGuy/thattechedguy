@@ -125,28 +125,6 @@
 .sp-toc a {
   margin-right: 0.9rem;
 }
-.draft {
-  display: inline-block;
-  margin-left: 0.5em;
-  padding: 0.05em 0.45em;
-  border: 1px dashed currentColor;
-  border-radius: 3px;
-  font-family: var(--sans);
-  font-style: normal;
-  font-size: 0.6rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--grey);
-  vertical-align: 0.2em;
-  white-space: nowrap;
-}
-.gap {
-  font-family: var(--serif);
-  font-style: italic;
-  color: var(--grey);
-}
-
 /* Stack: tools grouped by layer, each with a verdict */
 .layer {
   margin-top: clamp(1.5rem, 3vw, 2.25rem);
@@ -233,64 +211,6 @@
   }
 }
 
-/* Takes: a two-column ledger; the "Rather not" side is struck through once it is in view */
-.ledger {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  border-top: 1px solid var(--ink);
-  margin-top: clamp(1.5rem, 3vw, 2.25rem);
-}
-.ledger > .label {
-  padding: 0.6rem 0;
-  border-bottom: 1px solid var(--ink);
-}
-.ledger > .label + .label,
-.ledger .no {
-  padding-left: clamp(1rem, 3vw, 2.5rem);
-  border-left: 1px solid var(--ink);
-}
-.ledger p {
-  font-family: var(--serif);
-  font-weight: 300;
-  font-size: clamp(1.15rem, 0.95rem + 0.7vw, 1.6rem);
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  padding: 0.8rem clamp(1rem, 3vw, 2.5rem) 0.8rem 0;
-  border-bottom: 1px solid var(--rule);
-}
-.ledger p.yes::before {
-  content: "+";
-  font-family: var(--sans);
-  font-weight: 400;
-  color: var(--grey);
-  margin-right: 0.6em;
-}
-.ledger p.no {
-  color: var(--grey);
-}
-.ledger p.no s {
-  text-decoration: none;
-  background-image: linear-gradient(currentColor, currentColor);
-  background-repeat: no-repeat;
-  background-position: 0 58%;
-  background-size: 0% 1.5px;
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
-  transition: background-size 0.7s var(--ease);
-}
-.ledger.on p.no s {
-  background-size: 100% 1.5px;
-}
-.ledger p.no:hover s {
-  background-size: 0% 1.5px;
-}
-@media (max-width: 640px) {
-  .ledger p {
-    font-size: 1.05rem;
-    padding-right: 0.75rem;
-  }
-}
-
 /* Play: hobbies as tiles, each with its motif */
 .play {
   list-style: none;
@@ -363,9 +283,6 @@
 }
 .play dt {
   color: var(--grey);
-}
-.play li.wide {
-  grid-column: 1 / -1;
 }
 .play li.wide3 {
   grid-column: span 3;

@@ -7,12 +7,12 @@ import { Rail } from "@/projects/home/islands/Rail";
 import { Footer } from "@/projects/home/sections/Footer";
 import { Sprite } from "@/projects/home/sections/Sprite";
 import { MotifDefs, Painting } from "@/projects/home/stack/Madhubani";
-import { Intro, Play, Stack, Takes } from "@/projects/home/stack/sections";
+import { Intro, Play, Stack } from "@/projects/home/stack/sections";
 import { stackMetadata } from "@/projects/home/stack/seo";
 
 export const metadata: Metadata = stackMetadata;
 
-/** The second page: the stack with a verdict on each tool, a ledger of takes, and hobbies. */
+/** The second page: the stack with a verdict on each tool, and hobbies. */
 export default function StackPage() {
   return (
     <>
@@ -24,7 +24,6 @@ export default function StackPage() {
         <main className="wrap" id="top">
           <Intro />
           <Stack />
-          <Takes />
           <Play />
           <Footer nav={stackNav} />
         </main>
