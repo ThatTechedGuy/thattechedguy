@@ -110,15 +110,16 @@
     grid-template-columns: 1fr;
   }
 }
-@media (max-width: 899px) {
-  footer {
-    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
-  }
-}
 footer {
   padding-block: clamp(3rem, 7vw, 5rem) calc(1.5rem + env(safe-area-inset-bottom, 0px));
   overflow: hidden;
   container-type: inline-size;
+}
+/* After the rule above, so it wins: room under the last line for the phone's floating rail. */
+@media (max-width: 899px) {
+  footer {
+    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+  }
 }
 .nameplate {
   font-weight: 250;
