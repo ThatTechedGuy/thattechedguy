@@ -10,7 +10,7 @@ export function GET() {
   const body = [
     `# ${site.name}`,
     "",
-    `> ${site.name} is Vishal Gupta, a software engineer in Brisbane, Australia, building cloud and AI products.`,
+    `> ${site.name} is Vishal Gupta, an AI engineer in Brisbane, Australia, building cloud and agentic products.`,
     "",
     "## Vishal Gupta",
     "",

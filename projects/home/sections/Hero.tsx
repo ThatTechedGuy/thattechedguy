@@ -104,7 +104,7 @@ export function Hero() {
             <svg className="mark" aria-hidden="true">
               <use href="#i-westpac" />
             </svg>
-            <span>Software Engineer, Westpac Group, Gold Coast Engineering Hub</span>
+            <span>AI Engineer, Westpac Group, Gold Coast Engineering Hub</span>
           </dd>
         </div>
         <div>

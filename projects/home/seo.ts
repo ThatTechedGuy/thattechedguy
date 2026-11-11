@@ -8,9 +8,9 @@ import { isIndexable, site } from "@/site.config";
 import { linkedinUrl } from "./config";
 
 const url = `${site.origin}/`;
-const title = "Vishal Gupta (ThatTechedGuy): Software Engineer in Brisbane";
+const title = "Vishal Gupta (ThatTechedGuy): AI Engineer in Brisbane";
 const description =
-  "Vishal Gupta (ThatTechedGuy) is a software engineer in Brisbane building cloud and AI products at Westpac. Elixir, React Native and AWS, with 20+ products shipped.";
+  "Vishal Gupta (ThatTechedGuy) is an AI engineer in Brisbane building cloud and agentic products at Westpac. Elixir, React Native and AWS, with 20+ products shipped.";
 
 export const homeMetadata: Metadata = {
   metadataBase: new URL(site.origin),
@@ -55,7 +55,7 @@ export const homeJsonLd = graph(
     ...person("Vishal Gupta", url, [site.githubUrl, linkedinUrl]),
     alternateName: site.name,
     description,
-    jobTitle: "Software Engineer",
+    jobTitle: "AI Engineer",
     worksFor: {
       "@type": "Organization",
       name: "Westpac Group",
@@ -93,8 +93,8 @@ export const homeJsonLd = graph(
 
 /** Plain facts for llms.txt, each one a sentence an assistant can quote. Taken from the page's own copy. */
 export const homeFacts: readonly string[] = [
-  "Vishal Gupta, also known as ThatTechedGuy, is a software engineer in Brisbane, Australia.",
-  "Since 2025 he has been a Software Engineer at Westpac Group's Gold Coast Engineering Hub, working on cloud and AI problems for consumer retail banking on Westpac UNITE.",
+  "Vishal Gupta, also known as ThatTechedGuy, is an AI engineer in Brisbane, Australia.",
+  "Since 2025 he has been an AI Engineer at Westpac Group's Gold Coast Engineering Hub, working on cloud and AI problems for consumer retail banking on Westpac UNITE.",
   "From 2023 to 2025 he was a Software Engineer at 8seats in Sydney: he led a squad of six moving a chat app to Expo, led the move to a distributed Elixir and Phoenix backend, and built payments and subscriptions on Stripe.",
   "From 2022 to 2023 he was a Software Engineer at DreamWalk in Brisbane, where he built VegAssess, a React Native tablet app ecologists use to survey flora and fauna.",
   "From 2020 to 2021 he was a Software Engineer at smallcase in Bengaluru, as its React Native app grew from 100,000 to more than 2 million users.",

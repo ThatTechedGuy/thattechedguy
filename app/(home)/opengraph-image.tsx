@@ -4,7 +4,7 @@ import { join } from "node:path";
 import { ImageResponse } from "next/og";
 
 export const alt =
-  "ThatTechedGuy: Vishal Gupta, a software engineer in Brisbane building cloud and AI products.";
+  "ThatTechedGuy: Vishal Gupta, an AI engineer in Brisbane building cloud and agentic products.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -52,7 +52,7 @@ export default async function OpenGraphImage() {
           <span style={{ fontStyle: "italic", marginRight: 22 }}>Teched</span>
           <span>Guy</span>
         </span>
-        <span style={{ fontSize: 40 }}>Software engineer building cloud and AI products.</span>
+        <span style={{ fontSize: 40 }}>AI engineer building cloud and agentic products.</span>
       </div>
       <span
         style={{

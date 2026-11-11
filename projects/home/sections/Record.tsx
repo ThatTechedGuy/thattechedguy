@@ -38,7 +38,7 @@ export function Record() {
                   Westpac Group
                 </span>
                 <span className="role">
-                  Software Engineer<span>Gold Coast, Queensland</span>
+                  AI Engineer<span>Gold Coast, Queensland</span>
                 </span>
                 <span className="plus" aria-hidden="true" />
               </summary>

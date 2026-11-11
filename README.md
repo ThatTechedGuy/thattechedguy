@@ -1,6 +1,6 @@
 <div align="center">
 
-<a href="https://thattechedguy.com"><img src=".github/banner.png" alt="ThatTechedGuy: Vishal Gupta, a software engineer in Brisbane building cloud and AI products" width="100%"></a>
+<a href="https://thattechedguy.com"><img src=".github/banner.png" alt="ThatTechedGuy: Vishal Gupta, an AI engineer in Brisbane building cloud and agentic products" width="100%"></a>
 
 ### Hi, I'm ThatTechedGuy 👋
 
