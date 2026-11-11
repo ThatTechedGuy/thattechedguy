@@ -1,10 +1,6 @@
 import type { MotifId } from "./art";
+// The art is static markup checked in from art.ts, never user input.
 import { frieze, motifDefs, painting } from "./art";
-
-// The art is static markup generated from simple shapes (see art.ts), never user input.
-const defs = { __html: motifDefs };
-const strip = { __html: painting };
-const row = { __html: frieze };
 
 /** The fill patterns and motif symbols. Rendered once per page, before anything that uses them. */
 export function MotifDefs() {
@@ -13,19 +9,19 @@ export function MotifDefs() {
       className="mb mb-defs"
       aria-hidden="true"
       focusable="false"
-      dangerouslySetInnerHTML={defs}
+      dangerouslySetInnerHTML={motifDefs}
     />
   );
 }
 
 /** One long painting down the right-hand side (900px and wider). islands/Drift.tsx moves it with the scroll. */
 export function Painting() {
-  return <div className="mb-band" aria-hidden="true" dangerouslySetInnerHTML={strip} />;
+  return <div className="mb-band" aria-hidden="true" dangerouslySetInnerHTML={painting} />;
 }
 
 /** On phones, the painting runs left to right under the intro and scrolls by itself. */
 export function Frieze() {
-  return <div className="mb-frieze" aria-hidden="true" dangerouslySetInnerHTML={row} />;
+  return <div className="mb-frieze" aria-hidden="true" dangerouslySetInnerHTML={frieze} />;
 }
 
 /** One motif at any size. */
