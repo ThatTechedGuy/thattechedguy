@@ -1,29 +1,40 @@
-# Hi, I'm ThatTechedGuy 👋
+<div align="center">
 
-An AI engineer in Brisbane, building cloud and agentic products for one of Australia's oldest banks. Off the clock I'm on a tennis court, over a chessboard, or making things about code and games.
+<a href="https://thattechedguy.com"><img src=".github/banner.png" alt="ThatTechedGuy: Vishal Gupta, a software engineer in Brisbane building cloud and AI products" width="100%"></a>
 
-**20+ products shipped since 2020**, across fintech, SaaS, agriculture, retail and telecoms. For banks, startups and the occasional ecologist.
+### Hi, I'm ThatTechedGuy 👋
 
-[thattechedguy.com](https://thattechedguy.com) · [LinkedIn](https://www.linkedin.com/in/vishg05/) · [thattechedguy@gmail.com](mailto:thattechedguy@gmail.com)
+An AI engineer in Brisbane, building cloud and agentic products for one of Australia's oldest banks.<br>
+Off the clock I'm on a tennis court, over a chessboard, or making things about code and games.
+
+[![Website](https://img.shields.io/badge/Website-thattechedguy.com-1c1a10?style=for-the-badge&labelColor=f3dc6b)](https://thattechedguy.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-vishg05-1c1a10?style=for-the-badge&labelColor=f3dc6b)](https://www.linkedin.com/in/vishg05/)
+[![Email](https://img.shields.io/badge/Email-thattechedguy%40gmail.com-1c1a10?style=for-the-badge&labelColor=f3dc6b)](mailto:thattechedguy@gmail.com)
+
+</div>
 
 ## The record
 
-| When        | Where                         | What                                                                                                                                              |
-| ----------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 2025 – now  | **Westpac Group**, Gold Coast | Consumer retail banking on Westpac UNITE, the bank's multi-billion-dollar technology programme, working on cloud and AI problems.                 |
-| 2023 – 2025 | **8seats**, Sydney            | A real-time messaging platform. Led the move to Expo and to a distributed Elixir and Phoenix backend; built payments and subscriptions on Stripe. |
-| 2022 – 2023 | **DreamWalk**, Brisbane       | End-to-end product work at an app consultancy.                                                                                                    |
-| 2020 – 2021 | **smallcase**, Bengaluru      | A fintech unicorn's React Native app, as it grew from 100,000 to more than 2 million users.                                                       |
+**20+ products shipped since 2020**, across fintech, SaaS, agriculture, retail and telecoms. For banks, startups and the occasional ecologist.
 
-Bachelor of Engineering (Honours) in Software Engineering, **The University of Queensland**.
+- **Westpac Group** · Gold Coast · _2025 – now_<br>
+  Consumer retail banking on Westpac UNITE, the bank's multi-billion-dollar technology programme, working on cloud and AI problems.
+- **8seats** · Sydney · _2023 – 2025_<br>
+  A real-time messaging platform. Led the move to Expo and to a distributed Elixir and Phoenix backend; built payments and subscriptions on Stripe.
+- **DreamWalk** · Brisbane · _2022 – 2023_<br>
+  End-to-end product work at an app consultancy.
+- **smallcase** · Bengaluru · _2020 – 2021_<br>
+  A fintech unicorn's React Native app, as it grew from 100,000 to more than 2 million users.
+- **The University of Queensland** · Brisbane · _2021 – 2022_<br>
+  Bachelor of Engineering (Honours) in Software Engineering.
 
 ## Selected work
 
-- **[Yank](https://thattechedguy.com/yank)**: a free, open-source clipboard manager for the Mac, in Swift and SwiftUI. [Code](https://github.com/ThatTechedGuy/Yank) · [Download](https://github.com/ThatTechedGuy/Yank/releases/latest)
-- **[thattechedguy.com](https://thattechedguy.com)**: my site, built with Next.js, React and Bun; its home page scores 100 on every Lighthouse category. The source is in [this repo](https://github.com/ThatTechedGuy/thattechedguy), and [DOCUMENTATION.md](https://github.com/ThatTechedGuy/thattechedguy/blob/main/DOCUMENTATION.md) explains how it's built.
+- <img src="public/yank/icon.svg" alt="" width="16"> **[Yank](https://thattechedguy.com/yank)**: a free, open-source clipboard manager for the Mac, in Swift and SwiftUI. [Code](https://github.com/ThatTechedGuy/Yank) · [Download](https://github.com/ThatTechedGuy/Yank/releases/latest)
+- <img src="app/(home)/icon.svg" alt="" width="16"> **[thattechedguy.com](https://thattechedguy.com)**: my site, built with Next.js, React and Bun; its home page scores 100 on every Lighthouse category. [DOCUMENTATION.md](DOCUMENTATION.md) explains how it's built.
 
 ## Works in
 
-Elixir · Phoenix · TypeScript · React Native · Next.js · NestJS · Bun · Swift · Java · Rust · Go · Python · Django · GraphQL · Stripe · Pulumi · AWS · Azure
+[![Elixir, TypeScript, React Native, Next.js, NestJS, Bun, Swift, Java, Rust, Go, Python, Django, GraphQL, DynamoDB, AWS and Azure](https://skillicons.dev/icons?i=elixir,ts,react,nextjs,nestjs,bun,swift,java,rust,go,py,django,graphql,dynamodb,aws,azure&perline=8)](https://skillicons.dev)
 
-Whatever the problem needs. I pick up tools as I go.
+Plus Phoenix, Stripe and Pulumi. Whatever the problem needs: I pick up tools as I go.
