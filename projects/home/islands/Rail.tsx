@@ -174,7 +174,6 @@ export function Rail({ nav }: { nav: PageNav }) {
           <li>
             <a className="page" href={nav.page.href}>
               {nav.page.name}
-              <span aria-hidden="true">→</span>
             </a>
           </li>
         </ol>
@@ -249,11 +248,10 @@ export function Rail({ nav }: { nav: PageNav }) {
             {name}
           </a>
         ))}
-        {/* Other pages are pills, sections are dotted text. On phones Try Yank lives here, not in the pill. */}
+        {/* Other pages, under a rule. On phones Try Yank lives here, not in the pill. */}
         <div className="pop-pages">
           <a className="page" href={nav.page.href} onClick={closeMenu}>
             {nav.page.name}
-            <span aria-hidden="true">→</span>
           </a>
           <a className="rail-yank" href={yankPath} onClick={closeMenu}>
             <svg aria-hidden="true">
