@@ -22,23 +22,38 @@
 .mithila span:first-child {
   left: 0;
 }
-.mithila span:last-child {
+.mithila span:nth-child(2) {
   right: 0;
   transform: scaleX(-1);
   mask-position: 0 var(--mithila-half);
+}
+.mithila .mithila-band {
+  display: none;
 }
 /* Text keeps clear of the borders. */
 .about .wrap {
   padding-inline: calc(var(--mithila-w) + max(16px, 3vw));
 }
-/* Phones: no room beside the text, so the borders go and the usual margins return. */
+/* Phones: no room beside the text, so the side borders become one band of the motifs across the top,
+   and the usual margins return. The band is in the flow, so the intro starts below it. */
 @media (max-width: 760px) {
-  .mithila {
+  .mithila span {
     display: none;
+  }
+  .mithila .mithila-band {
+    display: block;
+    position: static;
+    width: auto;
+    height: 88px;
+    opacity: 0.2;
+    mask: var(--mithila-band) 0 0 / auto 100% repeat-x;
   }
   .about .wrap {
     padding-left: max(16px, env(safe-area-inset-left, 0px));
     padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  .intro {
+    padding-top: 2rem;
   }
 }
 
