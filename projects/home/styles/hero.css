@@ -1,0 +1,301 @@
+/* Hero */
+.hero {
+  padding-block: clamp(2.5rem, 7vw, 6rem) clamp(2.5rem, 5vw, 4rem);
+  min-height: min(100svh, 72rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.hero h1 {
+  font-weight: 250;
+  font-size: var(--t-hero);
+  line-height: 1;
+  letter-spacing: -0.035em;
+  font-variation-settings: "opsz" 72;
+  max-width: 19ch;
+  text-wrap: pretty;
+}
+.hero h1 i {
+  font-weight: 250;
+  letter-spacing: -0.03em;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.swap {
+  display: inline-grid;
+  justify-items: start;
+  position: relative;
+  white-space: nowrap;
+  max-width: 100%;
+  text-align: left;
+  vertical-align: baseline;
+  animation: rise 1.1s var(--ease) both;
+  animation-delay: 160ms;
+}
+/* Both names sit invisibly in the same cell as the typed one, so the slot is always as wide as the longer name (plus the caret) and typing never reflows the intro. */
+.swap::before,
+.swap::after,
+.swap-line {
+  grid-area: 1 / 1;
+}
+.swap::before,
+.swap::after {
+  visibility: hidden;
+  padding-right: 0.09em;
+}
+.swap::before {
+  content: "Vishal Gupta,";
+}
+.swap::after {
+  content: "ThatTechedGuy,";
+  font-style: italic;
+  letter-spacing: -0.03em;
+}
+.swap-txt {
+  position: relative;
+}
+.swap-txt::after {
+  content: "";
+  position: absolute;
+  left: -0.03em;
+  right: -0.03em;
+  top: 0.56em;
+  height: 0.06em;
+  background: var(--ink);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 0.55s var(--ease);
+}
+.swap.strike .swap-txt::after {
+  transform: scaleX(1);
+}
+.swap.alt .swap-txt {
+  font-style: italic;
+  letter-spacing: -0.03em;
+}
+.caret {
+  display: inline-block;
+  width: 0.05em;
+  height: 0.78em;
+  margin-left: 0.04em;
+  vertical-align: -0.04em;
+  background: var(--ink);
+  animation: blink 1s steps(1) infinite;
+}
+.swap.busy .caret {
+  animation: none;
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+.hov,
+.hov > .w {
+  text-decoration: underline;
+  text-decoration-thickness: 0.04em;
+  text-underline-offset: 0.12em;
+  text-decoration-style: dotted;
+  text-decoration-color: var(--grey);
+}
+.hov {
+  position: relative;
+  z-index: 20;
+  cursor: help;
+  text-decoration: underline;
+  text-decoration-thickness: 0.04em;
+  text-underline-offset: 0.12em;
+  text-decoration-style: dotted;
+  text-decoration-color: var(--grey);
+  outline: none;
+}
+.hov .card {
+  position: absolute;
+  z-index: 30;
+  top: calc(100% + 0.25rem);
+  left: var(--cx, 0px);
+  width: min(21rem, calc(100vw - 32px));
+  padding: 0.9rem 1rem 1rem;
+  background: var(--paper);
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  box-shadow: 6px 6px 0 var(--ink);
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0;
+  white-space: normal;
+  text-align: left;
+  display: grid;
+  gap: 0.55rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px) rotate(-1deg);
+  transform-origin: 0 0;
+  transition:
+    opacity 0.25s,
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    visibility 0.25s;
+  pointer-events: none;
+}
+.hov:hover,
+.hov:focus,
+.hov:focus-within {
+  z-index: 26;
+}
+.hov:hover .card,
+.hov:focus .card {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+.card-h {
+  font-size: var(--t-label);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--grey);
+}
+.card-r {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  gap: 0.75rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--rule);
+}
+.card-r b {
+  font-weight: 500;
+  color: var(--grey);
+}
+.card-wbc {
+  width: min(17rem, calc(100vw - 32px));
+}
+.card-mark {
+  width: 3.2rem;
+  height: auto;
+  aspect-ratio: 69 / 28;
+  fill: var(--westpac);
+}
+.card-p {
+  color: var(--ink);
+}
+.hero h1 .w {
+  display: inline-block;
+  animation: rise 1.1s var(--ease) both;
+  animation-delay: calc(var(--i) * 40ms + 120ms);
+}
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
+  gap: 1.5rem 2rem;
+  margin-top: clamp(2.5rem, 6vw, 5rem);
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule);
+}
+.facts > div {
+  min-width: 0;
+}
+.facts dt {
+  margin-bottom: 0.35rem;
+}
+.facts dd {
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+}
+.chips .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+}
+.chips .chip img {
+  width: 1.1rem;
+  height: 1.1rem;
+  flex: none;
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.chips .chip:hover img {
+  transform: scale(1.35);
+}
+.poly del {
+  text-decoration: none;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  color: var(--grey);
+  background-image: linear-gradient(var(--ink), var(--ink));
+  background-repeat: no-repeat;
+  background-position: 0 55%;
+  background-size: 0% 1.5px;
+  animation: strike 0.9s var(--ease) 1.4s forwards;
+}
+.poly-say {
+  display: block;
+  margin-top: 0.3rem;
+  opacity: 0;
+  animation: rise 0.7s var(--ease) 2.1s forwards;
+}
+@keyframes strike {
+  to {
+    background-size: 100% 1.5px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .poly del {
+    animation: none;
+    background-size: 100% 1.5px;
+  }
+  .poly-say {
+    animation: none;
+    opacity: 1;
+  }
+}
+.mark {
+  fill: var(--westpac);
+  flex: none;
+  width: 2.1rem;
+  height: auto;
+  aspect-ratio: 69 / 28;
+}
+.with-mark {
+  display: flex;
+  gap: 0.7rem;
+  align-items: flex-start;
+}
+.with-mark .mark {
+  margin-top: 0.2rem;
+}
+.links .ic {
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
+  flex: none;
+}
+.links .nm {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.35em);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

@@ -1,0 +1,48 @@
+/* Contact */
+.letters {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 1.5rem 4rem;
+  padding-top: 1.25rem;
+}
+.letters .big {
+  font-weight: 250;
+  font-size: clamp(1.5rem, 1rem + 2vw, 2.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-variation-settings: "opsz" 72;
+}
+.links {
+  list-style: none;
+  border-top: 1px solid var(--ink);
+}
+.links li {
+  padding-block: 0.85rem;
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--sans);
+  font-size: 1rem;
+}
+.links li a {
+  background-image: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+  gap: 1rem;
+}
+.links li a .arr {
+  display: inline-block;
+  transition: transform 0.4s var(--ease);
+}
+.links li a:hover .arr {
+  transform: translate(3px, -3px);
+}
+.links .h {
+  color: var(--grey);
+  font-size: var(--t-small);
+}
+@media (max-width: 860px) {
+  .letters {
+    grid-template-columns: 1fr;
+  }
+}

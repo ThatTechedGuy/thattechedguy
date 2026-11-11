@@ -1,0 +1,106 @@
+/* Scroll reveal, driven by scroll position where the browser supports it */
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: rise linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 30%;
+  }
+}
+
+/* Custom cursor (mouse and trackpad only) */
+.cursor,
+.cursor-dot {
+  position: fixed;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  z-index: 100;
+  border-radius: 50%;
+  mix-blend-mode: difference;
+  opacity: 0;
+}
+.cursor {
+  width: 36px;
+  height: 36px;
+  margin: -18px 0 0 -18px;
+  border: 1px solid #fff;
+  display: grid;
+  place-items: center;
+  transition:
+    opacity 0.3s,
+    width 0.35s var(--ease),
+    height 0.35s var(--ease),
+    margin 0.35s var(--ease),
+    background-color 0.35s;
+}
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  background: #fff;
+  transition: opacity 0.2s;
+}
+.cursor .lbl {
+  font-family: var(--sans);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #000;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.cursor.is-link {
+  width: 68px;
+  height: 68px;
+  margin: -34px 0 0 -34px;
+  background: #fff;
+}
+.cursor.is-link .lbl {
+  opacity: 1;
+}
+.cursor.is-hover {
+  width: 56px;
+  height: 56px;
+  margin: -28px 0 0 -28px;
+}
+.cursor.is-down {
+  width: 26px;
+  height: 26px;
+  margin: -13px 0 0 -13px;
+}
+.cursor.on,
+.cursor-dot.on {
+  opacity: 1;
+}
+.cursor-dot.on.hide {
+  opacity: 0;
+}
+/* Once the custom cursor has started (.live), the real one is hidden, as long as the page lives. */
+:root:has(.cursor.live),
+:root:has(.cursor.live) a,
+:root:has(.cursor.live) button,
+:root:has(.cursor.live) summary {
+  cursor: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .ticker {
+    white-space: normal;
+  }
+  .ticker .track {
+    flex-wrap: wrap;
+  }
+  .ticker .track span[aria-hidden] {
+    display: none;
+  }
+}
+.sprite {
+  position: absolute;
+}

@@ -1,0 +1,188 @@
+/* Record */
+.jobs {
+  list-style: none;
+}
+.job {
+  border-bottom: 1px solid var(--rule);
+}
+.job summary {
+  list-style: none;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: 9.5rem minmax(0, 1.3fr) minmax(0, 1fr) 2rem;
+  gap: 0.5rem 2rem;
+  align-items: center;
+  padding-block: 0.8rem;
+}
+.job summary::-webkit-details-marker {
+  display: none;
+}
+.job .co {
+  font-weight: 300;
+  font-size: var(--t-h3);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  transition: transform 0.5s var(--ease);
+  display: inline-block;
+}
+.job summary:hover .co,
+.job[open] .co {
+  transform: translateX(0.35em);
+  font-style: italic;
+}
+.job .role {
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+.job .role span {
+  display: block;
+  color: var(--grey);
+  font-size: var(--t-small);
+}
+.job .plus {
+  justify-self: end;
+  width: 1.1rem;
+  height: 1.1rem;
+  position: relative;
+  align-self: center;
+}
+.job .plus::before,
+.job .plus::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: var(--ink);
+  transition: transform 0.45s var(--ease);
+}
+.job .plus::after {
+  transform: rotate(90deg);
+}
+.job[open] .plus::after {
+  transform: rotate(0deg);
+}
+.job .more {
+  display: grid;
+  grid-template-columns: 9.5rem minmax(0, 1fr);
+  gap: 0.75rem 2rem;
+  padding-bottom: 1.5rem;
+}
+.job .more .lede {
+  font-weight: 300;
+  font-size: var(--t-lede);
+  line-height: 1.35;
+  font-style: italic;
+  max-width: 40ch;
+}
+.job .more ul {
+  list-style: none;
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 0.9rem;
+  max-width: 64ch;
+}
+.job .more li {
+  padding-left: 1.4rem;
+  position: relative;
+}
+.job .more li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--grey);
+}
+.job .more .stack {
+  margin-top: 1.25rem;
+}
+.job[open] .more {
+  animation: rise 0.6s var(--ease) both;
+}
+@media (max-width: 760px) {
+  .job summary {
+    grid-template-columns: minmax(0, 1fr) 1.5rem;
+  }
+  .job summary .yrs {
+    grid-column: 1 / -1;
+  }
+  .job summary .co {
+    grid-column: 1;
+  }
+  .job summary .plus {
+    grid-row: 2;
+    grid-column: 2;
+  }
+  .job summary .role {
+    grid-column: 1 / -1;
+  }
+  .job .more {
+    grid-template-columns: 1fr;
+  }
+  .job .more > .spacer {
+    display: none;
+  }
+}
+
+/* Company and school logos: hard-edged squares, set straight */
+.job .co {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
+}
+.logo {
+  width: 1em;
+  height: 1em;
+  border-radius: 0;
+  flex: none;
+  object-fit: cover;
+  transform: none;
+  transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.job summary:hover .logo {
+  transform: scale(1.3);
+}
+.logo.wbc {
+  background: #fff;
+  display: inline-grid;
+  place-items: center;
+}
+.logo.wbc svg {
+  width: 72%;
+  height: 42%;
+  fill: #da1710;
+}
+.logo.wbc,
+.uq {
+  outline: 1px solid var(--rule);
+  outline-offset: -1px;
+}
+
+.copy-btn {
+  margin-top: 1.25rem;
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  padding: 0.55rem 1rem;
+  cursor: pointer;
+  transition:
+    background-color 0.3s var(--ease),
+    color 0.3s var(--ease);
+}
+.copy-btn:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+.letters {
+  align-items: end;
+}
+.letters .big {
+  overflow-wrap: anywhere;
+}

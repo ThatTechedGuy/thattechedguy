@@ -71,7 +71,7 @@ Each page remembers its own colours:
 The design began as one static `index.html`. It is ported like this:
 
 - **Markup** → Server Components in `projects/home/sections/`.
-- **CSS** → `projects/home/styles/home.css`, almost verbatim.
+- **CSS** → `projects/home/styles/`, almost verbatim: one file per part of the page (tokens, base, rail, hero, ticker, sections, record, contact, work, footer, motion), imported in cascade order by `app/(home)/layout.tsx`.
 - **Script** → small client islands in `projects/home/islands/`: the rail and its menus, the typed name, the hover cards, the copy button, the footer places and clock, and the cursor.
 
 Two things the script used to measure are now pure CSS, so nothing moves when the page hydrates: the name slot reserves the longer name's width, and the footer nameplate fills its column with container units.

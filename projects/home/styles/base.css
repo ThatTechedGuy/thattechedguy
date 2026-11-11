@@ -1,0 +1,111 @@
+/* Scrollbar */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--ink) var(--paper);
+}
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--paper);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--ink);
+  border: 3px solid var(--paper);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  border-width: 2px;
+}
+::selection {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+* {
+  box-sizing: border-box;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: var(--t-body);
+  line-height: 1.55;
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+h1,
+h2,
+h3,
+p,
+dl,
+dd,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+}
+.wrap {
+  max-width: 90rem;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px), 4vw);
+  padding-right: max(16px, env(safe-area-inset-right, 0px), 4vw);
+  /* Until HoverCard shifts them, the hidden hover cards can reach past a phone's right edge, which would
+     widen the page and shift it when scripts arrive. clip (not hidden) makes no scroll container. */
+  overflow-x: clip;
+}
+.label {
+  font-family: var(--sans);
+  font-size: var(--t-label);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--grey);
+}
+.small {
+  font-family: var(--sans);
+  font-size: var(--t-small);
+  color: var(--grey);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Serif is kept for display type only; all running text is sans */
+.hero h1,
+.head h2,
+.job .co,
+.letters .big,
+.nameplate,
+.ticker,
+.job .more .lede {
+  font-family: var(--serif);
+}
+
+/* Links draw their underline */
+a {
+  color: inherit;
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition:
+    background-size 0.45s var(--ease),
+    color 0.2s;
+}
+a:hover {
+  background-size: 0% 1px;
+  background-position: 100% 100%;
+}
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 4px;
+  border-radius: 2px;
+}

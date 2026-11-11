@@ -6,7 +6,20 @@ import { fontVariables } from "@/projects/home/fonts";
 import { paletteInitScript } from "@/projects/home/palette";
 import { homeJsonLd, homeMetadata, homeViewport } from "@/projects/home/seo";
 
-import "@/projects/home/styles/home.css";
+// The home page's stylesheet, one file per part of the page. Only this layout imports it, so none of it reaches
+// /yank. The order is the cascade order. Plain imports, not @import: an @import makes Tailwind's PostCSS plugin
+// process the CSS, which this page does not use.
+import "@/projects/home/styles/tokens.css";
+import "@/projects/home/styles/base.css";
+import "@/projects/home/styles/rail.css";
+import "@/projects/home/styles/hero.css";
+import "@/projects/home/styles/ticker.css";
+import "@/projects/home/styles/sections.css";
+import "@/projects/home/styles/record.css";
+import "@/projects/home/styles/contact.css";
+import "@/projects/home/styles/work.css";
+import "@/projects/home/styles/footer.css";
+import "@/projects/home/styles/motion.css";
 
 export const metadata: Metadata = homeMetadata;
 // Sets data-palette before first paint, so the wrong paper never flashes.

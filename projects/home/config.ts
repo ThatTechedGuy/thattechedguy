@@ -3,7 +3,7 @@ import { projects } from "@/site.config";
 /** The home page's own settings. Its palette is remembered apart from every project's theme. */
 export const homePaletteKey = "ttg:home:palette";
 
-/** Each palette's paper and ink; the full token sets live in styles/home.css under :root[data-palette]. */
+/** Each palette's paper and ink; the full token sets live in styles/tokens.css under :root[data-palette]. */
 export const palettes = [
   { id: "butter", name: "Butter", paper: "#f3dc6b", ink: "#1c1a10" },
   { id: "matcha", name: "Matcha", paper: "#cfdcb4", ink: "#142010" },

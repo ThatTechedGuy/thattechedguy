@@ -1,0 +1,147 @@
+/* Footer */
+.foot-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 1.5rem 3rem;
+  border-top: 1px solid var(--ink);
+  padding-top: 1rem;
+  margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
+}
+.place h3 {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 1.1rem;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin: 0.25rem 0 0.4rem;
+}
+.place h3::after {
+  content: " ☼";
+  font-size: 0.5em;
+  vertical-align: 0.5em;
+  color: var(--grey);
+}
+.place p {
+  max-width: 44ch;
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+.place .coords {
+  margin-top: 0.5rem;
+  font-size: 0.72rem;
+  color: var(--grey);
+  font-variant-numeric: tabular-nums;
+}
+.sitemap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-content: start;
+  gap: 0.35rem 1.5rem;
+}
+.sitemap .label {
+  grid-column: 1 / -1;
+  margin-bottom: 0.4rem;
+}
+.sitemap ul {
+  list-style: none;
+  display: grid;
+  gap: 0.05rem;
+  align-content: start;
+}
+.sitemap a {
+  background-image: none;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1.5;
+  display: inline-block;
+  transition:
+    transform 0.4s var(--ease),
+    font-style 0.2s;
+}
+.sitemap a:hover {
+  font-style: italic;
+  transform: translateX(0.25em);
+}
+.sitemap .arr {
+  font-family: var(--sans);
+  font-size: 0.6em;
+  color: var(--grey);
+  vertical-align: 0.4em;
+}
+.sitemap .totop {
+  grid-column: 1 / -1;
+  margin-top: 0.6rem;
+  font-family: var(--sans);
+  font-size: var(--t-label);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+/* Both places share one grid cell, so the slot is always as tall as the longer one and nothing moves */
+.places {
+  display: grid;
+}
+.city {
+  display: block;
+  width: 100%;
+  max-width: 24rem;
+  height: auto;
+  color: var(--ink);
+  margin-bottom: 0.75rem;
+}
+.place {
+  grid-area: 1 / 1;
+  transition:
+    opacity 0.6s var(--ease),
+    transform 0.6s var(--ease),
+    visibility 0s 0.6s;
+}
+.place:not(.on) {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(0.4rem);
+}
+.place.on {
+  transition-delay: 0.25s, 0.25s, 0s;
+}
+@media (max-width: 600px) {
+  .foot-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 899px) {
+  footer {
+    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+footer {
+  padding-block: clamp(3rem, 7vw, 5rem) calc(1.5rem + env(safe-area-inset-bottom, 0px));
+  overflow: hidden;
+  container-type: inline-size;
+}
+.nameplate {
+  font-weight: 250;
+  font-variation-settings: "opsz" 72;
+  letter-spacing: -0.05em;
+  line-height: 0.85;
+  white-space: nowrap;
+  display: inline-block;
+  font-size: 15vw;
+  /* Fills the footer: "ThatTechedGuy" in Newsreader at this setting is 5.966em wide, and 0.995 / 5.966 = 0.16676.
+     shortcut: re-measure if the nameplate's text, font or letter-spacing changes. */
+  font-size: calc(100cqw * 0.16676);
+  padding-bottom: 0.08em;
+}
+.nameplate i {
+  font-weight: 250;
+}
+.colophon {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+  border-top: 1px solid var(--ink);
+  padding-top: 0.9rem;
+  margin-top: 1rem;
+}

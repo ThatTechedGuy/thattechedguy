@@ -1,0 +1,56 @@
+/* Sections */
+section.sec {
+  padding-block: clamp(2.5rem, 5vw, 4.5rem) 0;
+}
+.head {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 0.75rem 2rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--ink);
+}
+.head h2 {
+  font-weight: 250;
+  font-size: var(--t-h2);
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  font-variation-settings: "opsz" 72;
+}
+.head h2 i {
+  font-weight: 250;
+}
+@media (max-width: 640px) {
+  .head {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Shipped stat */
+.stat {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 1rem 3rem;
+  padding-block: 0.25rem 1rem;
+  border-bottom: 1px solid var(--ink);
+}
+.stat .fig {
+  font-family: var(--serif);
+  font-weight: 250;
+  font-size: clamp(5rem, 2.5rem + 9vw, 11rem);
+  line-height: 0.85;
+  letter-spacing: -0.05em;
+  font-variation-settings: "opsz" 72;
+}
+.stat p {
+  font-size: var(--t-lede);
+  line-height: 1.35;
+  max-width: none;
+  text-wrap: balance;
+}
+@media (max-width: 640px) {
+  .stat {
+    grid-template-columns: 1fr;
+  }
+}
