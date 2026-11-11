@@ -178,9 +178,13 @@ export interface Hobby {
   kind: string;
   /** A spec list, for the two big tiles. */
   specs?: readonly (readonly [label: string, value: string])[];
+  /** A list of names shown as chips, each with an optional aside. */
+  list?: readonly (readonly [name: string, aside?: string])[];
+  /** A line under the list. */
+  footnote?: string;
   note?: string | null;
   draft?: boolean;
-  size?: "big" | "wide";
+  size?: "big" | "wide" | "wide3";
 }
 
 export const hobbies: readonly Hobby[] = [
@@ -190,9 +194,12 @@ export const hobbies: readonly Hobby[] = [
     kind: "On court",
     size: "big",
     specs: [
-      ["Style", "Baseliner"],
+      ["Style", "Baseliner who hits hard"],
       ["Backhand", "Two-handed"],
-      ["Game", "Hits hard, and would rather out-rally you than volley"],
+      ["Racket", "Wilson Blade v8, 16x19"],
+      ["For fun", "Wilson Clash 100 v2, 16x19"],
+      ["Strings", "Luxilon Alu Power at 24 kg, mains and crosses"],
+      ["Court", "Hard court"],
     ],
   },
   {
@@ -210,7 +217,7 @@ export const hobbies: readonly Hobby[] = [
     motif: "pickleball",
     name: "Pickleball",
     kind: "More racquets",
-    note: "Tennis’s friendlier cousin. I still hit it too hard.",
+    note: "Played with a Ben Johns Pro Stock paddle. I still hit it too hard.",
     draft: true,
   },
   {
@@ -248,13 +255,6 @@ export const hobbies: readonly Hobby[] = [
     note: "The best levelling-up arc since Dragon Ball.",
     draft: true,
   },
-  {
-    motif: "sword",
-    name: "Infinity Blade",
-    kind: "Games",
-    note: "The iPhone game that taught me what a parry window is.",
-    draft: true,
-  },
   { motif: "kolkata", name: "Kolkata", kind: "Place", note: null, draft: true },
   {
     motif: "five",
@@ -262,6 +262,31 @@ export const hobbies: readonly Hobby[] = [
     kind: "Favourite number",
     note: null,
     draft: true,
-    size: "wide",
+  },
+  {
+    motif: "mocha",
+    name: "Coffee",
+    kind: "Fuel",
+    note: "A mocha with caramel and hazelnut syrup. Coke Zero when it’s not coffee o’clock.",
+    draft: true,
+  },
+  {
+    motif: "sword",
+    name: "Games",
+    kind: "Controller in hand",
+    size: "wide3",
+    list: [
+      ["Infinity Blade"],
+      ["Critical Ops"],
+      ["Hogwarts Legacy"],
+      ["Elden Ring", "not finished, and I struggle a lot"],
+      ["Assassin’s Creed IV: Black Flag"],
+      ["GTA V"],
+      ["Project IGI"],
+      ["Valorant"],
+      ["Call of Duty: Warzone"],
+      ["Hitman: World of Assassination"],
+    ],
+    footnote: "In no particular order.",
   },
 ];

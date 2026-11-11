@@ -57,7 +57,7 @@ export interface PageNav {
 export const homeNav: PageNav = {
   sections,
   mark: { href: "#top", label: "vg, back to top" },
-  page: { href: stackPath, name: "Stack" },
+  page: { href: stackPath, name: "Opinions" },
 };
 
 export const stackNav: PageNav = {

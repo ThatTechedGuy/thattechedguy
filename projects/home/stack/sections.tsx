@@ -7,7 +7,7 @@ import { Frieze, Motif } from "./Madhubani";
 export function Intro() {
   return (
     <section className="sp-intro" aria-labelledby="sp-h">
-      <p className="label">Stack and play</p>
+      <p className="label">Opinions</p>
       <h1 id="sp-h">
         The tools I reach for, the ones I’d <i>rather not,</i> and what I do once the laptop shuts.
       </h1>
@@ -133,6 +133,18 @@ export function Play() {
                     </div>
                   ))}
                 </dl>
+              ) : hobby.list ? (
+                <>
+                  <ul className="games">
+                    {hobby.list.map(([name, aside]) => (
+                      <li key={name}>
+                        {name}
+                        {aside && <span className="aside"> ({aside})</span>}
+                      </li>
+                    ))}
+                  </ul>
+                  {hobby.footnote && <p className="small fine">{hobby.footnote}</p>}
+                </>
               ) : (
                 <p>
                   {hobby.note ?? <span className="gap">A line about this goes here.</span>}
