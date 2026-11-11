@@ -1,4 +1,4 @@
-import { linkedinUrl } from "@/projects/home/config";
+import { aboutNav, aboutPath, linkedinUrl } from "@/projects/home/config";
 import { homeFacts } from "@/projects/home/seo";
 import { projects, site } from "@/site.config";
 
@@ -27,6 +27,7 @@ export function GET() {
     "## Links",
     "",
     `- [Home](${site.origin}/)`,
+    `- [${aboutNav.name}](${site.origin}${aboutPath}): tools I like and dislike, and hobbies`,
     ...projects.map((project) => `- [${project.name}](${site.origin}${project.path})`),
     `- [GitHub](${site.githubUrl})`,
     `- [LinkedIn](${linkedinUrl})`,

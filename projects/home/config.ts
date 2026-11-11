@@ -26,10 +26,45 @@ export const linkedinUrl = "https://www.linkedin.com/in/vishg05/";
 export const yankPath = projects.find((project) => project.name === "Yank")?.path ?? "/yank";
 export const email = "thattechedguy@gmail.com";
 
-/** The sections the side rail and the phone index link to, in page order. */
-export const sections = [
-  { id: "record", name: "Record" },
-  { id: "work", name: "Work" },
-  { id: "education", name: "Education" },
-  { id: "contact", name: "Contact" },
-] as const;
+/** An in-page section: its element id and the name the rail, the phone index and the footer show. */
+export interface Section {
+  id: string;
+  name: string;
+}
+
+/** A link to another page of this site. */
+export interface PageLink {
+  href: string;
+  name: string;
+}
+
+/** What a page's rail and footer link to: its own sections, in page order, then the other page. */
+export interface PageNav {
+  /** The page's own name, for the footer's first link (back to the top). */
+  name: string;
+  sections: readonly Section[];
+  elsewhere: PageLink;
+}
+
+/** The tools-and-hobbies page. */
+export const aboutPath = "/about";
+
+export const homeNav: PageNav = {
+  name: "Home",
+  sections: [
+    { id: "record", name: "Record" },
+    { id: "work", name: "Work" },
+    { id: "education", name: "Education" },
+    { id: "contact", name: "Contact" },
+  ],
+  elsewhere: { href: aboutPath, name: "Off the record" },
+};
+
+export const aboutNav: PageNav = {
+  name: "Off the record",
+  sections: [
+    { id: "stack", name: "Stack" },
+    { id: "clock", name: "Off the clock" },
+  ],
+  elsewhere: { href: "/", name: "Home" },
+};

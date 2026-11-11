@@ -1,10 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 
-import { JsonLd } from "@/lib/seo/json-ld";
 import { fontVariables } from "@/projects/home/fonts";
 import { paletteInitScript } from "@/projects/home/palette";
-import { homeJsonLd, homeMetadata, homeViewport } from "@/projects/home/seo";
+import { homeMetadata, homeViewport } from "@/projects/home/seo";
 
 // The home page's stylesheet, one file per part of the page. Only this layout imports it, so none of it reaches
 // /yank. The order is the cascade order. Plain imports, not @import: an @import makes Tailwind's PostCSS plugin
@@ -32,7 +31,6 @@ export default function HomeRootLayout({ children }: { children: ReactNode }) {
     <html lang="en-AU" className={fontVariables} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={palettePaint} />
-        <JsonLd data={homeJsonLd} />
       </head>
       <body>{children}</body>
     </html>

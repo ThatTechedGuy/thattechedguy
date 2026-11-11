@@ -10,7 +10,7 @@ import {
   type MouseEvent,
 } from "react";
 
-import { palettes, sections } from "../config";
+import { palettes, yankPath, type PageNav } from "../config";
 import { applyPalette, applyRandom, readChoice, readPalette, subscribePalette } from "../palette";
 
 type Menu = "palette" | "index" | null;
@@ -37,8 +37,12 @@ const swatches: Record<string, CSSProperties> = Object.fromEntries([
 // The server cannot know the visitor's paper; React reads it right after hydration (aria-checked and theme-color only).
 const serverPalette = () => undefined;
 
-/** The side rail (a pill on phones): section links, reading progress, the palette and index menus. */
-export function Rail() {
+/**
+ * The side rail (a pill on phones): the page's section links and a link to the other page, reading
+ * progress, the Try Yank link, and the palette and index menus.
+ */
+export function Rail({ nav }: { nav: PageNav }) {
+  const { sections, elsewhere } = nav;
   const palette = useSyncExternalStore(subscribePalette, readPalette, serverPalette);
   const choice = useSyncExternalStore(subscribePalette, readChoice, serverPalette);
   const [menu, setMenu] = useState<Menu>(null);
@@ -107,7 +111,7 @@ export function Rail() {
       removeEventListener("resize", onScroll);
       document.removeEventListener("click", onClick);
     };
-  }, []);
+  }, [sections]);
 
   const toggleIndex = useCallback(() => setMenu((open) => (open === "index" ? null : "index")), []);
   const togglePalette = useCallback(
@@ -141,8 +145,18 @@ export function Rail() {
               </a>
             </li>
           ))}
+          <li className="rail-elsewhere">
+            <a href={elsewhere.href}>{elsewhere.name}</a>
+          </li>
         </ol>
         <div className="rail-foot">
+          {/* The one filled control on the rail, so it stands out on every paper. */}
+          <a className="rail-yank" href={yankPath} data-cursor="Try">
+            <svg className="rail-yank-icon" aria-hidden="true">
+              <use href="#i-yank" />
+            </svg>
+            <span>Try Yank</span>
+          </a>
           <div className="rail-prog" aria-hidden="true">
             <span ref={progress} />
           </div>
@@ -206,6 +220,9 @@ export function Rail() {
             {name}
           </a>
         ))}
+        <a className="pop-elsewhere" href={elsewhere.href}>
+          {elsewhere.name} <span aria-hidden="true">→</span>
+        </a>
       </div>
     </>
   );

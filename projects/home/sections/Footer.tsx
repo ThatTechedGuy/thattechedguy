@@ -1,6 +1,6 @@
 import { site } from "@/site.config";
 
-import { linkedinUrl, sections, yankPath } from "../config";
+import { linkedinUrl, yankPath, type PageNav } from "../config";
 import { BrisbaneTime, GoldCoastSky, Places } from "../islands/Places";
 
 const brisbane = (
@@ -77,7 +77,8 @@ const places = [
   { id: "gold-coast", content: goldCoast },
 ];
 
-export function Footer() {
+/** The page footer: Brisbane and the Gold Coast, the sitemap (this page's sections, then the other page) and the nameplate. */
+export function Footer({ nav }: { nav: PageNav }) {
   return (
     <footer>
       <div className="foot-grid">
@@ -86,13 +87,16 @@ export function Footer() {
           <p className="label">Sitemap</p>
           <ul>
             <li>
-              <a href="#top">Home</a>
+              <a href="#top">{nav.name}</a>
             </li>
-            {sections.map(({ id, name }) => (
+            {nav.sections.map(({ id, name }) => (
               <li key={id}>
                 <a href={`#${id}`}>{name}</a>
               </li>
             ))}
+            <li>
+              <a href={nav.elsewhere.href}>{nav.elsewhere.name}</a>
+            </li>
           </ul>
           <ul>
             <li>

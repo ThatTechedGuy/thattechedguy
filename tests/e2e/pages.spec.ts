@@ -22,7 +22,7 @@ async function scrollThrough(page: Page) {
   }
 }
 
-for (const path of ["/", "/yank"]) {
+for (const path of ["/", "/about", "/yank"]) {
   test(`${path} loads and scrolls with no console errors`, async ({ page }) => {
     const errors = watchErrors(page);
     await page.goto(path, { waitUntil: "networkidle" });
@@ -120,7 +120,7 @@ test.describe("phones", () => {
     await expect(page.getByRole("heading", { name: "Say hello" })).toBeInViewport();
   });
 
-  for (const path of ["/", "/yank"]) {
+  for (const path of ["/", "/about", "/yank"]) {
     test(`${path} has no horizontal overflow at 390 px`, async ({ page }) => {
       await page.goto(path, { waitUntil: "networkidle" });
       await scrollThrough(page);
