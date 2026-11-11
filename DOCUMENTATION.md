@@ -7,7 +7,7 @@ The source of [thattechedguy.com](https://thattechedguy.com): one Next.js app fo
 | URL           | What                                                    | Code                                        |
 | ------------- | ------------------------------------------------------- | ------------------------------------------- |
 | `/`           | A one-page personal site in an editorial magazine style | `app/(home)/`, `projects/home/`             |
-| `/stack`      | Stack and play: tools, opinions on them, and hobbies    | `app/(home)/stack/`, `projects/home/stack/` |
+| `/stack`      | Opinions: tools, takes on them, and hobbies             | `app/(home)/stack/`, `projects/home/stack/` |
 | `/yank`       | Yank, a free, open-source clipboard manager for Mac     | `app/(yank)/yank/`, `projects/yank/`        |
 | anything else | A plain 404 that wears no project's look                | `app/global-not-found.tsx`                  |
 
@@ -88,7 +88,7 @@ Two things the script used to measure are now pure CSS, so nothing moves when th
 
 The Brisbane clock in the footer reads the visitor's own clock in the `Australia/Brisbane` time zone, so nothing is fetched.
 
-### Stack and play (`/stack`)
+### Opinions (`/stack`)
 
 A second page in the home page's look, sharing its layout, palettes, rail, footer and cursor. The rail and footer take a `PageNav` (`homeNav` or `stackNav` in `projects/home/config.ts`), so each page links to its own sections and to the other page. Both rails carry a filled **Try Yank** link.
 
@@ -100,7 +100,7 @@ A second page in the home page's look, sharing its layout, palettes, rail, foote
 | Styles                                                       | `projects/home/styles/stack.css` (the Try Yank pill lives in `rail.css`)                                |
 | Border drift and the struck-through "Rather not" column      | `projects/home/islands/Drift.tsx`                                                                       |
 
-The art is one long painting down the right-hand side, like a sleeve tattoo: a dragon's body winds its whole length and a motif sits in every bend. The motifs are a chess knight, the Howrah Bridge, tennis, a mocha with caramel and hazelnuts, round glasses and a wand, a triangle with a circle and a line, a pierced diary, a ring, a locket, a two-handled cup, a diadem, a snake, a sword with rubies, swirling ancient magic, a seven-star orb, a glowing gate, pickleball, a can of zero-sugar cola, padel, a glowing sword and the number 5. They are original drawings made of simple shapes, not copies of any character, logo or brand. They are coloured by the palette (ink, paper and link colour, plus `--mb-accent`, one warm accent per paper). Their class names (`mb-s`, `mb-fa` and so on) are deliberately unscoped, because the motifs are drawn through `<use>` and a descendant selector can't reach into its shadow tree. On phones the painting runs left to right under the intro.
+The art is one long painting down the right-hand side, like a sleeve tattoo, drawn in the Madhubani manner: every shape has a double outline and a flat or patterned fill (hatching, dots, scales, zigzags), and fish pairs, lotuses and birds fill the panels between motifs, with sawtooth borders down both edges. The motifs are a chess king, a mocha with caramel and hazelnuts, the number 5, a tennis racket with a 16x19 string bed, the Howrah Bridge, an owl with round glasses and a wand, a triangle with a circle and a knotted wand, a pierced diary, a ring, a winged fire-breathing dragon, a gold locket with an emerald serpent S, a two-handled cup, a diadem, a snake, a sword with rubies, swirling ancient magic, a seven-star orb, a glowing gate, pickleball, a can of zero-sugar cola, padel and a broad glowing blade with a winged guard. They are original drawings made of simple shapes, not copies of any character, logo or brand. Colours come from the palette (ink, paper and link colour, plus `--mb-accent`, `--mb-green` and `--mb-red` per paper, set in `styles/stack.css`) through inline styles and `url(#mb-…)` fill patterns, so nothing needs to reach into the `<use>` shadow trees. `islands/Drift.tsx` scrolls the painting fast enough that all of it passes by the end of the page. On phones the painting runs left to right under the intro.
 
 ### Yank (`/yank`)
 

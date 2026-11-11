@@ -6,7 +6,7 @@ import { site } from "@/site.config";
 
 import { stackPath } from "../config";
 
-const title = "Stack and play: Vishal Gupta’s tools, opinions and hobbies";
+const title = "Opinions: Vishal Gupta’s tools, takes and hobbies";
 const description =
   "The tools Vishal Gupta (ThatTechedGuy) reaches for, the ones he would rather not, and what he does off the clock: tennis, chess, padel and more.";
 

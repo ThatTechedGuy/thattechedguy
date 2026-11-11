@@ -413,3 +413,19 @@
     transform: rotate(-12deg);
   }
 }
+
+/* Short laptop screens: tighten the rail so everything down to the colours button still fits */
+@media (min-width: 900px) and (max-height: 820px) {
+  .rail-links {
+    gap: 0.8rem;
+  }
+  .rail-links a {
+    font-size: 0.9rem;
+  }
+  .rail-links a.on {
+    font-size: 1.15rem;
+  }
+  .rail-yank {
+    padding: 0.55rem 0;
+  }
+}

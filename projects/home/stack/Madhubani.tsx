@@ -31,7 +31,7 @@ export function Frieze() {
 /** One motif at any size. */
 export function Motif({ id }: { id: MotifId }) {
   return (
-    <svg className="mb mbi" viewBox="0 0 120 120" aria-hidden="true">
+    <svg className="mb mbi" viewBox="0 0 200 200" aria-hidden="true">
       <use href={`#mb-${id}`} />
     </svg>
   );
