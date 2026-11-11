@@ -10,6 +10,8 @@ import {
   type MouseEvent,
 } from "react";
 
+import { jumpTo } from "@/lib/motion/view-transition";
+
 import { palettes, yankPath, type PageNav } from "../config";
 import { applyPalette, applyRandom, readChoice, readPalette, subscribePalette } from "../palette";
 
@@ -91,16 +93,28 @@ export function Rail({ nav }: { nav: PageNav }) {
       if (innerHeight + scrollY >= root.scrollHeight - 2) id = targets.at(-1)?.id ?? id;
       setActive(id);
     };
+    // Every in-page link on the page jumps through jumpTo; a section it lands on stays marked.
     const onClick = (event: globalThis.MouseEvent) => {
       const link = event.target instanceof Element ? event.target.closest('a[href^="#"]') : null;
-      const id = link?.getAttribute("href")?.slice(1);
-      if (!id || !targets.some((el) => el.id === id)) return;
-      // After the browser has jumped to the anchor.
-      setTimeout(() => {
-        pinned = id;
-        pinY = scrollY;
+      const hash = link?.getAttribute("href") ?? "";
+      const target = hash.length > 1 ? document.getElementById(hash.slice(1)) : null;
+      if (
+        !target ||
+        event.defaultPrevented ||
+        event.button ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey
+      )
+        return;
+      event.preventDefault();
+      void jumpTo(target, hash).then(() => {
+        if (targets.includes(target)) {
+          pinned = target.id;
+          pinY = scrollY;
+        }
         onScroll();
-      }, 0);
+      });
     };
     onScroll();
     addEventListener("scroll", onScroll, { passive: true });

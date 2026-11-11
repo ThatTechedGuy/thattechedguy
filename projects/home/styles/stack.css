@@ -75,6 +75,16 @@
     border-left: 1px solid var(--ink);
     background: var(--paper);
   }
+  /* In page transitions it slides in from the right edge when this page opens, and back out when it closes */
+  .mb-band {
+    view-transition-name: mb-band;
+  }
+  ::view-transition-new(mb-band):only-child {
+    animation: band-in 0.8s var(--ease) both;
+  }
+  ::view-transition-old(mb-band):only-child {
+    animation: band-in 0.3s cubic-bezier(0.4, 0, 1, 1) reverse both;
+  }
   .mb-band .mb-strip {
     display: block;
     width: 100%;
@@ -96,6 +106,11 @@
   height: 120px;
   width: auto;
   animation: frieze 70s linear infinite;
+}
+@keyframes band-in {
+  from {
+    transform: translateX(100%);
+  }
 }
 @keyframes frieze {
   to {

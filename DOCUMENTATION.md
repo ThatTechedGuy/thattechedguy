@@ -53,6 +53,7 @@ app/                 routes only: layouts, pages, metadata files
   (home)/            the home page's root layout (<html>, palette script, metadata) and page
   (yank)/yank/       Yank's root layout and page, its OG image and icons
 lib/                 shared and look-free: theme storage, reduced motion, View Transitions, JSON-LD
+                     (one exception: page-transition.css, the look both ends of a page change share)
 projects/<name>/     everything one project looks like: tokens, CSS, fonts, components, settings
 site.config.ts       the domain, the GitHub link, the projects list, the Search Console token
 tests/               unit tests (bun test) and end-to-end tests (Playwright)
@@ -64,6 +65,12 @@ Each page remembers its own colours:
 
 - **The home page** shows a random paper on every visit until the visitor picks one, which is saved as `ttg:home:palette`. **Random** in the menu forgets it.
 - **Yank** remembers its light/dark theme as `ttg:yank:theme`.
+
+Moving around is animated with View Transitions, all styled in `lib/motion/page-transition.css`, which both root layouts import:
+
+- **Between pages** the links stay plain `<a>`, and the browser runs a cross-document transition across the load (Chrome and Edge 126+, Safari 18.2+; Firefox just loads). The old page sinks and fades, the new one rises in, the rail holds still (it has its own `view-transition-name`), and the Opinions painting slides in from the right.
+- **Within a page** every `#` link goes through `jumpTo` in `lib/motion/view-transition.ts`, called from the rail's click handler: the view travels down or up the way the page moves.
+- **Reduced motion** gets the plain load and the plain jump.
 
 ## The pages
 
