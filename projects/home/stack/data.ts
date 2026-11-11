@@ -154,7 +154,7 @@ export interface Hobby {
   /** A line under the list. */
   footnote?: string;
   note?: string;
-  size?: "big" | "wide3";
+  size?: "big" | "span3";
 }
 
 export const hobbies: readonly Hobby[] = [
@@ -235,7 +235,7 @@ export const hobbies: readonly Hobby[] = [
     motif: "sword",
     name: "Games",
     kind: "Controller in hand",
-    size: "wide3",
+    size: "span3",
     list: [
       ["Infinity Blade"],
       ["Critical Ops"],

@@ -19,7 +19,7 @@ export function Drift() {
       if (!half) return;
       // Fast enough that the whole painting passes by the time the page ends
       const room = document.documentElement.scrollHeight - innerHeight;
-      const rate = room > 0 ? Math.max(0.3, (half - innerHeight) / room) : 0.45;
+      const rate = Math.max(0.3, (half - innerHeight) / Math.max(1, room));
       strip.style.transform = `translate3d(0, ${(-(scrollY * rate) % half).toFixed(1)}px, 0)`;
     };
     const onScroll = () => {

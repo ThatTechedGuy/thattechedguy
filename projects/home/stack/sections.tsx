@@ -90,7 +90,7 @@ export function Play() {
               {hobby.name}
             </h3>
             <div>
-              {hobby.specs ? (
+              {hobby.specs && (
                 <dl>
                   {hobby.specs.map(([label, value]) => (
                     <div key={label}>
@@ -99,21 +99,19 @@ export function Play() {
                     </div>
                   ))}
                 </dl>
-              ) : hobby.list ? (
-                <>
-                  <ul className="games">
-                    {hobby.list.map(([name, aside]) => (
-                      <li key={name}>
-                        {name}
-                        {aside && <span className="aside"> ({aside})</span>}
-                      </li>
-                    ))}
-                  </ul>
-                  {hobby.footnote && <p className="small fine">{hobby.footnote}</p>}
-                </>
-              ) : (
-                hobby.note && <p>{hobby.note}</p>
               )}
+              {hobby.list && (
+                <ul className="games">
+                  {hobby.list.map(([name, aside]) => (
+                    <li key={name}>
+                      {name}
+                      {aside && <span className="aside"> ({aside})</span>}
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {hobby.footnote && <p className="small fine">{hobby.footnote}</p>}
+              {hobby.note && <p>{hobby.note}</p>}
             </div>
           </li>
         ))}

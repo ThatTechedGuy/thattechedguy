@@ -94,7 +94,7 @@ export function Footer({ nav }: { nav: PageNav }) {
                 <a href={`#${id}`}>{name}</a>
               </li>
             ))}
-            {nav.page.href === "/" ? null : (
+            {nav.page.href !== nav.mark.href && (
               <li>
                 <a href={nav.page.href}>{nav.page.name}</a>
               </li>
