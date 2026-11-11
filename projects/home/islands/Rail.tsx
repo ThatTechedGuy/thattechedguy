@@ -13,7 +13,14 @@ import {
 import { jumpTo } from "@/lib/motion/view-transition";
 
 import { palettes, yankPath, type PageNav } from "../config";
-import { applyPalette, applyRandom, readChoice, readPalette, subscribePalette } from "../palette";
+import {
+  applyPalette,
+  applyRandom,
+  flipPaper,
+  readChoice,
+  readPalette,
+  subscribePalette,
+} from "../palette";
 
 type Menu = "palette" | "index" | null;
 
@@ -137,8 +144,8 @@ export function Rail({ nav }: { nav: PageNav }) {
   const pick = useCallback((event: MouseEvent<HTMLButtonElement>) => {
     const id = event.currentTarget.dataset["palette"];
     const next = palettes.find((paper) => paper.id === id);
-    if (id === "random") applyRandom();
-    else if (next && next.id !== readChoice()) applyPalette(next.id);
+    if (id === "random") flipPaper(applyRandom);
+    else if (next && next.id !== readChoice()) flipPaper(() => applyPalette(next.id));
   }, []);
 
   const paper = palettes.find(({ id }) => id === palette)?.paper;

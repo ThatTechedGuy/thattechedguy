@@ -77,7 +77,8 @@ test("/: the paper is random on each visit until one is picked, then persists", 
   await page.goto("/");
   await page.getByRole("button", { name: "Choose colours" }).click();
   await page.getByRole("menuitemradio", { name: "Matcha" }).click();
-  expect(await palette(page)).toBe("matcha");
+  // The switch is a View Transition, which changes the paper a frame later.
+  await expect.poll(() => palette(page)).toBe("matcha");
   await expect(page.locator('meta[name="theme-color"]')).toHaveAttribute("content", "#cfdcb4");
   await expect(page.getByRole("menuitemradio", { name: "Matcha" })).toHaveAttribute(
     "aria-checked",
@@ -104,7 +105,7 @@ test("the home page's paper and Yank's theme are remembered apart", async ({ pag
   await page.goto("/");
   await page.getByRole("button", { name: "Choose colours" }).click();
   await page.getByRole("menuitemradio", { name: "Midnight" }).click();
-  expect(await palette(page)).toBe("midnight");
+  await expect.poll(() => palette(page)).toBe("midnight");
   await page.goto("/yank");
   expect(await theme(page)).toBe("light");
 });

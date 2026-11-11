@@ -1,16 +1,32 @@
 import { prefersReducedMotion } from "./media";
 
-/** Starts a View Transition, or returns null where the browser has none (Firefox before 144, old Safari). */
-export function startViewTransition(update: () => void): ViewTransition | null {
+let running: { transition: ViewTransition; className: string } | null = null;
+
+/**
+ * Starts a View Transition, or returns null where the browser has none (Firefox before 144, old Safari).
+ * `className` stays on <html> while it runs, so CSS can style this kind of transition; a newer one replaces it.
+ */
+export function startViewTransition(update: () => void, className?: string): ViewTransition | null {
   if (!("startViewTransition" in document)) return null;
+  const html = document.documentElement;
+  if (running?.className) html.classList.remove(running.className);
+  if (className) html.classList.add(className);
   try {
-    return document.startViewTransition(update);
+    const transition = document.startViewTransition(update);
+    const mine = { transition, className: className ?? "" };
+    running = mine;
+    const done = () => {
+      if (running !== mine) return;
+      if (className) html.classList.remove(className);
+      running = null;
+    };
+    void transition.finished.then(done, done);
+    return transition;
   } catch {
+    if (className) html.classList.remove(className);
     return null;
   }
 }
-
-let jumping: ViewTransition | null = null;
 
 /**
  * Jumps to an in-page target as a View Transition that travels the way the page moves (page-transition.css).
@@ -23,20 +39,7 @@ export function jumpTo(target: Element, hash: string): Promise<void> {
     else location.hash = hash;
   };
   if (prefersReducedMotion()) return Promise.resolve(jump());
-  const html = document.documentElement;
   const way = target.getBoundingClientRect().top >= 0 ? "jump-down" : "jump-up";
-  html.classList.remove("jump-down", "jump-up");
-  html.classList.add(way);
-  const transition = startViewTransition(jump);
-  // A newer jump replaces this one; only the latest takes its class off.
-  const done = () => {
-    if (jumping === transition) html.classList.remove(way);
-  };
-  jumping = transition;
-  if (!transition) {
-    done();
-    return Promise.resolve(jump());
-  }
-  void transition.finished.then(done, done);
-  return transition.updateCallbackDone;
+  const transition = startViewTransition(jump, way);
+  return transition ? transition.updateCallbackDone : Promise.resolve(jump());
 }
