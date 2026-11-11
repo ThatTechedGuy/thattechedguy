@@ -1,5 +1,8 @@
 /** Palette state, kept on <html data-palette>, plus data-palette-random while no paper is saved. */
 
+import { prefersReducedMotion } from "@/lib/motion/media";
+import { startViewTransition } from "@/lib/motion/view-transition";
+
 import { homePaletteKey, palettes, type PaletteId } from "./config";
 
 const CHANGE_EVENT = "ttg:palettechange";
@@ -22,7 +25,16 @@ export const readChoice = (): string | undefined =>
 
 const changed = () => window.dispatchEvent(new Event(CHANGE_EVENT));
 
-/** Switches to a paper now and remembers it. The tokens are registered with @property, so CSS blends them. */
+/**
+ * Swaps the paper in one View Transition: the old sheet tears off the pad and falls away, showing the new one
+ * underneath (motion.css). The colours change once, so the browser only moves two snapshots, never restyles the
+ * page frame by frame. With reduced motion, or no View Transitions, the paper just changes.
+ */
+export function flipPaper(change: () => void): void {
+  if (prefersReducedMotion() || !startViewTransition(change, "paper-flip")) change();
+}
+
+/** Switches to a paper now and remembers it. */
 export function applyPalette(id: PaletteId): void {
   root().dataset["palette"] = id;
   delete root().dataset["paletteRandom"];

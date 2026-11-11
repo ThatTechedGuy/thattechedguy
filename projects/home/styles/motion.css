@@ -1,9 +1,16 @@
-/* Scroll reveal, driven by scroll position where the browser supports it */
+/* Scroll reveal, driven by scroll position where the browser supports it. A focus pull, not a fade: text half way
+   in keeps its full contrast (a fade fails contrast checks on whatever sits at the screen's edge). */
 @supports (animation-timeline: view()) {
   .reveal {
-    animation: rise linear both;
+    animation: focus-in linear both;
     animation-timeline: view();
     animation-range: entry 0% entry 30%;
+  }
+}
+@keyframes focus-in {
+  from {
+    filter: blur(5px);
+    transform: translateY(0.6em);
   }
 }
 
@@ -103,4 +110,35 @@
 }
 .sprite {
   position: absolute;
+}
+
+/* A new paper (palette.ts): the old sheet lifts, tears off the pad and falls away, showing the new one underneath.
+   Both are snapshots, so the whole switch is transforms on the compositor. The rail and the painting have layers
+   of their own and stay put. Transitions pause so the new snapshot is already in its final colours. */
+html.paper-flip::view-transition-old(root) {
+  z-index: 1;
+  mix-blend-mode: normal;
+  transform-origin: 0 0;
+  box-shadow: 0 2.5rem 5rem rgb(0 0 0 / 0.35);
+  animation: sheet-off 0.9s cubic-bezier(0.5, 0, 0.75, 0) both;
+}
+html.paper-flip::view-transition-new(root) {
+  mix-blend-mode: normal;
+  animation: sheet-under 0.9s var(--ease) both;
+}
+@keyframes sheet-off {
+  0% {
+    transform: none;
+  }
+  22% {
+    transform: translate(1vw, -1.5vh) rotate(1.5deg);
+  }
+  100% {
+    transform: translate(12vw, 115vh) rotate(16deg);
+  }
+}
+@keyframes sheet-under {
+  from {
+    transform: scale(1.04);
+  }
 }
