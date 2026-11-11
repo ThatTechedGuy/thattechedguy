@@ -14,12 +14,12 @@ export function MotifDefs() {
   );
 }
 
-/** One long painting down the right-hand side (900px and wider). islands/Drift.tsx moves it with the scroll. */
+/** One long painting down the right-hand side (900px and wider), drifting with the scroll (stack.css). */
 export function Painting() {
   return <div className="mb-band" aria-hidden="true" dangerouslySetInnerHTML={painting} />;
 }
 
-/** On phones, the painting runs left to right under the intro and scrolls by itself. */
+/** On phones, the painting runs left to right across the top of the page and scrolls by itself. */
 export function Frieze() {
   return <div className="mb-frieze" aria-hidden="true" dangerouslySetInnerHTML={frieze} />;
 }

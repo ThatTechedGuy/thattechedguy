@@ -2,11 +2,10 @@ import type { Metadata } from "next";
 
 import { stackNav } from "@/projects/home/config";
 import { Cursor } from "@/projects/home/islands/Cursor";
-import { Drift } from "@/projects/home/islands/Drift";
 import { Rail } from "@/projects/home/islands/Rail";
 import { Footer } from "@/projects/home/sections/Footer";
 import { Sprite } from "@/projects/home/sections/Sprite";
-import { MotifDefs, Painting } from "@/projects/home/stack/Madhubani";
+import { Frieze, MotifDefs, Painting } from "@/projects/home/stack/Madhubani";
 import { Intro, Play, Stack } from "@/projects/home/stack/sections";
 import { stackMetadata } from "@/projects/home/stack/seo";
 
@@ -21,6 +20,7 @@ export default function StackPage() {
       <Rail nav={stackNav} />
       <div className="stackpage">
         <Painting />
+        <Frieze />
         <main className="wrap" id="top">
           <Intro />
           <Stack />
@@ -28,7 +28,6 @@ export default function StackPage() {
           <Footer nav={stackNav} />
         </main>
       </div>
-      <Drift />
       <Cursor />
     </>
   );

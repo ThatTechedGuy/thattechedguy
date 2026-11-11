@@ -1,6 +1,6 @@
 import icons from "../icons.svg";
 import { hobbies, layers, verdictNames } from "./data";
-import { Frieze, Motif } from "./Madhubani";
+import { Motif } from "./Madhubani";
 
 /** The opening statement, and what's on the page. */
 export function Intro() {
@@ -29,7 +29,6 @@ export function Intro() {
           </dd>
         </div>
       </dl>
-      <Frieze />
     </section>
   );
 }
