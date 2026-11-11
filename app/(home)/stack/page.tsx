@@ -6,7 +6,7 @@ import { Drift } from "@/projects/home/islands/Drift";
 import { Rail } from "@/projects/home/islands/Rail";
 import { Footer } from "@/projects/home/sections/Footer";
 import { Sprite } from "@/projects/home/sections/Sprite";
-import { Borders, MotifDefs } from "@/projects/home/stack/Madhubani";
+import { MotifDefs, Painting } from "@/projects/home/stack/Madhubani";
 import { Intro, Play, Stack, Takes } from "@/projects/home/stack/sections";
 import { stackMetadata } from "@/projects/home/stack/seo";
 
@@ -20,7 +20,7 @@ export default function StackPage() {
       <MotifDefs />
       <Rail nav={stackNav} />
       <div className="stackpage">
-        <Borders />
+        <Painting />
         <main className="wrap" id="top">
           <Intro />
           <Stack />

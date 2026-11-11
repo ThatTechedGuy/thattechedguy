@@ -92,15 +92,15 @@ The Brisbane clock in the footer reads the visitor's own clock in the `Australia
 
 A second page in the home page's look, sharing its layout, palettes, rail, footer and cursor. The rail and footer take a `PageNav` (`homeNav` or `stackNav` in `projects/home/config.ts`), so each page links to its own sections and to the other page. Both rails carry a filled **Try Yank** link.
 
-| What                                                     | Where                                                                                                   |
-| -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| Copy: tools and verdicts, the takes, hobbies             | `projects/home/stack/data.ts`. A `draft: true` line shows a dashed "Draft" stamp until it is confirmed. |
-| Sections                                                 | `projects/home/stack/sections.tsx`                                                                      |
-| Madhubani-style art (motifs, side borders, phone frieze) | `projects/home/stack/madhubani.ts`, rendered by `Madhubani.tsx`                                         |
-| Styles                                                   | `projects/home/styles/stack.css` (the Try Yank pill lives in `rail.css`)                                |
-| Border drift and the struck-through "Rather not" column  | `projects/home/islands/Drift.tsx`                                                                       |
+| What                                                         | Where                                                                                                   |
+| ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
+| Copy: tools and verdicts, the takes, hobbies                 | `projects/home/stack/data.ts`. A `draft: true` line shows a dashed "Draft" stamp until it is confirmed. |
+| Sections                                                     | `projects/home/stack/sections.tsx`                                                                      |
+| Madhubani-style art (motifs, the painting, the phone frieze) | `projects/home/stack/madhubani.ts`, rendered by `Madhubani.tsx`                                         |
+| Styles                                                       | `projects/home/styles/stack.css` (the Try Yank pill lives in `rail.css`)                                |
+| Border drift and the struck-through "Rather not" column      | `projects/home/islands/Drift.tsx`                                                                       |
 
-The motifs (chess knight, Howrah Bridge, round glasses and a wand, tennis, a dragon, a seven-star orb, a glowing gate, pickleball, padel, a sword, the number 5) are original drawings made of simple shapes, not copies of any character or logo. They are coloured by the palette: ink, paper and link colour, plus `--mb-accent`, one warm accent per paper. Their class names (`mb-s`, `mb-fa` and so on) are deliberately unscoped, because the motifs are drawn through `<use>` and a descendant selector can't reach into its shadow tree.
+The art is one long painting down the right-hand side, like a sleeve tattoo: a dragon's body winds its whole length and a motif sits in every bend. The motifs are a chess knight, the Howrah Bridge, tennis, a mocha with caramel and hazelnuts, round glasses and a wand, a triangle with a circle and a line, a pierced diary, a ring, a locket, a two-handled cup, a diadem, a snake, a sword with rubies, swirling ancient magic, a seven-star orb, a glowing gate, pickleball, a can of zero-sugar cola, padel, a glowing sword and the number 5. They are original drawings made of simple shapes, not copies of any character, logo or brand. They are coloured by the palette (ink, paper and link colour, plus `--mb-accent`, one warm accent per paper). Their class names (`mb-s`, `mb-fa` and so on) are deliberately unscoped, because the motifs are drawn through `<use>` and a descendant selector can't reach into its shadow tree. On phones the painting runs left to right under the intro.
 
 ### Yank (`/yank`)
 

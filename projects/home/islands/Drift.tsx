@@ -5,9 +5,9 @@ import { useEffect } from "react";
 import { prefersReducedMotion } from "@/lib/motion/media";
 
 /**
- * The stack page's motion: the two Madhubani borders drift with the scroll in opposite directions (each strip
- * is drawn twice, so it loops), and the "Rather not" column is struck through once it scrolls into view.
- * With reduced motion the borders stay still and the strikes are drawn at once.
+ * The stack page's motion: the Madhubani painting drifts up as the page scrolls (it is drawn twice, so it
+ * loops), and the "Rather not" column is struck through once it scrolls into view.
+ * With reduced motion the painting stays still and the strikes are drawn at once.
  */
 export function Drift() {
   useEffect(() => {

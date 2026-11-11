@@ -62,6 +62,10 @@
 .mb-fg {
   fill: url(#mb-grid);
 }
+.mb-flora {
+  fill: var(--ink);
+  opacity: 0.22;
+}
 .mb-pl {
   stroke: var(--ink);
   stroke-width: 1.1;
@@ -74,7 +78,7 @@
   fill: var(--ink);
 }
 
-/* Borders down both sides, in gutters of their own, drifting with the scroll (islands/Drift.tsx) */
+/* One long painting down the right-hand side, in a gutter of its own, drifting with the scroll (islands/Drift.tsx) */
 .mb-band,
 .mb-frieze {
   pointer-events: none;
@@ -84,8 +88,8 @@
 }
 @media (min-width: 900px) {
   .stackpage {
-    --band: clamp(82px, 7.5vw, 128px);
-    padding-inline: var(--band);
+    --band: clamp(130px, 12vw, 200px);
+    padding-right: var(--band);
   }
   .mb-band {
     display: block;
@@ -93,17 +97,11 @@
     z-index: 1;
     top: 0;
     bottom: 0;
+    right: 0;
     width: var(--band);
     overflow: hidden;
-    background: var(--paper);
-  }
-  .mb-band.l {
-    left: var(--rail);
-    border-right: 1px solid var(--ink);
-  }
-  .mb-band.r {
-    right: 0;
     border-left: 1px solid var(--ink);
+    background: var(--paper);
   }
   .mb-band .mb-strip {
     display: block;
@@ -115,7 +113,7 @@
     display: none;
   }
 }
-/* On phones: one row of tiles under the intro, scrolling by itself */
+/* On phones: the painting runs left to right under the intro, scrolling by itself */
 .mb-frieze {
   overflow: hidden;
   border-block: 1px solid var(--ink);
@@ -123,7 +121,7 @@
 }
 .mb-frieze .mb-row {
   display: block;
-  height: 104px;
+  height: 120px;
   width: auto;
   animation: frieze 70s linear infinite;
 }
