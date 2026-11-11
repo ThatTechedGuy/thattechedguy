@@ -65,7 +65,6 @@ export function Cursor() {
     <div ref={cursorRef} className="cursor" data-mode="none" aria-hidden="true">
       <span className="cursor-ring" />
       <span className="cursor-dot" />
-      <span className="cursor-label cursor-label-pick">Pick</span>
       <span className="cursor-label cursor-label-watch">Watch</span>
       <span className="cursor-label cursor-label-move">Move</span>
     </div>

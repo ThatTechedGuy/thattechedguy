@@ -2,14 +2,10 @@
 
 import type { ThemeDefault } from "@/lib/theme/theme";
 
-export type Effects = "3D" | "patterns";
-
 interface YankConfig {
   accent: `#${string}`;
   /** "auto" follows the system until the visitor uses the switch. */
   theme: ThemeDefault;
-  /** "3D" adds the Three.js background on desktop; "patterns" keeps only the canvas patterns. */
-  effects: Effects;
   /** Where every Download button goes. */
   downloadUrl: string;
   repoUrl: string;
@@ -21,7 +17,6 @@ interface YankConfig {
 export const yank: YankConfig = {
   accent: "#0A84FF",
   theme: "auto",
-  effects: "3D",
   // The DMG's file name carries the version, so this is the newest release's page, not the file.
   downloadUrl: "https://github.com/ThatTechedGuy/Yank/releases/latest",
   repoUrl: "https://github.com/ThatTechedGuy/Yank",

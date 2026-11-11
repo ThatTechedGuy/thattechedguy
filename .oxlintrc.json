@@ -80,7 +80,7 @@
       }
     },
     {
-      "files": ["app/**/opengraph-image.tsx", "app/**/apple-icon.tsx", "app/**/icon.tsx"],
+      "files": ["app/**/opengraph-image.tsx", "app/**/apple-icon.tsx"],
       "rules": {
         "nextjs/no-img-element": "off",
         "react-perf/jsx-no-new-object-as-prop": "off"

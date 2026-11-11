@@ -33,7 +33,7 @@ import type { Shape } from "./formations";
 /** The source used Three.js r149's legacy lights; today's physically based units need π times the intensity. */
 const LEGACY_LIGHT = Math.PI;
 
-export interface Actor extends Shape {
+interface Actor extends Shape {
   mesh: Mesh;
 }
 

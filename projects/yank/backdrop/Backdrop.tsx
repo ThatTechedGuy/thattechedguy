@@ -5,14 +5,11 @@ import { useEffect, useState } from "react";
 
 import { prefersReducedMotion } from "@/lib/motion/media";
 
-import { yank } from "../config";
-
 // Three.js is only downloaded when the scene mounts, which happens only on screens that show it.
 const BackdropScene = dynamic(() => import("./BackdropScene"), { ssr: false });
 
 /** Desktop only: phones and touch screens never load Three.js (owner's decision), nor does reduced motion. */
 const canShow = () =>
-  yank.effects === "3D" &&
   window.matchMedia("(pointer: fine) and (min-width: 761px)").matches &&
   !prefersReducedMotion() &&
   "WebGL2RenderingContext" in window;

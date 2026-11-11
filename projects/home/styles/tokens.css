@@ -7,7 +7,6 @@
   --grey: #5b5434;
   --rule: #d4bd50;
   --link: #2337a8;
-  --tbd: #9a3d00;
   --rail: 68px;
   --westpac: #da1710;
   --serif: var(--font-newsreader), "Iowan Old Style", Georgia, "Times New Roman", serif;
@@ -47,19 +46,13 @@
   inherits: true;
   initial-value: #2337a8;
 }
-@property --tbd {
-  syntax: "<color>";
-  inherits: true;
-  initial-value: #9a3d00;
-}
 :root {
   transition:
     --paper 0.5s var(--ease),
     --ink 0.5s var(--ease),
     --grey 0.5s var(--ease),
     --rule 0.5s var(--ease),
-    --link 0.5s var(--ease),
-    --tbd 0.5s var(--ease);
+    --link 0.5s var(--ease);
 }
 @media (prefers-reduced-motion: reduce) {
   :root {
@@ -72,7 +65,6 @@
   --grey: #5b5434;
   --rule: #d4bd50;
   --link: #2337a8;
-  --tbd: #9a3d00;
   color-scheme: light;
 }
 :root[data-palette="matcha"] {
@@ -81,7 +73,6 @@
   --grey: #4a5a3e;
   --rule: #b0c093;
   --link: #1d3a8f;
-  --tbd: #8a3a00;
   color-scheme: light;
 }
 :root[data-palette="riso"] {
@@ -90,7 +81,6 @@
   --grey: #674770;
   --rule: #e2a5b7;
   --link: #1a2fa0;
-  --tbd: #8b2a00;
   color-scheme: light;
 }
 :root[data-palette="lilac"] {
@@ -99,7 +89,6 @@
   --grey: #4f4679;
   --rule: #ada2dc;
   --link: #8a1745;
-  --tbd: #8a3a00;
   color-scheme: light;
 }
 :root[data-palette="tangerine"] {
@@ -108,7 +97,6 @@
   --grey: #4f2711;
   --rule: #e66c2f;
   --link: #1a2a8a;
-  --tbd: #fff1c2;
   color-scheme: light;
 }
 :root[data-palette="blueprint"] {
@@ -117,7 +105,6 @@
   --grey: #c3cbf2;
   --rule: #4762d8;
   --link: #ffe27a;
-  --tbd: #ffc59a;
   color-scheme: dark;
 }
 :root[data-palette="midnight"] {
@@ -126,7 +113,6 @@
   --grey: #9b9890;
   --rule: #2e2d2a;
   --link: #aab7ff;
-  --tbd: #f1a15c;
   color-scheme: dark;
 }
 :root[data-palette="newsprint"] {
@@ -135,6 +121,5 @@
   --grey: #6d6b66;
   --rule: #dcdad3;
   --link: #2337a8;
-  --tbd: #b0520b;
   color-scheme: light;
 }

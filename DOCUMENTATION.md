@@ -93,7 +93,6 @@ The Brisbane clock in the footer reads the visitor's own clock in the `Australia
 
 - the accent colour
 - the default theme: `auto`, `light` or `dark`
-- the effects: `3D` or `patterns`
 - the links
 
 The 3D backdrop (Three.js) loads only on desktop-sized screens with a mouse, after the page is idle, and never under reduced motion. Phones never download it.

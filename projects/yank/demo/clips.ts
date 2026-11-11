@@ -214,7 +214,7 @@ export const initialDemoState: DemoState = {
 };
 
 /** The notes area keeps only the latest pastes. */
-export const NOTES_KEPT = 8;
+const NOTES_KEPT = 8;
 /** Search starts at this many characters. */
 const MIN_QUERY = 2;
 

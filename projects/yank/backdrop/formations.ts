@@ -3,7 +3,7 @@
 import type { ChapterId } from "../config";
 
 export type ShapeKind = "card" | "key" | "blob" | "ring" | "hook";
-export type Vec3 = [number, number, number];
+type Vec3 = [number, number, number];
 
 /** How many of each shape the scene builds; formations spread them by index. */
 export const shapeCounts = { card: 6, key: 4, blob: 2, ring: 2, hook: 1 } as const;
