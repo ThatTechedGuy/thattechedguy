@@ -51,10 +51,6 @@
 }
 
 /* One long painting down the right-hand side, in a gutter of its own, drifting with the scroll */
-.mb-band,
-.mb-frieze {
-  pointer-events: none;
-}
 .mb-band {
   display: none;
 }
@@ -486,4 +482,17 @@
     width: 72px;
     height: 72px;
   }
+}
+
+/* A motif's caption (islands/MotifCaption.tsx): the intro's card (hero.css), fixed beside the painting */
+.mb-cap {
+  position: fixed;
+  z-index: 60;
+  top: 0;
+  left: 0;
+  width: min(17rem, calc(100vw - 16px));
+}
+/* The phone frieze holds still while a caption is open, so its motif stays beside it */
+:root:has(.mb-cap[data-open]) .mb-frieze .mb-row {
+  animation-play-state: paused;
 }

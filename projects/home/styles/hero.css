@@ -115,7 +115,8 @@
   text-decoration-color: var(--grey);
   outline: none;
 }
-.hov .card {
+.hov .card,
+.mb-cap {
   position: absolute;
   z-index: 30;
   top: calc(100% + 0.25rem);
@@ -152,7 +153,8 @@
   z-index: 26;
 }
 .hov:hover .card,
-.hov:focus .card {
+.hov:focus .card,
+.mb-cap[data-open] {
   opacity: 1;
   visibility: visible;
   transform: none;

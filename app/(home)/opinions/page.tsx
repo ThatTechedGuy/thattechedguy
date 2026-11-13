@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { stackNav } from "@/projects/home/config";
 import { Cursor } from "@/projects/home/islands/Cursor";
+import { MotifCaption } from "@/projects/home/islands/MotifCaption";
 import { Rail } from "@/projects/home/islands/Rail";
 import { Footer } from "@/projects/home/sections/Footer";
 import { Sprite } from "@/projects/home/sections/Sprite";
@@ -21,6 +22,7 @@ export default function StackPage() {
       <div className="stackpage">
         <Painting />
         <Frieze />
+        <MotifCaption />
         <main className="wrap" id="top">
           <Intro />
           <Stack />
