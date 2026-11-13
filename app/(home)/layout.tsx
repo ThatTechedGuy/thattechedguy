@@ -21,7 +21,6 @@ import "@/projects/home/styles/work.css";
 import "@/projects/home/styles/footer.css";
 import "@/projects/home/styles/stack.css";
 import "@/projects/home/styles/motion.css";
-import "@/projects/home/styles/ink.css";
 import "@/lib/motion/page-transition.css";
 
 export const metadata: Metadata = homeMetadata;

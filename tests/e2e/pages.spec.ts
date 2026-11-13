@@ -32,33 +32,6 @@ for (const path of ["/", "/opinions", "/yank"]) {
   });
 }
 
-/** The text-shadow of each piece of text on the page that does not match the ink bleed (ink.css), or has one when it should not. */
-const inkMisses = (page: Page, inked: boolean) =>
-  page.evaluate((want) => {
-    const misses: string[] = [];
-    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-    for (let node = walker.nextNode(); node; node = walker.nextNode()) {
-      const el = node.parentElement;
-      if (!node.textContent?.trim() || !el || el.closest("script, style")) continue;
-      const shadow = getComputedStyle(el).textShadow;
-      if (/0px 0px 0\.5px.*0px 0px 1\.4px/.test(shadow) !== want)
-        misses.push(`${node.textContent.trim()}: ${shadow}`);
-    }
-    return misses;
-  }, inked);
-
-for (const path of ["/", "/opinions"]) {
-  test(`${path}: every piece of text has the ink bleed, buttons included`, async ({ page }) => {
-    await page.goto(path);
-    expect(await inkMisses(page, true)).toEqual([]);
-  });
-}
-
-test("/yank has no ink bleed", async ({ page }) => {
-  await page.goto("/yank");
-  expect(await inkMisses(page, false)).toEqual([]);
-});
-
 test("unknown URLs get the 404 page", async ({ page }) => {
   const response = await page.goto("/no-such-page");
   expect(response?.status()).toBe(404);
