@@ -7,7 +7,7 @@ test("sitemap lists the home page, the stack page and every project with absolut
   const urls = sitemap().map((entry) => entry.url);
   expect(urls).toEqual([
     "https://thattechedguy.com/",
-    "https://thattechedguy.com/stack",
+    "https://thattechedguy.com/opinions",
     "https://thattechedguy.com/yank",
   ]);
 });

@@ -4,12 +4,12 @@ The source of [thattechedguy.com](https://thattechedguy.com): one Next.js app fo
 
 **Next.js 16** · **React 19** with the React Compiler · **Tailwind CSS 4** · **Bun** · **Playwright** · deployed on **Vercel**
 
-| URL           | What                                                    | Code                                        |
-| ------------- | ------------------------------------------------------- | ------------------------------------------- |
-| `/`           | A one-page personal site in an editorial magazine style | `app/(home)/`, `projects/home/`             |
-| `/stack`      | Opinions: tools, takes on them, gear, and hobbies       | `app/(home)/stack/`, `projects/home/stack/` |
-| `/yank`       | Yank, a free, open-source clipboard manager for Mac     | `app/(yank)/yank/`, `projects/yank/`        |
-| anything else | A plain 404 that wears no project's look                | `app/global-not-found.tsx`                  |
+| URL           | What                                                    | Code                                           |
+| ------------- | ------------------------------------------------------- | ---------------------------------------------- |
+| `/`           | A one-page personal site in an editorial magazine style | `app/(home)/`, `projects/home/`                |
+| `/opinions`   | Opinions: tools, takes on them, gear, and hobbies       | `app/(home)/opinions/`, `projects/home/stack/` |
+| `/yank`       | Yank, a free, open-source clipboard manager for Mac     | `app/(yank)/yank/`, `projects/yank/`           |
+| anything else | A plain 404 that wears no project's look                | `app/global-not-found.tsx`                     |
 
 `robots.txt`, `sitemap.xml` and `llms.txt` are generated at the domain root from `site.config.ts`.
 
@@ -95,7 +95,7 @@ Two things the script used to measure are now pure CSS, so nothing moves when th
 
 The Brisbane clock in the footer reads the visitor's own clock in the `Australia/Brisbane` time zone, so nothing is fetched.
 
-### Opinions (`/stack`)
+### Opinions (`/opinions`)
 
 A second page in the home page's look, sharing its layout, palettes, rail, footer and cursor. The rail and footer take a `PageNav` (`homeNav` or `stackNav` in `projects/home/config.ts`), so each page links to its own sections and to the other page. Both rails carry a filled **Try Yank** link.
 

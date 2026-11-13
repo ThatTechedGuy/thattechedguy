@@ -22,7 +22,7 @@ async function scrollThrough(page: Page) {
   }
 }
 
-for (const path of ["/", "/stack", "/yank"]) {
+for (const path of ["/", "/opinions", "/yank"]) {
   test(`${path} loads and scrolls with no console errors`, async ({ page }) => {
     const errors = watchErrors(page);
     await page.goto(path, { waitUntil: "networkidle" });
@@ -47,7 +47,7 @@ const inkMisses = (page: Page, inked: boolean) =>
     return misses;
   }, inked);
 
-for (const path of ["/", "/stack"]) {
+for (const path of ["/", "/opinions"]) {
   test(`${path}: every piece of text has the ink bleed, buttons included`, async ({ page }) => {
     await page.goto(path);
     expect(await inkMisses(page, true)).toEqual([]);
@@ -148,7 +148,7 @@ test.describe("phones", () => {
     await expect(page.getByRole("heading", { name: "Say hello" })).toBeInViewport();
   });
 
-  for (const path of ["/", "/stack", "/yank"]) {
+  for (const path of ["/", "/opinions", "/yank"]) {
     test(`${path} has no horizontal overflow at 390 px`, async ({ page }) => {
       await page.goto(path, { waitUntil: "networkidle" });
       await scrollThrough(page);

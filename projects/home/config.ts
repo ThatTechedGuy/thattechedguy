@@ -35,7 +35,7 @@ export const sections = [
 ] as const;
 
 /** The second page: the stack, opinions on it, and hobbies. */
-export const stackPath = "/stack";
+export const stackPath = "/opinions";
 
 /** The same for the stack page. */
 export const stackSections = [

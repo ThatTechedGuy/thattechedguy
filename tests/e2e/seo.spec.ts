@@ -4,7 +4,7 @@ const origin = "https://thattechedguy.com";
 
 for (const { path, canonical, jsonLd = true } of [
   { path: "/", canonical: [origin, `${origin}/`] },
-  { path: "/stack", canonical: [`${origin}/stack`], jsonLd: false },
+  { path: "/opinions", canonical: [`${origin}/opinions`], jsonLd: false },
   { path: "/yank", canonical: [`${origin}/yank`] },
 ]) {
   test(`${path}: one h1, canonical, title, description, OG image and JSON-LD`, async ({ page }) => {

@@ -1,4 +1,4 @@
-/* The stack page (/stack). Everything here is scoped to classes only that page uses. */
+/* The opinions page (/opinions). Everything here is scoped to classes only that page uses. */
 
 /* Madhubani-style art. The class names are unscoped on purpose: the motifs are drawn through <use>, and a
    descendant selector cannot reach into its shadow tree. The motifs take the palette's ink, paper and link colour,
