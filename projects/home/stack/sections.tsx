@@ -1,5 +1,15 @@
 import icons from "../icons.svg";
-import { gear, hobbies, layers, verdictNames } from "./data";
+import { HoverCard } from "../islands/HoverCard";
+import {
+  cloud,
+  frameworks,
+  gear,
+  hobbies,
+  languages,
+  tiers,
+  verdictNames,
+  type Ranked,
+} from "./data";
 import { Motif } from "./Madhubani";
 
 /** The opening statement, and what's on the page. */
@@ -34,7 +44,55 @@ export function Intro() {
   );
 }
 
-/** Every tool, grouped by layer, with a verdict and a one-line take. */
+/** One S to D tier list: a row per tier, each item a logo cell whose name and take open in a hover card. */
+function TierList({ label, items }: { label: string; items: readonly Ranked[] }) {
+  return (
+    <div className="layer tierlist reveal">
+      <span className="label">{label}</span>
+      <ol className="tiers">
+        {tiers.map(([tier, meaning]) => (
+          <li key={tier} className={`tier t-${tier}`}>
+            <span className="tletter">
+              {tier}
+              <span className="label">{meaning}</span>
+            </span>
+            <span className="tchips">
+              {items
+                .filter((item) => item.tier === tier)
+                .map((item) => (
+                  <HoverCard
+                    key={item.name}
+                    label={`${tier} tier`}
+                    className="hov tchip"
+                    card={
+                      <>
+                        <span className="card-h">{tier} tier</span>
+                        <span className="card-t">{item.name}</span>
+                        <span className="card-p">{item.take}</span>
+                      </>
+                    }
+                  >
+                    {item.icon ? (
+                      <>
+                        <svg className="ic" aria-hidden="true">
+                          <use href={`${icons.src}#i-${item.icon}`} />
+                        </svg>
+                        <span className="sr-only">{item.name}</span>
+                      </>
+                    ) : (
+                      item.name
+                    )}
+                  </HoverCard>
+                ))}
+            </span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
+}
+
+/** The stack as three tier lists: languages, frameworks, and cloud and data. */
 export function Stack() {
   return (
     <section className="sec" id="stack" aria-labelledby="stack-h">
@@ -42,31 +100,11 @@ export function Stack() {
         <h2 id="stack-h">
           The <i>stack</i>
         </h2>
-        <span className="small legend">
-          <span className="verdict love">{verdictNames.love}</span>
-          <span className="verdict like">{verdictNames.like}</span>
-          <span className="verdict complicated">{verdictNames.complicated}</span>
-        </span>
+        <span className="small">Hover or tap one for the why</span>
       </div>
-      {layers.map((layer) => (
-        <div key={layer.name} className="layer reveal">
-          <span className="label">{layer.name}</span>
-          <ol className="tools">
-            {layer.tools.map((tool) => (
-              <li key={tool.name}>
-                <span className="tname">
-                  <svg className="ic" aria-hidden="true">
-                    <use href={`${icons.src}#i-${tool.icon}`} />
-                  </svg>
-                  {tool.name}
-                </span>
-                <span className={`verdict ${tool.verdict}`}>{verdictNames[tool.verdict]}</span>
-                <p className="ttake">{tool.take}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      ))}
+      <TierList label="Languages" items={languages} />
+      <TierList label="Frameworks and runtimes" items={frameworks} />
+      <TierList label="Cloud and data" items={cloud} />
     </section>
   );
 }

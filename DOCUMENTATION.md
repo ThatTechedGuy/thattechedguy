@@ -99,9 +99,11 @@ The Brisbane clock in the footer reads the visitor's own clock in the `Australia
 
 A second page in the home page's look, sharing its layout, palettes, rail, footer and cursor. The rail and footer take a `PageNav` (`homeNav` or `stackNav` in `projects/home/config.ts`), so each page links to its own sections and to the other page. Both rails carry a filled **Try Yank** link.
 
+The Stack section is three S to D tier lists: languages, frameworks and runtimes, and cloud and data. Each item is a spreadsheet-style cell holding its logo (or its name, when Simple Icons has no logo), and its name and take open in the same `HoverCard` the home page's intro uses, on hover, keyboard focus or tap. To move one, change its `tier` in `languages`, `frameworks` or `cloud` in `data.ts`.
+
 | What                                                         | Where                                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------------------------ |
-| Copy: tools and verdicts, gear, hobbies                      | `projects/home/stack/data.ts`                                            |
+| Copy: tier lists and takes, gear, hobbies                    | `projects/home/stack/data.ts`                                            |
 | Sections                                                     | `projects/home/stack/sections.tsx`                                       |
 | Madhubani-style art (motifs, the painting, the phone frieze) | `projects/home/stack/art.ts`, rendered by `Madhubani.tsx`                |
 | Styles                                                       | `projects/home/styles/stack.css` (the Try Yank pill lives in `rail.css`) |

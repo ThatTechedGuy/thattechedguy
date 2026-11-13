@@ -146,7 +146,7 @@
 .sp-toc a {
   margin-right: 0.9rem;
 }
-/* Stack: tools grouped by layer, each with a verdict */
+/* Ruled rows: the tier lists' labels, and the gear grouped by kind, some with a verdict */
 .layer {
   margin-top: clamp(1.5rem, 3vw, 2.25rem);
 }
@@ -224,11 +224,135 @@
   line-height: 1.45;
   max-width: 62ch;
 }
-.legend {
+/* Stack: tier lists, a lettered row per tier, each item a chip whose take opens in a hover card.
+   The reveal's filter makes every layer a stacking context, so this one sits above the next layer for its cards */
+.tierlist {
+  position: relative;
+  z-index: 3;
+}
+/* The list in use sits over the one below it, so a card from its bottom row is not covered */
+.tierlist:hover,
+.tierlist:focus-within {
+  z-index: 4;
+}
+.tiers {
+  list-style: none;
+  border-top: 1px solid var(--ink);
+}
+.tier {
+  display: grid;
+  grid-template-columns: 15rem minmax(0, 1fr);
+  border-bottom: 1px solid var(--rule);
+}
+/* The letter and its meaning on one line, the letter in a fixed column so every meaning starts at the same x */
+.tletter {
+  display: grid;
+  grid-template-columns: 0.75em minmax(0, 1fr);
+  align-items: center;
+  gap: 0.75rem;
+  padding-inline: 0.9rem;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 2.6rem;
+  line-height: 1;
+  background: color-mix(in srgb, var(--tc) 18%, transparent);
+  border-right: 1px solid var(--ink);
+}
+.tletter .label {
+  font-style: normal;
+  white-space: nowrap;
+}
+.t-S {
+  --tc: var(--mb-red);
+}
+.t-A {
+  --tc: var(--mb-accent);
+}
+.t-B {
+  --tc: var(--link);
+}
+.t-C {
+  --tc: var(--mb-green);
+}
+.t-D {
+  --tc: var(--grey);
+}
+/* Spreadsheet cells, each as tall as the row and square. Column rules run across the empty part of the row too.
+   The cells' bottom rule sits on the row's own (margin -1px), so wrapped lines share one rule, never two */
+.tchips {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem 1rem;
-  align-items: center;
+  align-content: start;
+  margin-bottom: -1px;
+  background: linear-gradient(to right, transparent calc(var(--tile) - 1px), var(--rule) 0) 0 0 /
+    var(--tile) 100%;
+}
+.tier {
+  --tile: 4rem;
+}
+/* A logo cell; the name is in the card. A tool with no logo shows its name across two cells */
+.hov.tchip {
+  display: grid;
+  place-items: center;
+  width: var(--tile);
+  height: var(--tile);
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 1.1rem;
+  line-height: 1;
+  text-decoration: none;
+  transition:
+    background-color 0.25s var(--ease),
+    color 0.25s var(--ease);
+}
+.hov.tchip:not(:has(.ic)) {
+  width: calc(var(--tile) * 2);
+}
+.tchip:hover,
+.tchip:focus-visible {
+  background: var(--ink);
+  color: var(--paper);
+}
+.tchip .ic {
+  width: 2rem;
+  height: 2rem;
+  fill: currentColor;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.tchip:hover .ic,
+.tchip:focus-visible .ic {
+  transform: scale(1.12);
+}
+.card-t {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 1.6rem;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  margin-top: -0.3rem;
+}
+@media (max-width: 560px) {
+  .tier {
+    grid-template-columns: 8.5rem minmax(0, 1fr);
+  }
+  .tletter {
+    gap: 0.5rem;
+    padding-inline: 0.6rem;
+    font-size: 2.1rem;
+  }
+  .tletter .label {
+    white-space: normal;
+  }
+  .tier {
+    --tile: 3.4rem;
+  }
+  .tchip .ic {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
 }
 @media (max-width: 760px) {
   .tools li {
