@@ -6,7 +6,7 @@
     "dev": "bun --bun next dev",
     "build": "bun --bun next build",
     "start": "bun --bun next start",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "bun --bun next typegen && tsc --noEmit",
     "lint": "oxlint",
     "format": "oxfmt",
     "format:check": "oxfmt --check",
