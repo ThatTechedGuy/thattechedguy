@@ -10,7 +10,14 @@ export const contentType = "image/png";
 export default async function AppleIcon() {
   const logo = await readFile(join(process.cwd(), "public/yank/icon.svg"), "base64");
   return new ImageResponse(
-    <img src={`data:image/svg+xml;base64,${logo}`} width={180} height={180} alt="" />,
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        backgroundImage: `url(data:image/svg+xml;base64,${logo})`,
+        backgroundSize: "100% 100%",
+      }}
+    />,
     size,
   );
 }

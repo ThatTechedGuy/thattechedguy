@@ -35,7 +35,14 @@ export default async function OpenGraphImage() {
       }}
     >
       <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
-        <img src={`data:image/svg+xml;base64,${logo}`} width={72} height={72} alt="" />
+        <div
+          style={{
+            width: 72,
+            height: 72,
+            backgroundImage: `url(data:image/svg+xml;base64,${logo})`,
+            backgroundSize: "100% 100%",
+          }}
+        />
         <span style={{ fontSize: 40, fontWeight: 700, letterSpacing: "-0.02em" }}>Yank</span>
       </div>
       <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.02 }}>

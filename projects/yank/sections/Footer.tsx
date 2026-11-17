@@ -1,13 +1,10 @@
-import { yank } from "../config";
+import { plainPage, yank } from "../config";
 
 /** Carries the download section's colours, so the page colour does not change under it. */
 export function Footer() {
   return (
     <footer
-      data-bg="#F5F5F7"
-      data-bg-dark="#07070B"
-      data-fg="#1D1D1F"
-      data-fg-dark="#F5F5F7"
+      {...plainPage}
       className="mx-auto flex max-w-1320 flex-wrap justify-between gap-16 px-32 pt-48 pb-130 text-[14px] text-muted"
     >
       <span>

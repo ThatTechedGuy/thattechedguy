@@ -1,9 +1,9 @@
 "use client";
 
 import {
-  useCallback,
   useEffect,
-  useMemo,
+  useEffectEvent,
+  useId,
   useRef,
   useState,
   type CSSProperties,
@@ -32,46 +32,54 @@ export function HoverCard({
   /** The dotted phrase. */
   children: ReactNode;
 }) {
-  const trigger = useRef<HTMLSpanElement>(null);
+  const trigger = useRef<HTMLAnchorElement>(null);
   const cardRef = useRef<HTMLSpanElement>(null);
   const [shift, setShift] = useState(0);
+  const cardId = useId();
 
   // Neither box below depends on --cx, so measuring never needs it reset first.
-  const place = useCallback(() => {
+  const place = () => {
     if (!trigger.current || !cardRef.current) return;
     const over =
       trigger.current.getBoundingClientRect().left +
       cardRef.current.offsetWidth -
       (document.documentElement.clientWidth - 16);
     setShift(over > 0 ? -over : 0);
+  };
+
+  const onLayout = useEffectEvent(place);
+  useEffect(() => {
+    const relayout = () => onLayout();
+    relayout();
+    addEventListener("resize", relayout);
+    void document.fonts.ready.then(relayout);
+    return () => removeEventListener("resize", relayout);
   }, []);
 
-  useEffect(() => {
-    place();
-    addEventListener("resize", place);
-    void document.fonts.ready.then(place);
-    return () => removeEventListener("resize", place);
-  }, [place]);
-
-  const placed = useMemo(() => ({ ...style, "--cx": `${shift}px` }), [style, shift]);
+  const placed: CSSProperties & Record<"--cx", string> = { ...style, "--cx": `${shift}px` };
 
   return (
-    <span
+    // A link to its note, like a footnote: focusable, and it wraps across lines inside the sentence (a <button>
+    // cannot). Focus opens the card for keyboard and touch, as hover does for the mouse; the click stays on the page
+    // and focuses the link, since Safari does not focus links on click or tap. The card is its description.
+    <a
       ref={trigger}
+      href={`#${cardId}`}
       className={className}
       style={placed}
-      // Focus opens the card for keyboard users, as hover does for the mouse. A <button> would not
-      // wrap across lines inside the sentence, so this stays a focusable <span>.
-      // oxlint-disable-next-line jsx-a11y/no-noninteractive-tabindex
-      tabIndex={0}
       data-cursor={label}
+      aria-describedby={cardId}
       onMouseEnter={place}
       onFocus={place}
+      onClick={(event) => {
+        event.preventDefault();
+        event.currentTarget.focus();
+      }}
     >
       {children}
-      <span ref={cardRef} className={cardClassName} role="tooltip">
+      <span ref={cardRef} id={cardId} className={cardClassName} aria-hidden="true">
         {card}
       </span>
-    </span>
+    </a>
   );
 }

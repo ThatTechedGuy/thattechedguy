@@ -1,13 +1,6 @@
 "use client";
 
-import {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  useSyncExternalStore,
-  type ReactNode,
-} from "react";
+import { useEffect, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
 
 import { prefersReducedMotion } from "@/lib/motion/media";
 
@@ -23,11 +16,14 @@ export function Places({ places }: { places: readonly { id: string; content: Rea
     }, 5000);
     return () => clearInterval(id);
   }, [places.length]);
-  const hold = useCallback(() => (held.current = true), []);
-  const release = useCallback(() => (held.current = false), []);
 
   return (
-    <div className="places reveal" aria-live="off" onMouseEnter={hold} onMouseLeave={release}>
+    <div
+      className="places reveal"
+      aria-live="off"
+      onMouseEnter={() => (held.current = true)}
+      onMouseLeave={() => (held.current = false)}
+    >
       {places.map(({ id, content }, k) => (
         <div key={id} className={k === shown ? "place on" : "place"}>
           {content}

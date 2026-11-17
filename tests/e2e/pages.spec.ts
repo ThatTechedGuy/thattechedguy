@@ -10,16 +10,22 @@ function watchErrors(page: Page): string[] {
   return errors;
 }
 
-/** Scrolls through the page in steps, so every scroll-driven island runs. */
-async function scrollThrough(page: Page) {
-  const height = await page.evaluate(() => document.documentElement.scrollHeight);
-  for (let y = 0; y < height; y += 700) {
-    // Steps must run in order, one scroll after another.
-    // oxlint-disable-next-line no-await-in-loop
-    await page.evaluate((top) => window.scrollTo(0, top), y);
-    // oxlint-disable-next-line no-await-in-loop
-    await page.waitForTimeout(60);
-  }
+/**
+ * Scrolls down the page 700 px every 60 ms, so every scroll-driven island runs. The steps run in the page as a
+ * timer chain: one call, and each step waits for the last. (A smooth scroll is not enough: WebKit jumps.)
+ */
+function scrollThrough(page: Page) {
+  return page.evaluate(
+    () =>
+      new Promise<void>((resolve) => {
+        const step = (y: number) => {
+          scrollTo(0, y);
+          if (y >= document.documentElement.scrollHeight) resolve();
+          else setTimeout(() => step(y + 700), 60);
+        };
+        step(0);
+      }),
+  );
 }
 
 for (const path of ["/", "/opinions", "/yank"]) {

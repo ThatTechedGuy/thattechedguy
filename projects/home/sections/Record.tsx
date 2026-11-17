@@ -59,7 +59,7 @@ export function Record() {
               <summary data-cursor="Open">
                 <span className="small yrs">2023 – 2025</span>
                 <span className="co">
-                  <Logo className="logo" src={eightSeats} alt="8seats logo" />
+                  <Logo className="logo" src={eightSeats} />
                   8seats
                 </span>
                 <span className="role">
@@ -112,7 +112,7 @@ export function Record() {
               <summary data-cursor="Open">
                 <span className="small yrs">2022 – 2023</span>
                 <span className="co">
-                  <Logo className="logo" src={dreamwalk} alt="DreamWalk logo" />
+                  <Logo className="logo" src={dreamwalk} />
                   DreamWalk
                 </span>
                 <span className="role">
@@ -160,7 +160,7 @@ export function Record() {
               <summary data-cursor="Open">
                 <span className="small yrs">2020 – 2021</span>
                 <span className="co">
-                  <Logo className="logo" src={smallcase} alt="smallcase logo" />
+                  <Logo className="logo" src={smallcase} />
                   smallcase
                 </span>
                 <span className="role">

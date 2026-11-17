@@ -1,3 +1,4 @@
+import { plainPage } from "../config";
 const copiedThings = [
   "a link",
   "grandma’s pie recipe",
@@ -25,14 +26,7 @@ const twice = [0, 1];
 /** Two tilted marquee bands: things people copy, and Yank's shortcuts. Decorative. */
 export function Stripes() {
   return (
-    <div
-      aria-hidden="true"
-      data-bg="#F5F5F7"
-      data-bg-dark="#07070B"
-      data-fg="#1D1D1F"
-      data-fg-dark="#F5F5F7"
-      className="stripes"
-    >
+    <div aria-hidden="true" {...plainPage} className="stripes">
       <div className="stripe stripe-brand">
         <div className="stripe-track marquee">
           {twice.flatMap((copy) =>

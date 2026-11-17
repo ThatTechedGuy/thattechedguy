@@ -15,7 +15,6 @@ function PastedChip({ note }: { note: Pasted }) {
   return (
     <span className="inline-flex items-center gap-8 rounded-[10px] border border-hair2 bg-chip px-12 py-6">
       {note.kind === "color" && (
-        // oxlint-disable-next-line react-perf/jsx-no-new-object-as-prop -- the swatch is the pasted colour.
         <span className="size-18 rounded-[5px]" style={{ background: note.hex }} />
       )}
       {note.kind === "image" && (

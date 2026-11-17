@@ -1,3 +1,4 @@
+import { plainPage } from "../config";
 import { Logo } from "../icons/Logo";
 import { ThemePill } from "../theme/ThemePill";
 
@@ -5,10 +6,7 @@ import { ThemePill } from "../theme/ThemePill";
 export function Header() {
   return (
     <header
-      data-bg="#F5F5F7"
-      data-bg-dark="#07070B"
-      data-fg="#1D1D1F"
-      data-fg-dark="#F5F5F7"
+      {...plainPage}
       className="relative z-5 mx-auto flex max-w-1320 items-center justify-between gap-20 px-32 py-22"
     >
       <a href="#top" className="flex items-center gap-10 text-ink no-underline">

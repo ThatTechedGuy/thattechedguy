@@ -1,5 +1,3 @@
-import type { MouseEvent } from "react";
-
 import type { Clip, ClipKind } from "./clips";
 
 /** Each kind's coloured header strip. */
@@ -47,7 +45,6 @@ function ClipBody({ clip }: { clip: Clip }) {
     case "color":
       return (
         <>
-          {/* oxlint-disable-next-line react-perf/jsx-no-new-object-as-prop -- the swatch is the clip's own colour. */}
           <span className="flex-1 rounded-[10px]" style={{ background: clip.hex }} />
           <span className="text-[16px] font-semibold">{clip.hex}</span>
         </>
@@ -81,13 +78,13 @@ interface ClipCardProps {
   /** 1–9 for the first nine cards: the key that pastes it. */
   badge: string;
   selected: boolean;
-  onSelect: (event: MouseEvent<HTMLButtonElement>) => void;
-  onPaste: (event: MouseEvent<HTMLButtonElement>) => void;
+  onSelect: () => void;
+  onPaste: () => void;
 }
 
 /**
  * One copy in the strip. Its visible text is its accessible name (WCAG 2.5.3) and aria-pressed says
- * which card is selected. The handlers are shared by every card and read the clip from data-clip.
+ * which card is selected. data-clip lets the demo scroll the selected card into view.
  */
 export function ClipCard({ clip, badge, selected, onSelect, onPaste }: ClipCardProps) {
   return (

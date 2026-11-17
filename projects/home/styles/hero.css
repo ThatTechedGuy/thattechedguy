@@ -105,6 +105,8 @@
   text-decoration-color: var(--grey);
 }
 .hov {
+  /* A link (islands/HoverCard.tsx), dotted instead of the links' drawn underline. */
+  background: none;
   position: relative;
   z-index: 20;
   cursor: help;
@@ -113,6 +115,9 @@
   text-underline-offset: 0.12em;
   text-decoration-style: dotted;
   text-decoration-color: var(--grey);
+}
+/* The open card is the focus cue. */
+.hov:focus-visible {
   outline: none;
 }
 .hov .card,
@@ -224,13 +229,13 @@
   gap: 0.4rem;
   white-space: nowrap;
 }
-.chips .chip img {
+.chips .chip .logo-pic {
   width: 1.1rem;
   height: 1.1rem;
   flex: none;
   transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-.chips .chip:hover img {
+.chips .chip:hover .logo-pic {
   transform: scale(1.35);
 }
 .poly del {

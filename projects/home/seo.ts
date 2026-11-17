@@ -2,7 +2,7 @@
 
 import type { Metadata, Viewport } from "next";
 
-import { graph, person, webSite } from "@/lib/seo/json-ld";
+import { graph, webSite } from "@/lib/seo/json-ld";
 import { isIndexable, site } from "@/site.config";
 
 import { linkedinUrl } from "./config";
@@ -51,8 +51,12 @@ export const homeJsonLd = graph(
     mainEntity: { "@id": `${url}#person` },
   },
   {
-    ...person("Vishal Gupta", url, [site.githubUrl, linkedinUrl]),
+    "@type": "Person",
+    "@id": `${url}#person`,
+    name: "Vishal Gupta",
     alternateName: site.name,
+    url,
+    sameAs: [site.githubUrl, linkedinUrl],
     description,
     jobTitle: "AI Engineer",
     worksFor: {

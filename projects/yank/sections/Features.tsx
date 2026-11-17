@@ -2,7 +2,14 @@ import { Icon, type IconName } from "../icons/Icon";
 import { PatternCanvas } from "../patterns/PatternCanvas";
 import { PinboardCard, SearchCard } from "./FeatureHighlights";
 
-const smallFeatures: { title: string; text: string; icon: IconName; colour: string }[] = [
+const smallFeatures: {
+  title: string;
+  text: string;
+  icon: IconName;
+  colour: string;
+  /** Shows the "always paste without formatting" switch. */
+  toggle?: true;
+}[] = [
   {
     title: "Paste in order",
     text: "Copy your name, email and address, then paste them one after another into a form.",
@@ -20,6 +27,7 @@ const smallFeatures: { title: string; text: string; icon: IconName; colour: stri
     text: "Paste text without its old fonts and colors.",
     icon: "wand",
     colour: "text-green",
+    toggle: true,
   },
 ];
 
@@ -56,7 +64,7 @@ export function Features() {
               {feature.title}
             </h3>
             <p className="m-0 text-[17px] leading-normal text-lead">{feature.text}</p>
-            {feature.title === "Clean paste" && (
+            {feature.toggle && (
               // A real checkbox, so it toggles without JavaScript.
               <label className="mt-auto flex cursor-pointer items-center justify-between gap-12 rounded-[14px] bg-chip px-14 py-12 text-[16px]">
                 <span>Always paste without formatting</span>

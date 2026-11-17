@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  useCallback,
   useEffect,
   useRef,
   useState,
@@ -45,6 +44,17 @@ const swatches: Record<string, CSSProperties> = Object.fromEntries([
 
 // The server cannot know the visitor's paper; React reads it right after hydration (aria-checked and theme-color only).
 const serverPalette = () => undefined;
+
+// Random reshuffles on every click; a paper is saved, even the one already on screen.
+function pick(id: string, event: MouseEvent<HTMLButtonElement>) {
+  const next = palettes.find((paper) => paper.id === id);
+  // The ink spreads from the swatch.
+  const swatch = event.currentTarget.querySelector(".sw")?.getBoundingClientRect();
+  const x = swatch ? swatch.x + swatch.width / 2 : event.clientX;
+  const y = swatch ? swatch.y + swatch.height / 2 : event.clientY;
+  if (id === "random") flipPaper(applyRandom, x, y);
+  else if (next && next.id !== readChoice()) flipPaper(() => applyPalette(next.id), x, y);
+}
 
 /**
  * The side rail (a pill on phones): section links, a link to the other page, Try Yank, reading progress, and the
@@ -134,23 +144,8 @@ export function Rail({ nav }: { nav: PageNav }) {
     };
   }, [sections]);
 
-  const toggleIndex = useCallback(() => setMenu((open) => (open === "index" ? null : "index")), []);
-  const togglePalette = useCallback(
-    () => setMenu((open) => (open === "palette" ? null : "palette")),
-    [],
-  );
-  const closeMenu = useCallback(() => setMenu(null), []);
-  // Random reshuffles on every click; a paper is saved, even the one already on screen.
-  const pick = useCallback((event: MouseEvent<HTMLButtonElement>) => {
-    const id = event.currentTarget.dataset["palette"];
-    const next = palettes.find((paper) => paper.id === id);
-    // The ink spreads from the swatch.
-    const swatch = event.currentTarget.querySelector(".sw")?.getBoundingClientRect();
-    const x = swatch ? swatch.x + swatch.width / 2 : event.clientX;
-    const y = swatch ? swatch.y + swatch.height / 2 : event.clientY;
-    if (id === "random") flipPaper(applyRandom, x, y);
-    else if (next && next.id !== readChoice()) flipPaper(() => applyPalette(next.id), x, y);
-  }, []);
+  const toggle = (which: Menu) => setMenu((open) => (open === which ? null : which));
+  const closeMenu = () => setMenu(null);
 
   const paper = palettes.find(({ id }) => id === palette)?.paper;
 
@@ -196,7 +191,7 @@ export function Rail({ nav }: { nav: PageNav }) {
             aria-expanded={menu === "index"}
             aria-controls="pop-index"
             aria-label="Index"
-            onClick={toggleIndex}
+            onClick={() => toggle("index")}
           >
             <span className="burger" aria-hidden="true" />
           </button>
@@ -208,7 +203,7 @@ export function Rail({ nav }: { nav: PageNav }) {
             aria-expanded={menu === "palette"}
             aria-controls="pop-palette"
             aria-label="Choose colours"
-            onClick={togglePalette}
+            onClick={() => toggle("palette")}
           >
             <span className="swatch" aria-hidden="true" />
           </button>
@@ -229,8 +224,7 @@ export function Rail({ nav }: { nav: PageNav }) {
             type="button"
             role="menuitemradio"
             aria-checked={choice === id}
-            data-palette={id}
-            onClick={pick}
+            onClick={(event) => pick(id, event)}
           >
             <span className="sw" style={swatches[id]} />
             {name}

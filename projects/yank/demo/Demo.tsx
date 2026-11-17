@@ -1,15 +1,6 @@
 "use client";
 
-import {
-  useCallback,
-  useEffect,
-  useReducer,
-  useRef,
-  type ChangeEvent,
-  type KeyboardEvent,
-  type MouseEvent,
-  type ReactNode,
-} from "react";
+import { useEffect, useReducer, useRef, type KeyboardEvent, type ReactNode } from "react";
 
 import { ClipCard } from "./ClipCard";
 import {
@@ -72,57 +63,26 @@ export function Demo() {
       row.scrollLeft = right - row.clientWidth + 12;
   }, [state.selected]);
 
-  const onStripKey = useCallback(
-    (event: KeyboardEvent<HTMLDivElement>) => {
-      if (event.target instanceof HTMLInputElement) return;
-      const { key } = event;
-      if (key === "ArrowRight" || key === "ArrowLeft") {
-        keyMoved.current = true;
-        dispatch({ type: "move", by: key === "ArrowRight" ? 1 : -1 });
-      } else if (key === "Enter") dispatch({ type: "paste", plain: event.shiftKey });
-      else if (key === "p" || key === "P") dispatch({ type: "pin" });
-      else if (/^[1-9]$/.test(key)) {
-        const clip = list[Number(key) - 1];
-        if (!clip) return;
-        dispatch({ type: "paste", plain: event.shiftKey, id: clip.id });
-      } else return;
-      event.preventDefault();
-    },
-    [list],
-  );
-  const onSearchKey = useCallback((event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") dispatch({ type: "paste", plain: event.shiftKey });
-    else if (event.key !== "ArrowDown") return;
+  const onStripKey = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (event.target instanceof HTMLInputElement) return;
+    const { key } = event;
+    if (key === "ArrowRight" || key === "ArrowLeft") {
+      keyMoved.current = true;
+      dispatch({ type: "move", by: key === "ArrowRight" ? 1 : -1 });
+    } else if (key === "Enter") dispatch({ type: "paste", plain: event.shiftKey });
+    else if (key === "p" || key === "P") dispatch({ type: "pin" });
+    else if (/^[1-9]$/.test(key)) {
+      const clip = list[Number(key) - 1];
+      if (!clip) return;
+      dispatch({ type: "paste", plain: event.shiftKey, id: clip.id });
+    } else return;
     event.preventDefault();
-  }, []);
-  const onQuery = useCallback(
-    (event: ChangeEvent<HTMLInputElement>) =>
-      dispatch({ type: "query", query: event.target.value }),
-    [],
-  );
-  const clearQuery = useCallback(() => dispatch({ type: "query", query: "" }), []);
-  const pickTab = useCallback((event: MouseEvent<HTMLButtonElement>) => {
-    const board = boards.find((item) => item.id === event.currentTarget.dataset["board"]);
-    if (board) dispatch({ type: "tab", board: board.id });
-  }, []);
-  const selectClip = useCallback(
-    (event: MouseEvent<HTMLButtonElement>) =>
-      dispatch({ type: "select", id: event.currentTarget.dataset["clip"] ?? "" }),
-    [],
-  );
-  const pasteClip = useCallback(
-    (event: MouseEvent<HTMLButtonElement>) =>
-      dispatch({ type: "paste", plain: false, id: event.currentTarget.dataset["clip"] ?? "" }),
-    [],
-  );
-  const pin = useCallback(() => dispatch({ type: "pin" }), []);
-  const pastePlain = useCallback(() => dispatch({ type: "paste", plain: true }), []);
-  const pasteRich = useCallback(() => dispatch({ type: "paste", plain: false }), []);
-  const clearNotes = useCallback(() => dispatch({ type: "clearNotes" }), []);
+  };
+  const paste = (plain: boolean) => dispatch({ type: "paste", plain });
 
   return (
     <div className="flex flex-col gap-16 font-sans text-ink">
-      <NotePad notes={state.notes} onClear={clearNotes} />
+      <NotePad notes={state.notes} onClear={() => dispatch({ type: "clearNotes" })} />
       {/* A toolbar: the strip itself takes the arrow keys, as Yank's real strip does. */}
       <div
         tabIndex={0}
@@ -150,15 +110,15 @@ export function Demo() {
             <input
               type="text"
               value={state.query}
-              onChange={onQuery}
-              onKeyDown={onSearchKey}
+              onChange={(event) => dispatch({ type: "query", query: event.target.value })}
+              onKeyDown={(event) => event.key === "Enter" && paste(event.shiftKey)}
               placeholder="Search copies, try “gate”"
               className="min-w-0 flex-1 border-0 bg-transparent font-sans text-[16px] text-ink outline-none"
             />
             {query.length > 0 && (
               <button
                 type="button"
-                onClick={clearQuery}
+                onClick={() => dispatch({ type: "query", query: "" })}
                 aria-label="Clear search"
                 className="size-28 cursor-pointer rounded-full border-0 bg-[#E5E5EA] text-[14px] text-graphite"
               >
@@ -179,9 +139,8 @@ export function Demo() {
                   key={board.id}
                   type="button"
                   role="tab"
-                  data-board={board.id}
                   aria-selected={on}
-                  onClick={pickTab}
+                  onClick={() => dispatch({ type: "tab", board: board.id })}
                   className={`min-h-40 flex-none cursor-pointer rounded-full border-0 px-16 font-sans text-[15px] font-semibold whitespace-nowrap transition-colors duration-[120ms] ${on ? "bg-white text-graphite shadow-[0_1px_3px_rgba(0,0,0,0.14),0_0_0_0.5px_rgba(0,0,0,0.04)]" : "bg-transparent text-ink"}`}
                 >
                   {board.label} <span className="font-medium opacity-60">{count}</span>
@@ -201,8 +160,8 @@ export function Demo() {
                 clip={clip}
                 badge={index < 9 ? String(index + 1) : ""}
                 selected={clip.id === state.selected}
-                onSelect={selectClip}
-                onPaste={pasteClip}
+                onSelect={() => dispatch({ type: "select", id: clip.id })}
+                onPaste={() => dispatch({ type: "paste", plain: false, id: clip.id })}
               />
             ))}
             {list.length === 0 && (
@@ -225,21 +184,21 @@ export function Demo() {
           <div className="flex flex-wrap gap-8">
             <button
               type="button"
-              onClick={pin}
+              onClick={() => dispatch({ type: "pin" })}
               className={`${pill} bg-[rgba(118,118,128,0.12)] text-ink`}
             >
               {pinned ? "Unpin" : "Pin"}
             </button>
             <button
               type="button"
-              onClick={pastePlain}
+              onClick={() => paste(true)}
               className={`${pill} bg-[rgba(118,118,128,0.12)] text-ink`}
             >
               Paste without formatting
             </button>
             <button
               type="button"
-              onClick={pasteRich}
+              onClick={() => paste(false)}
               className={`${pill} btn-accent px-22 font-bold shadow-[inset_0_1px_0_rgba(255,255,255,0.35),0_6px_16px_rgba(10,132,255,0.3)]`}
             >
               Paste

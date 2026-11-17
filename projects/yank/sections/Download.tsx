@@ -1,4 +1,4 @@
-import { yank } from "../config";
+import { plainPage, yank } from "../config";
 import { Icon } from "../icons/Icon";
 import { Logo } from "../icons/Logo";
 import { PatternCanvas } from "../patterns/PatternCanvas";
@@ -6,15 +6,7 @@ import { PatternCanvas } from "../patterns/PatternCanvas";
 /** The closing call to action. */
 export function Download() {
   return (
-    <section
-      id="download"
-      data-chap=""
-      data-bg="#F5F5F7"
-      data-bg-dark="#07070B"
-      data-fg="#1D1D1F"
-      data-fg-dark="#F5F5F7"
-      className="mx-auto max-w-1320 px-32"
-    >
+    <section id="download" data-chap="" {...plainPage} className="mx-auto max-w-1320 px-32">
       <div className="cta-gradient relative isolate flex flex-wrap items-center justify-between gap-40 overflow-hidden rounded-[40px] p-[clamp(40px,7vw,96px)] text-white">
         <PatternCanvas
           kind="dither"

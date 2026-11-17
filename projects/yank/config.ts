@@ -24,6 +24,14 @@ export const yank: YankConfig = {
   themeStorageKey: "ttg:yank:theme",
 };
 
+/** The plain page's colours, light and dark, for the sections that sit on it. SectionTracker colours the page from them. */
+export const plainPage = {
+  "data-bg": "#F5F5F7",
+  "data-bg-dark": "#07070B",
+  "data-fg": "#1D1D1F",
+  "data-fg-dark": "#F5F5F7",
+} as const;
+
 /** The page's chapters, in order. The ids are the stable section anchors. */
 export const chapters = [
   { id: "top", label: "Intro" },

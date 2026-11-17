@@ -1,19 +1,11 @@
-import { yank } from "../config";
+import { plainPage, yank } from "../config";
 import { Icon } from "../icons/Icon";
 import { PatternCanvas } from "../patterns/PatternCanvas";
 import { HeroScreen } from "./HeroScreen";
 
 export function Hero() {
   return (
-    <section
-      id="top"
-      data-chap=""
-      data-bg="#F5F5F7"
-      data-bg-dark="#07070B"
-      data-fg="#1D1D1F"
-      data-fg-dark="#F5F5F7"
-      className="relative isolate px-32 pt-64 pb-140"
-    >
+    <section id="top" data-chap="" {...plainPage} className="relative isolate px-32 pt-64 pb-140">
       <PatternCanvas kind="dots" colour="ink" alpha={0.55} placement="hero" />
       {/* Three soft colour blobs drifting behind the headline. */}
       <div

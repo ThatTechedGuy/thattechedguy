@@ -2,10 +2,10 @@
 
 import type { Metadata, Viewport } from "next";
 
-import { freeApp, graph, organization, webSite } from "@/lib/seo/json-ld";
+import { graph, webSite } from "@/lib/seo/json-ld";
 import { isIndexable, site } from "@/site.config";
 
-import { yank } from "./config";
+import { plainPage, yank } from "./config";
 
 const url = `${site.origin}/yank`;
 const title = "Yank: free, open-source clipboard manager for Mac";
@@ -27,22 +27,35 @@ export const yankMetadata: Metadata = {
 
 export const yankViewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#F5F5F7" },
-    { media: "(prefers-color-scheme: dark)", color: "#07070B" },
+    { media: "(prefers-color-scheme: light)", color: plainPage["data-bg"] },
+    { media: "(prefers-color-scheme: dark)", color: plainPage["data-bg-dark"] },
   ],
 };
 
 export const yankJsonLd = graph(
-  freeApp({
+  {
+    // Also SoftwareSourceCode, because codeRepository belongs to that type. No ratings or reviews: there are none.
+    "@type": ["SoftwareApplication", "SoftwareSourceCode"],
+    "@id": `${url}#app`,
     name: "Yank",
     url,
     description,
     operatingSystem: "macOS 26.4 or later",
+    applicationCategory: "UtilitiesApplication",
+    isAccessibleForFree: true,
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
     downloadUrl: absolute(yank.downloadUrl),
     screenshot: absolute("/yank/screenshot.jpg"),
     license: yank.licenseUrl,
     codeRepository: yank.repoUrl,
-  }),
+  },
   webSite("Yank", url, description),
-  organization(site.name, site.origin, absolute("/yank/icon.svg"), [yank.repoUrl, site.githubUrl]),
+  {
+    "@type": "Organization",
+    "@id": `${site.origin}#organization`,
+    name: site.name,
+    url: site.origin,
+    logo: absolute("/yank/icon.svg"),
+    sameAs: [yank.repoUrl, site.githubUrl],
+  },
 );

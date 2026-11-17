@@ -111,15 +111,15 @@ export function Hero() {
           <dt className="label">Previously</dt>
           <dd className="chips">
             <span className="chip">
-              <Logo src={eightSeats} alt="" eager />
+              <Logo src={eightSeats} />
               8seats
             </span>{" "}
             <span className="chip">
-              <Logo src={dreamwalk} alt="" eager />
+              <Logo src={dreamwalk} />
               DreamWalk
             </span>{" "}
             <span className="chip">
-              <Logo src={smallcase} alt="" eager />
+              <Logo src={smallcase} />
               smallcase
             </span>
           </dd>

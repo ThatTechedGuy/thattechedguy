@@ -73,13 +73,13 @@ export function Film() {
       <figure
         data-reveal=""
         data-cursor="Watch"
+        aria-label="Animation: an address is copied in Notes, then pasted into an email with Yank"
         className="glass-card m-0 overflow-hidden rounded-[30px]"
       >
-        {/* Sized in em, so the one font size below scales the whole film with the viewport. */}
+        {/* Sized in em, so the one font size below scales the whole film with the viewport. The figure's label
+            describes it, so the drawing itself is hidden from screen readers. */}
         <div
-          // oxlint-disable-next-line jsx-a11y/prefer-tag-over-role -- drawn with CSS, so there is no <img> to use.
-          role="img"
-          aria-label="Animation: an address is copied in Notes, then pasted into an email with Yank"
+          aria-hidden="true"
           className="wallpaper relative aspect-video w-full overflow-hidden font-sans text-[clamp(8px,1.25vw,17px)] text-ink"
         >
           <AppWindow app="Notes" className="top-[8%] left-[5%] h-[52%] w-[44%]">
