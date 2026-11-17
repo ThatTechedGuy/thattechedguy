@@ -280,8 +280,7 @@ export function demoReducer(state: DemoState, action: DemoAction): DemoState {
     }
     case "query": {
       const next = { ...state, query: action.query };
-      if (!isSearching(next)) return next;
-      // Keep the selection on a visible card, so Return pastes a search result.
+      // Keep the selection on a visible card, so Return pastes what is on screen, during a search and after it.
       const results = visibleClips(next);
       const first = results[0];
       return first && !results.some((clip) => clip.id === state.selected)

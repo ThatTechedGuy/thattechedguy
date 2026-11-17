@@ -30,6 +30,11 @@ test("one character does not search; the open tab stays", () => {
   expect(ids(run({ type: "query", query: " g " }))).toEqual(ids(initialDemoState));
 });
 
+test("clearing a search keeps the selection on a visible card", () => {
+  const state = run({ type: "query", query: "passport" }, { type: "query", query: "" });
+  expect(ids(state)).toContain(state.selected);
+});
+
 test("arrow moves stop at both ends of the row", () => {
   expect(run({ type: "move", by: -1 }).selected).toBe("c1");
   const last = Array.from({ length: 20 }, (): DemoAction => ({ type: "move", by: 1 }));
