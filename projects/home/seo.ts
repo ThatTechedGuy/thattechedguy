@@ -31,7 +31,6 @@ export const homeMetadata: Metadata = {
     locale: "en_AU",
   },
   twitter: { card: "summary_large_image", title, description },
-  ...(site.googleSiteVerification ? { verification: { google: site.googleSiteVerification } } : {}),
 };
 
 export const homeViewport: Viewport = {

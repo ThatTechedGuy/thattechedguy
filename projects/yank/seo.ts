@@ -23,7 +23,6 @@ export const yankMetadata: Metadata = {
   manifest: "/yank/manifest.webmanifest",
   openGraph: { type: "website", url, siteName: "Yank", title, description, locale: "en_US" },
   twitter: { card: "summary_large_image", title, description },
-  ...(site.googleSiteVerification ? { verification: { google: site.googleSiteVerification } } : {}),
 };
 
 export const yankViewport: Viewport = {

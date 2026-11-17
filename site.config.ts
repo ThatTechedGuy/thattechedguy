@@ -4,8 +4,6 @@ export const site = {
   origin: "https://thattechedguy.com",
   name: "ThatTechedGuy",
   githubUrl: "https://github.com/thattechedguy",
-  /** Google Search Console token; paste it here once the property is created. */
-  googleSiteVerification: "",
 } as const;
 
 export interface Project {

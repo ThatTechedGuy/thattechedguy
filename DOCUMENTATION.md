@@ -55,7 +55,7 @@ app/                 routes only: layouts, pages, metadata files
 lib/                 shared and look-free: theme storage, reduced motion, View Transitions, JSON-LD
                      (one exception: page-transition.css, the look both ends of a page change share)
 projects/<name>/     everything one project looks like: tokens, CSS, fonts, components, settings
-site.config.ts       the domain, the GitHub link, the projects list, the Search Console token
+site.config.ts       the domain, the GitHub link, the projects list
 tests/               unit tests (bun test) and end-to-end tests (Playwright)
 ```
 
@@ -109,7 +109,7 @@ The Stack section is three S to D tier lists: languages, frameworks and runtimes
 | Styles                                                       | `projects/home/styles/stack.css` (the Try Yank pill lives in `rail.css`) |
 | The painting's scroll drift                                  | `projects/home/styles/stack.css` (a scroll-linked animation)             |
 
-The art is one long painting down the right-hand side, like a sleeve tattoo, drawn in the Madhubani manner: every shape has a double outline and a flat or patterned fill (hatching, dots, scales, zigzags), and fish pairs, lotuses and birds fill the panels between motifs, with sawtooth borders down both edges. The motifs are a chess king, a mocha with caramel and hazelnuts, the number 5, a tennis racket with a 16x19 string bed, the Howrah Bridge, an owl with round glasses and a wand, a triangle with a circle and a knotted wand, a pierced diary, a ring, a winged fire-breathing dragon, a gold locket with an emerald serpent S, a two-handled cup, a diadem, a snake, a sword with rubies, swirling ancient magic, a seven-star orb, a glowing gate, pickleball, a can of zero-sugar cola, padel and a broad glowing blade with a winged guard. They are original drawings made of simple shapes, not copies of any character, logo or brand. Colours come from the palette (ink, paper and link colour, plus `--mb-accent`, `--mb-green` and `--mb-red` per paper, set in `styles/stack.css`) through inline styles and `url(#mb-…)` fill patterns, so nothing needs to reach into the `<use>` shadow trees. A scroll-linked CSS animation moves the painting in step with the page, so all of it passes by the end. On phones the painting runs left to right across the top of the page.
+The art is one long painting down the right-hand side, like a sleeve tattoo, drawn in the Madhubani manner: every shape has a double outline and a flat or patterned fill (hatching, dots, scales, zigzags), and fish pairs, lotuses and birds fill the panels between motifs, with sawtooth borders down both edges. The motifs are a chess king, a mocha with caramel and hazelnuts, the number 5, a tennis racket with a 16x19 string bed, the Howrah Bridge, an owl with round glasses and a wand, a triangle with a circle and a knotted wand, a pierced diary, a ring, a winged fire-breathing dragon, a gold locket with an emerald serpent S, a two-handled cup, a diadem, a snake, a sword with rubies, swirling ancient magic, a seven-star orb, a glowing gate, pickleball, a can of zero-sugar cola, padel and a broad glowing blade with a winged guard. They are original drawings made of simple shapes, not copies of any character, logo or brand. Colours come from the palette (ink, paper and link colour, plus `--mb-accent`, `--mb-green` and `--mb-red` per paper, set in `styles/stack.css`) through inline styles and `url(#mb-…)` fill patterns, so nothing needs to reach into the `<use>` shadow trees. The art is edited by hand in `art.ts`: the script that first generated it was not kept. A scroll-linked CSS animation moves the painting in step with the page, so all of it passes by the end. On phones the painting runs left to right across the top of the page.
 
 ### Yank (`/yank`)
 
@@ -139,7 +139,6 @@ Vercel detects `bun.lock` and installs and builds with Bun, with no extra settin
 1. Import the repository as a new project (framework: Next.js).
 2. In **Settings → Domains**, add `thattechedguy.com` (connected to Production) and `www.thattechedguy.com`.
 3. For `www.thattechedguy.com`, choose **Redirect to** `thattechedguy.com` with **308 Permanent Redirect**. At your DNS provider, set the records Vercel shows: an `A` record for the bare domain and a `CNAME` for `www`.
-4. After the first production deploy, create a Google Search Console property for `https://thattechedguy.com`, choose the HTML tag method, and paste the token into `googleSiteVerification` in `site.config.ts`.
 
 Only production deployments may be indexed (`VERCEL_ENV === "production"`). Preview deployments serve a `robots.txt` that disallows everything, plus a `noindex` meta tag. In production every crawler is allowed, and the main AI crawlers are named outright.
 
@@ -222,7 +221,3 @@ Measured on a local production build:
 **Why `/yank`'s LCP is 2.9 s.** The real first paint happens about 0.15 s after navigation, but Lighthouse's simulation charges LCP for every byte requested before it. Even with every script and font blocked, it estimates 1.8 s. The rest comes from the Next.js and React runtime (about 114 KB of the JavaScript above, shared by every page) and from Newsreader on non-Apple browsers.
 
 On a phone with the CPU slowed four times, every interaction takes at most 80 ms, except Yank's theme switch (105–190 ms), which restyles and repaints the whole page.
-
-## Before launch
-
-- [ ] Paste the Search Console token into `site.config.ts` after the first production deploy.
