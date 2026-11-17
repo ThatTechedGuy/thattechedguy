@@ -68,7 +68,7 @@ Each page remembers its own colours:
 
 Moving around is animated with View Transitions, all styled in `lib/motion/page-transition.css`, which both root layouts import:
 
-- **Between pages** the links stay plain `<a>`, and the browser runs a cross-document transition across the load (Chrome and Edge 126+, Safari 18.2+; Firefox just loads). The old page sinks and fades, the new one rises in, the rail holds still (it has its own `view-transition-name`), and the Opinions painting slides in from the right.
+- **Between pages** the links are `next/link`. Between the home and Opinions pages, which share a root layout, the navigation stays in the page: each page mounts a `<ViewTransition default="none">` and the links pass `transitionTypes={["page"]}` (`projects/home/sections/PageLink.tsx`), so React runs the transition. To and from Yank, which has its own root layout, the browser loads the page and runs a cross-document transition across the load (Chrome and Edge 126+, Safari 18.2+; Firefox just loads). The old page sinks and fades, the new one rises in, the rail holds still (it has its own `view-transition-name`), and the Opinions painting slides in from the right.
 - **Within a page** every `#` link goes through `jumpTo` in `lib/motion/view-transition.ts`, called from the rail's click handler: the view travels down or up the way the page moves.
 - **Reduced motion** gets the plain load and the plain jump.
 

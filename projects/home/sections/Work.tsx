@@ -1,7 +1,9 @@
+import Image from "next/image";
+
 import { yankPath } from "../config";
 import uq from "../logos/uq.webp";
 import vegassess from "../logos/vegassess.webp";
-import { Logo } from "./Logo";
+import { PageLink } from "./PageLink";
 
 /** Selected work and Education, both as compact one-line rows. */
 export function Work() {
@@ -16,7 +18,7 @@ export function Work() {
         </div>
         <ol className="projects">
           <li className="proj reveal">
-            <a href={yankPath} data-cursor="View">
+            <PageLink href={yankPath} data-cursor="View">
               <span className="small">2026</span>
               <span className="pname">
                 <svg className="pico" aria-hidden="true">
@@ -31,13 +33,13 @@ export function Work() {
               <span className="arr" aria-hidden="true">
                 ↗
               </span>
-            </a>
+            </PageLink>
           </li>
           <li className="proj reveal">
             <a href="https://vegassess.com.au/" data-cursor="View">
               <span className="small">2023</span>
               <span className="pname">
-                <Logo className="pico tile" src={vegassess} />
+                <Image className="pico tile" src={vegassess} alt="" />
                 VegAssess
               </span>
               <span className="pdesc">
@@ -64,7 +66,7 @@ export function Work() {
           <a href="https://uq.edu.au/" data-cursor="View">
             <span className="small">2021 – 2022</span>
             <span className="pname">
-              <Logo className="pico tile" src={uq} />
+              <Image className="pico tile" src={uq} alt="" />
               The University of Queensland
             </span>
             <span className="pdesc">Bachelor of Engineering (Honours), Software Engineering</span>

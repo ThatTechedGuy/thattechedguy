@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ViewTransition } from "react";
 
 import { opinionsNav } from "@/projects/home/config";
 import { Cursor } from "@/projects/home/islands/Cursor";
@@ -15,7 +16,9 @@ export const metadata: Metadata = opinionsMetadata;
 /** The second page: the stack with a verdict on each tool, the gear, and hobbies. */
 export default function OpinionsPage() {
   return (
-    <>
+    // Mounting a <ViewTransition> makes a <Link> navigation run as a page transition. default="none": nothing in it
+    // gets its own layer, so the whole page animates as one (lib/motion/page-transition.css).
+    <ViewTransition default="none">
       <Sprite />
       <MotifDefs />
       <Rail nav={opinionsNav} />
@@ -32,6 +35,6 @@ export default function OpinionsPage() {
         </main>
       </div>
       <Cursor />
-    </>
+    </ViewTransition>
   );
 }

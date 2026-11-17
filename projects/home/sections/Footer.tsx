@@ -2,6 +2,7 @@ import { site } from "@/site.config";
 
 import { linkedinUrl, yankPath, type PageNav } from "../config";
 import { BrisbaneTime, GoldCoastSky, Places } from "../islands/Places";
+import { PageLink } from "./PageLink";
 
 const brisbane = (
   <>
@@ -87,7 +88,7 @@ export function Footer({ nav }: { nav: PageNav }) {
           <p className="label">Sitemap</p>
           <ul>
             <li>
-              <a href={nav.mark.href}>Home</a>
+              <PageLink href={nav.mark.href}>Home</PageLink>
             </li>
             {nav.sections.map(({ id, name }) => (
               <li key={id}>
@@ -96,15 +97,15 @@ export function Footer({ nav }: { nav: PageNav }) {
             ))}
             {nav.page.href !== nav.mark.href && (
               <li>
-                <a href={nav.page.href}>{nav.page.name}</a>
+                <PageLink href={nav.page.href}>{nav.page.name}</PageLink>
               </li>
             )}
           </ul>
           <ul>
             <li>
-              <a href={yankPath}>
+              <PageLink href={yankPath}>
                 Yank <span className="arr">↗</span>
-              </a>
+              </PageLink>
             </li>
             <li>
               <a href={site.githubUrl}>

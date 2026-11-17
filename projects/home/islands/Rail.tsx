@@ -20,6 +20,7 @@ import {
   readPalette,
   subscribePalette,
 } from "../palette";
+import { PageLink } from "../sections/PageLink";
 
 type Menu = "palette" | "index" | null;
 
@@ -154,9 +155,9 @@ export function Rail({ nav }: { nav: PageNav }) {
       {/* React puts this in <head>: the browser's bar takes the paper's colour. */}
       {paper ? <meta name="theme-color" content={paper} /> : null}
       <nav className="rail" aria-label="Sections">
-        <a className="rail-mark" href={nav.mark.href} aria-label={nav.mark.label}>
+        <PageLink className="rail-mark" href={nav.mark.href} aria-label={nav.mark.label}>
           vg
-        </a>
+        </PageLink>
         <ol className="rail-links">
           {sections.map(({ id, name }) => (
             <li key={id}>
@@ -167,19 +168,18 @@ export function Rail({ nav }: { nav: PageNav }) {
           ))}
           <li className="sep" aria-hidden="true" />
           <li>
-            <a className="page" href={nav.page.href}>
+            <PageLink className="page" href={nav.page.href}>
               {nav.page.name}
-            </a>
+            </PageLink>
           </li>
         </ol>
         <div className="rail-foot">
-          {/* A plain <a>: Yank has its own root layout (see config.ts). */}
-          <a className="rail-yank" href={yankPath} data-cursor="Try">
+          <PageLink className="rail-yank" href={yankPath} data-cursor="Try">
             <svg aria-hidden="true">
               <use href="#i-yank" />
             </svg>
             <span>Try Yank</span>
-          </a>
+          </PageLink>
           <div className="rail-prog" aria-hidden="true">
             <span ref={progress} />
           </div>
@@ -244,15 +244,15 @@ export function Rail({ nav }: { nav: PageNav }) {
         ))}
         {/* Other pages, under a rule. On phones Try Yank lives here, not in the pill. */}
         <div className="pop-pages">
-          <a className="page" href={nav.page.href} onClick={closeMenu}>
+          <PageLink className="page" href={nav.page.href} onClick={closeMenu}>
             {nav.page.name}
-          </a>
-          <a className="rail-yank" href={yankPath} onClick={closeMenu}>
+          </PageLink>
+          <PageLink className="rail-yank" href={yankPath} onClick={closeMenu}>
             <svg aria-hidden="true">
               <use href="#i-yank" />
             </svg>
             <span>Try Yank</span>
-          </a>
+          </PageLink>
         </div>
       </div>
     </>

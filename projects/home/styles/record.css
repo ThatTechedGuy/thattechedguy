@@ -136,6 +136,7 @@
   height: 1em;
   border-radius: 0;
   flex: none;
+  object-fit: cover;
   transform: none;
   transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
 }

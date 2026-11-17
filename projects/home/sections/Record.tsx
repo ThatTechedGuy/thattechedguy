@@ -1,7 +1,8 @@
+import Image from "next/image";
+
 import eightSeats from "../logos/8seats.webp";
 import dreamwalk from "../logos/dreamwalk.webp";
 import smallcase from "../logos/smallcase.webp";
-import { Logo } from "./Logo";
 
 /** The one figure, then the work history. Each job is a native <details>, so it opens without JavaScript. */
 export function Record() {
@@ -59,7 +60,7 @@ export function Record() {
               <summary data-cursor="Open">
                 <span className="small yrs">2023 – 2025</span>
                 <span className="co">
-                  <Logo className="logo" src={eightSeats} />
+                  <Image className="logo" alt="" src={eightSeats} />
                   8seats
                 </span>
                 <span className="role">
@@ -112,7 +113,7 @@ export function Record() {
               <summary data-cursor="Open">
                 <span className="small yrs">2022 – 2023</span>
                 <span className="co">
-                  <Logo className="logo" src={dreamwalk} />
+                  <Image className="logo" alt="" src={dreamwalk} />
                   DreamWalk
                 </span>
                 <span className="role">
@@ -160,7 +161,7 @@ export function Record() {
               <summary data-cursor="Open">
                 <span className="small yrs">2020 – 2021</span>
                 <span className="co">
-                  <Logo className="logo" src={smallcase} />
+                  <Image className="logo" alt="" src={smallcase} />
                   smallcase
                 </span>
                 <span className="role">

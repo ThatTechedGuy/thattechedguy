@@ -1,7 +1,7 @@
-/* Moving around the site. Both root layouts import this: a cross-document transition is styled by the page it
-   lands on. The old view sinks and fades while the new one rises in, between pages (plain links, so the browser
-   runs it across the load) and on in-page jumps (lib/motion/view-transition.ts), which travel the way the page
-   moves. Browsers without View Transitions, and reduced motion, get the plain jump or load. */
+/* Moving around the site. Both root layouts import this. The old view sinks and fades while the new one rises in:
+   between pages, both a <Link> navigation within a root layout (React runs it, typed "page" by the link) and a load
+   across root layouts (the browser runs it, typed "page" below), and on in-page jumps (lib/motion/view-transition.ts),
+   which travel the way the page moves. Browsers without View Transitions, and reduced motion, get the plain jump or load. */
 @media (prefers-reduced-motion: no-preference) {
   @view-transition {
     navigation: auto;

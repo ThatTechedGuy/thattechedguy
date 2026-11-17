@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { CSSProperties } from "react";
 
 import { HoverCard } from "../islands/HoverCard";
@@ -5,7 +6,6 @@ import { NameSwap } from "../islands/NameSwap";
 import eightSeats from "../logos/8seats.webp";
 import dreamwalk from "../logos/dreamwalk.webp";
 import smallcase from "../logos/smallcase.webp";
-import { Logo } from "./Logo";
 
 /** --i staggers the words' rise: word i starts 40 ms after word i - 1. */
 const word = (i: number): CSSProperties & Record<"--i", number> => ({ "--i": i });
@@ -111,15 +111,15 @@ export function Hero() {
           <dt className="label">Previously</dt>
           <dd className="chips">
             <span className="chip">
-              <Logo src={eightSeats} />
+              <Image alt="" loading="eager" src={eightSeats} />
               8seats
             </span>{" "}
             <span className="chip">
-              <Logo src={dreamwalk} />
+              <Image alt="" loading="eager" src={dreamwalk} />
               DreamWalk
             </span>{" "}
             <span className="chip">
-              <Logo src={smallcase} />
+              <Image alt="" loading="eager" src={smallcase} />
               smallcase
             </span>
           </dd>

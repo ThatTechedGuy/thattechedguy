@@ -109,11 +109,3 @@ summary:focus-visible {
   outline-offset: 4px;
   border-radius: 2px;
 }
-
-/* Logos (sections/Logo.tsx): decorative, so drawn as backgrounds; each place sets the size. */
-.logo-pic {
-  display: inline-block;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
