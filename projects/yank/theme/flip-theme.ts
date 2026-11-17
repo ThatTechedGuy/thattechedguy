@@ -58,8 +58,11 @@ export function flipTheme(event?: {
 
   busy = true;
   const sparks = createSparkLayer();
+  // Per flip, so this flip's 5 s safety net can't end a later flip.
+  let done = false;
   const cleanup = () => {
-    if (!busy) return;
+    if (done) return;
+    done = true;
     html.classList.remove("theme-flip");
     busy = false;
     // The sparks outlive the reveal by a moment.
