@@ -2,8 +2,8 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
-import type { MotifId } from "../stack/art";
-import { captions } from "../stack/captions";
+import type { MotifId } from "../opinions/art";
+import { captions } from "../opinions/captions";
 
 type Shown = { id: MotifId; use: SVGUseElement | null; pinned: boolean; open: boolean };
 

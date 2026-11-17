@@ -14,7 +14,7 @@ export function MotifDefs() {
   );
 }
 
-/** One long painting down the right-hand side (900px and wider), drifting with the scroll (stack.css). */
+/** One long painting down the right-hand side (900px and wider), drifting with the scroll (opinions.css). */
 export function Painting() {
   return <div className="mb-band" aria-hidden="true" dangerouslySetInnerHTML={painting} />;
 }

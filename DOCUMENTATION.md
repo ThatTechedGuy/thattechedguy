@@ -4,12 +4,12 @@ The source of [thattechedguy.com](https://thattechedguy.com): one Next.js app fo
 
 **Next.js 16** · **React 19** with the React Compiler · **Tailwind CSS 4** · **Bun** · **Playwright** · deployed on **Vercel**
 
-| URL           | What                                                    | Code                                           |
-| ------------- | ------------------------------------------------------- | ---------------------------------------------- |
-| `/`           | A one-page personal site in an editorial magazine style | `app/(home)/`, `projects/home/`                |
-| `/opinions`   | Opinions: tools, takes on them, gear, and hobbies       | `app/(home)/opinions/`, `projects/home/stack/` |
-| `/yank`       | Yank, a free, open-source clipboard manager for Mac     | `app/(yank)/yank/`, `projects/yank/`           |
-| anything else | A plain 404 that wears no project's look                | `app/global-not-found.tsx`                     |
+| URL           | What                                                    | Code                                              |
+| ------------- | ------------------------------------------------------- | ------------------------------------------------- |
+| `/`           | A one-page personal site in an editorial magazine style | `app/(home)/`, `projects/home/`                   |
+| `/opinions`   | Opinions: tools, takes on them, gear, and hobbies       | `app/(home)/opinions/`, `projects/home/opinions/` |
+| `/yank`       | Yank, a free, open-source clipboard manager for Mac     | `app/(yank)/yank/`, `projects/yank/`              |
+| anything else | A plain 404 that wears no project's look                | `app/global-not-found.tsx`                        |
 
 `robots.txt`, `sitemap.xml` and `llms.txt` are generated at the domain root from `site.config.ts`.
 
@@ -97,19 +97,19 @@ The Brisbane clock in the footer reads the visitor's own clock in the `Australia
 
 ### Opinions (`/opinions`)
 
-A second page in the home page's look, sharing its layout, palettes, rail, footer and cursor. The rail and footer take a `PageNav` (`homeNav` or `stackNav` in `projects/home/config.ts`), so each page links to its own sections and to the other page. Both rails carry a filled **Try Yank** link.
+A second page in the home page's look, sharing its layout, palettes, rail, footer and cursor. The rail and footer take a `PageNav` (`homeNav` or `opinionsNav` in `projects/home/config.ts`), so each page links to its own sections and to the other page. Both rails carry a filled **Try Yank** link.
 
 The Stack section is three S to D tier lists: languages, frameworks and runtimes, and cloud and data. Each item is a spreadsheet-style cell holding its logo (or its name, when Simple Icons has no logo), and its name and take open in the same `HoverCard` the home page's intro uses, on hover, keyboard focus or tap. To move one, change its `tier` in `languages`, `frameworks` or `cloud` in `data.ts`.
 
-| What                                                         | Where                                                                    |
-| ------------------------------------------------------------ | ------------------------------------------------------------------------ |
-| Copy: tier lists and takes, gear, hobbies                    | `projects/home/stack/data.ts`                                            |
-| Sections                                                     | `projects/home/stack/sections.tsx`                                       |
-| Madhubani-style art (motifs, the painting, the phone frieze) | `projects/home/stack/art.ts`, rendered by `Madhubani.tsx`                |
-| Styles                                                       | `projects/home/styles/stack.css` (the Try Yank pill lives in `rail.css`) |
-| The painting's scroll drift                                  | `projects/home/styles/stack.css` (a scroll-linked animation)             |
+| What                                                         | Where                                                                       |
+| ------------------------------------------------------------ | --------------------------------------------------------------------------- |
+| Copy: tier lists and takes, gear, hobbies                    | `projects/home/opinions/data.ts`                                            |
+| Sections                                                     | `projects/home/opinions/sections.tsx`                                       |
+| Madhubani-style art (motifs, the painting, the phone frieze) | `projects/home/opinions/art.ts`, rendered by `Madhubani.tsx`                |
+| Styles                                                       | `projects/home/styles/opinions.css` (the Try Yank pill lives in `rail.css`) |
+| The painting's scroll drift                                  | `projects/home/styles/opinions.css` (a scroll-linked animation)             |
 
-The art is one long painting down the right-hand side, like a sleeve tattoo, drawn in the Madhubani manner: every shape has a double outline and a flat or patterned fill (hatching, dots, scales, zigzags), and fish pairs, lotuses and birds fill the panels between motifs, with sawtooth borders down both edges. The motifs are a chess king, a mocha with caramel and hazelnuts, the number 5, a tennis racket with a 16x19 string bed, the Howrah Bridge, an owl with round glasses and a wand, a triangle with a circle and a knotted wand, a pierced diary, a ring, a winged fire-breathing dragon, a gold locket with an emerald serpent S, a two-handled cup, a diadem, a snake, a sword with rubies, swirling ancient magic, a seven-star orb, a glowing gate, pickleball, a can of zero-sugar cola, padel and a broad glowing blade with a winged guard. They are original drawings made of simple shapes, not copies of any character, logo or brand. Colours come from the palette (ink, paper and link colour, plus `--mb-accent`, `--mb-green` and `--mb-red` per paper, set in `styles/stack.css`) through inline styles and `url(#mb-…)` fill patterns, so nothing needs to reach into the `<use>` shadow trees. The art is edited by hand in `art.ts`: the script that first generated it was not kept. A scroll-linked CSS animation moves the painting in step with the page, so all of it passes by the end. On phones the painting runs left to right across the top of the page.
+The art is one long painting down the right-hand side, like a sleeve tattoo, drawn in the Madhubani manner: every shape has a double outline and a flat or patterned fill (hatching, dots, scales, zigzags), and fish pairs, lotuses and birds fill the panels between motifs, with sawtooth borders down both edges. The motifs are a chess king, a mocha with caramel and hazelnuts, the number 5, a tennis racket with a 16x19 string bed, the Howrah Bridge, an owl with round glasses and a wand, a triangle with a circle and a knotted wand, a pierced diary, a ring, a winged fire-breathing dragon, a gold locket with an emerald serpent S, a two-handled cup, a diadem, a snake, a sword with rubies, swirling ancient magic, a seven-star orb, a glowing gate, pickleball, a can of zero-sugar cola, padel and a broad glowing blade with a winged guard. They are original drawings made of simple shapes, not copies of any character, logo or brand. Colours come from the palette (ink, paper and link colour, plus `--mb-accent`, `--mb-green` and `--mb-red` per paper, set in `styles/opinions.css`) through inline styles and `url(#mb-…)` fill patterns, so nothing needs to reach into the `<use>` shadow trees. The art is edited by hand in `art.ts`: the script that first generated it was not kept. A scroll-linked CSS animation moves the painting in step with the page, so all of it passes by the end. On phones the painting runs left to right across the top of the page.
 
 ### Yank (`/yank`)
 

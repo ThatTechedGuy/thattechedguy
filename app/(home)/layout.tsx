@@ -19,7 +19,7 @@ import "@/projects/home/styles/record.css";
 import "@/projects/home/styles/contact.css";
 import "@/projects/home/styles/work.css";
 import "@/projects/home/styles/footer.css";
-import "@/projects/home/styles/stack.css";
+import "@/projects/home/styles/opinions.css";
 import "@/projects/home/styles/motion.css";
 import "@/lib/motion/page-transition.css";
 

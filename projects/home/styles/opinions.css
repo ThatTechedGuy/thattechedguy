@@ -55,7 +55,7 @@
   display: none;
 }
 @media (min-width: 900px) {
-  .stackpage {
+  .opinionspage {
     --band: clamp(130px, 12vw, 200px);
     padding-right: var(--band);
   }

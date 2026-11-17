@@ -1,25 +1,25 @@
 import type { Metadata } from "next";
 
-import { stackNav } from "@/projects/home/config";
+import { opinionsNav } from "@/projects/home/config";
 import { Cursor } from "@/projects/home/islands/Cursor";
 import { MotifCaption } from "@/projects/home/islands/MotifCaption";
 import { Rail } from "@/projects/home/islands/Rail";
+import { Frieze, MotifDefs, Painting } from "@/projects/home/opinions/Madhubani";
+import { Gear, Intro, Play, Stack } from "@/projects/home/opinions/sections";
+import { opinionsMetadata } from "@/projects/home/opinions/seo";
 import { Footer } from "@/projects/home/sections/Footer";
 import { Sprite } from "@/projects/home/sections/Sprite";
-import { Frieze, MotifDefs, Painting } from "@/projects/home/stack/Madhubani";
-import { Gear, Intro, Play, Stack } from "@/projects/home/stack/sections";
-import { stackMetadata } from "@/projects/home/stack/seo";
 
-export const metadata: Metadata = stackMetadata;
+export const metadata: Metadata = opinionsMetadata;
 
 /** The second page: the stack with a verdict on each tool, the gear, and hobbies. */
-export default function StackPage() {
+export default function OpinionsPage() {
   return (
     <>
       <Sprite />
       <MotifDefs />
-      <Rail nav={stackNav} />
-      <div className="stackpage">
+      <Rail nav={opinionsNav} />
+      <div className="opinionspage">
         <Painting />
         <Frieze />
         <MotifCaption />
@@ -28,7 +28,7 @@ export default function StackPage() {
           <Stack />
           <Gear />
           <Play />
-          <Footer nav={stackNav} />
+          <Footer nav={opinionsNav} />
         </main>
       </div>
       <Cursor />

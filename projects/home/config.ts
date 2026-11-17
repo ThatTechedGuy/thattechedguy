@@ -35,10 +35,10 @@ export const sections = [
 ] as const;
 
 /** The second page: the stack, opinions on it, and hobbies. */
-export const stackPath = "/opinions";
+export const opinionsPath = "/opinions";
 
-/** The same for the stack page. */
-export const stackSections = [
+/** The same for the Opinions page. */
+export const opinionsSections = [
   { id: "stack", name: "Stack" },
   { id: "gear", name: "Gear" },
   { id: "play", name: "Play" },
@@ -57,11 +57,11 @@ export interface PageNav {
 export const homeNav: PageNav = {
   sections,
   mark: { href: "#top", label: "vg, back to top" },
-  page: { href: stackPath, name: "Opinions" },
+  page: { href: opinionsPath, name: "Opinions" },
 };
 
-export const stackNav: PageNav = {
-  sections: stackSections,
+export const opinionsNav: PageNav = {
+  sections: opinionsSections,
   mark: { href: "/", label: "vg, home" },
   page: { href: "/", name: "Home" },
 };

@@ -1,5 +1,5 @@
 /**
- * The stack page's copy. Edit the words here; the components only lay them out.
+ * The Opinions page's copy. Edit the words here; the components only lay them out.
  */
 
 import type { MotifId } from "./art";

@@ -6,7 +6,7 @@
  * The drawings are original, built from simple shapes in the Madhubani manner: every shape has a double outline
  * (ink with a paper hairline) and a flat or patterned fill (hatching, dots, scales, zigzags), with flowers, leaves,
  * fish, lotuses and birds as fillers. Colours come from the palette tokens --ink, --paper, --link, --mb-accent,
- * --mb-green and --mb-red (see styles/stack.css), so the art follows the chosen paper.
+ * --mb-green and --mb-red (see styles/opinions.css), so the art follows the chosen paper.
  *
  * Each export is ready for dangerouslySetInnerHTML, one symbol or pattern per line. motifDefs holds the fill
  * patterns, one 200 x 200 <symbol id="mb-…"> per motif, and the filler panels. painting is one long vertical
