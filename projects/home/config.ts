@@ -1,5 +1,3 @@
-import { projects } from "@/site.config";
-
 /** The home page's own settings. Its palette is remembered apart from every project's theme. */
 export const homePaletteKey = "ttg:home:palette";
 
@@ -19,11 +17,8 @@ export type PaletteId = (typeof palettes)[number]["id"];
 
 export const linkedinUrl = "https://www.linkedin.com/in/vishg05/";
 
-/**
- * Yank's page, from the domain's projects list. A plain <a>: Yank has its own root layout, so Next.js
- * would load it as a full page even through <Link>, which only adds 2.6 KB of client JS here.
- */
-export const yankPath = projects.find((project) => project.name === "Yank")?.path ?? "/yank";
+/** Yank's page. It has its own root layout, so a <Link> to it loads the whole page. */
+export const yankPath = "/yank";
 export const email = "thattechedguy@gmail.com";
 
 /** The sections the side rail and the phone index link to, in page order. */
@@ -38,7 +33,7 @@ export const sections = [
 export const opinionsPath = "/opinions";
 
 /** The same for the Opinions page. */
-export const opinionsSections = [
+const opinionsSections = [
   { id: "stack", name: "Stack" },
   { id: "gear", name: "Gear" },
   { id: "play", name: "Play" },

@@ -1,7 +1,7 @@
 /** The "Try it" demo's sample clipboard and its rules, kept pure so they are unit-tested apart from the UI. */
 
 export type ClipKind = "link" | "text" | "image" | "color" | "file";
-export type Board = "history" | "snippets" | "travel";
+type Board = "history" | "snippets" | "travel";
 
 export interface Clip {
   id: string;

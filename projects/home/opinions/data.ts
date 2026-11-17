@@ -5,7 +5,7 @@
 import type { MotifId } from "./art";
 
 /** Simple Icons ids that exist in ../icons.svg. */
-export type IconId =
+type IconId =
   | "typescript"
   | "elixir"
   | "swift"
@@ -46,7 +46,7 @@ export type IconId =
   | "knexdotjs"
   | "sequelize";
 
-export type Verdict = "love" | "like" | "complicated" | "hate";
+type Verdict = "love" | "like" | "complicated" | "hate";
 
 export const verdictNames: Record<Verdict, string> = {
   love: "Love it",
@@ -55,7 +55,7 @@ export const verdictNames: Record<Verdict, string> = {
   hate: "Hate it",
 };
 
-export type Tier = "S" | "A" | "B" | "C" | "D";
+type Tier = "S" | "A" | "B" | "C" | "D";
 
 /** Each tier's row, best first, with a few words on what the letter means. */
 export const tiers: readonly (readonly [tier: Tier, meaning: string])[] = [
@@ -340,7 +340,7 @@ export const cloud: readonly Ranked[] = [
 ];
 
 /** What it all runs on: each row is a name, a line about it, and an optional verdict. */
-export interface GearGroup {
+interface GearGroup {
   name: string;
   items: readonly (readonly [name: string, detail: string, verdict?: Verdict])[];
 }
@@ -388,7 +388,7 @@ export const gear: readonly GearGroup[] = [
   },
 ];
 
-export interface Hobby {
+interface Hobby {
   motif: MotifId;
   name: string;
   kind: string;

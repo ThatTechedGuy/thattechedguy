@@ -16,7 +16,7 @@ export interface Shape {
   seed: number;
 }
 
-export interface Pose {
+interface Pose {
   position: Vec3;
   rotation: Vec3;
   scale: number;

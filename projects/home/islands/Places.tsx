@@ -33,7 +33,7 @@ export function Places({ places }: { places: readonly { id: string; content: Rea
   );
 }
 
-// Brisbane's clock, read once a minute. The server renders the fallback text; the clock appears after hydration.
+// Brisbane's clock: checked every 30 s, so the minute shown is never more than 30 s late. The server renders the fallback text; the clock appears after hydration.
 const subscribeMinute = (onChange: () => void) => {
   const id = setInterval(onChange, 30_000);
   return () => clearInterval(id);
